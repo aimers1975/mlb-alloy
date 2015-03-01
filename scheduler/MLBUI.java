@@ -36,15 +36,16 @@ public class MLBUI extends JFrame {
     Boolean debug = true;
     JLabel appInfo = new JLabel(scheduler.SchedulerConstants.APP_LABEL);
     //JButton quitButton = new JButton("Quit");
-    JButton saveModelButton = new JButton("Save Model");
-    JButton evaluateButton = new JButton("Evaluate");
+    JButton saveModelButton = new JButton(scheduler.SchedulerConstants.SAVE_MODEL_BUTTON);
+    JButton evaluateButton = new JButton(scheduler.SchedulerConstants.EVALUATE_BUTTON);
     JPanel scrollPanel = new JPanel();
-    JTextArea inputALS = new JTextArea("Type Alloy Code Here.",200,200);
+    JTextArea inputALS = new JTextArea(scheduler.SchedulerConstants.INPUTALS_TEXT,200,200);
     JScrollPane scroll = new JScrollPane(inputALS);
     JMenuBar menubar = new JMenuBar();
     ImageIcon icon = new ImageIcon("alert.jpg");
     JMenu file = new JMenu("File");
     JMenuItem eMenuItem = new JMenuItem("Exit", icon);
+    //JMenuItem eMenuItem = new JMenuItem("Exit");
 
 	public MLBUI() {
 		initUI();

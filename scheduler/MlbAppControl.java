@@ -15,7 +15,7 @@ public class MlbAppControl {
 	
     VizGUI viz = null;
     A4Reporter rep;
-    Boolean debug = false;
+    Boolean debug = true;
 
 	public MlbAppControl() {
 	  rep = new A4Reporter() {
