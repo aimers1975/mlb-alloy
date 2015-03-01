@@ -6,10 +6,15 @@ import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
+import javax.swing.JMenuBar;
+import javax.swing.ImageIcon;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import java.awt.EventQueue;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.GroupLayout;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
@@ -19,6 +24,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import scheduler.SchedulerConstants;
+
 
 
 //import statements
@@ -27,13 +34,17 @@ public class MLBUI extends JFrame {
 
     MlbAppControl analyzer;
     Boolean debug = true;
-    JLabel appInfo = new JLabel("Set Team Scheduling Parameters");
-    JButton quitButton = new JButton("Quit");
+    JLabel appInfo = new JLabel(scheduler.SchedulerConstants.APP_LABEL);
+    //JButton quitButton = new JButton("Quit");
     JButton saveModelButton = new JButton("Save Model");
     JButton evaluateButton = new JButton("Evaluate");
     JPanel scrollPanel = new JPanel();
     JTextArea inputALS = new JTextArea("Type Alloy Code Here.",200,200);
     JScrollPane scroll = new JScrollPane(inputALS);
+    JMenuBar menubar = new JMenuBar();
+    ImageIcon icon = new ImageIcon("alert.jpg");
+    JMenu file = new JMenu("File");
+    JMenuItem eMenuItem = new JMenuItem("Exit", icon);
 
 	public MLBUI() {
 		initUI();
@@ -50,39 +61,8 @@ public class MLBUI extends JFrame {
 		setTitle("Team Scheduler");
         setSize(800, 500);
         setLocationRelativeTo(null);
-        quitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                System.exit(0);
-            }
-        });
-        saveModelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                saveModelToFile();
-                debug("Model saved!");
-            }
-        });
-        evaluateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                try {
-                    analyzer.runAnalysis(getAnalyzerInput());
-                } catch(Exception e) {
-                    debug("Failure to run analyzer");
-                }
-                debug("Evaluation started!");
-            }
-        });
-
-        scrollPanel.setSize(230,230);
-        scrollPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-        //scrollPanel.setBorder(new TitledBorder(new EtchedBorder(), "Display Area"));
-        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPanel.add(scroll);
-        
-        createLayout(appInfo, scroll, saveModelButton, evaluateButton, quitButton);
+        createMenuBar();      
+        createLayout(appInfo, scroll, saveModelButton, evaluateButton);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
@@ -110,6 +90,51 @@ public class MLBUI extends JFrame {
         return analyzerInputs;
     }
 
+    private void createMenuBar() {
+
+        file.setMnemonic(KeyEvent.VK_F);
+        eMenuItem.setMnemonic(KeyEvent.VK_E);
+        eMenuItem.setToolTipText("Exit application");
+        eMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                System.exit(0);
+            }
+        });
+        file.add(eMenuItem);
+        menubar.add(file);
+        setJMenuBar(menubar);
+    }
+
+    private void createMainAppBody() {
+        saveModelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                saveModelToFile();
+                debug("Model saved!");
+            }
+        });
+        evaluateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    analyzer.runAnalysis(getAnalyzerInput());
+                } catch(Exception e) {
+                    debug("Failure to run analyzer");
+                }
+                debug("Evaluation started!");
+            }
+        });
+        createTextAreaScroll();
+    }
+
+    private void createTextAreaScroll() {
+        scrollPanel.setSize(230,230);
+        scrollPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPanel.add(scroll); 
+    }
+
 	private void createLayout(JComponent... arg) {
 
         Container pane = getContentPane();
@@ -123,7 +148,6 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[1])
                 .addComponent(arg[2])
                 .addComponent(arg[3])
-                .addComponent(arg[4])
         );
 
         gl.setVerticalGroup(gl.createSequentialGroup()
@@ -131,7 +155,6 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[1])
                 .addComponent(arg[2])
                 .addComponent(arg[3])
-                .addComponent(arg[4])
         );
     }
 
