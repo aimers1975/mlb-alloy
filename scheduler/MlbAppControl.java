@@ -32,9 +32,9 @@ public class MlbAppControl {
 		}
 	}
 
-	public void runAnalysis(String[] inputfiles) throws Err {
+	public String runAnalysis(String[] inputfiles) throws Err {
+            String returnAns = "";
 	        for(String filename:inputfiles) {
-
             // Parse+typecheck the model
             debug("=========== Parsing+Typechecking "+filename+" =============");
             debug("Creating module.");
@@ -50,7 +50,8 @@ public class MlbAppControl {
                 debug("============ Command "+command+": ============");
                 A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
                 // Print the outcome
-                System.out.println(ans);
+                returnAns = ans.toString();
+                //System.out.println(returnAns);
                 // If satisfiable...
                 if (ans.satisfiable()) {
                     // You can query "ans" to find out the values of each set or type.
@@ -68,6 +69,8 @@ public class MlbAppControl {
                 }
             }
         }
+        //System.out.println(returnAns);
+        return returnAns;
 
 	}
 }

@@ -27,25 +27,25 @@ import java.nio.file.Paths;
 import scheduler.SchedulerConstants;
 
 
-
-//import statements
-//Check if window closes automatically. Otherwise add suitable code
 public class MLBUI extends JFrame {
 
     MlbAppControl analyzer;
     Boolean debug = true;
     JLabel appInfo = new JLabel(scheduler.SchedulerConstants.APP_LABEL);
-    //JButton quitButton = new JButton("Quit");
-    JButton saveModelButton = new JButton(scheduler.SchedulerConstants.SAVE_MODEL_BUTTON);
     JButton evaluateButton = new JButton(scheduler.SchedulerConstants.EVALUATE_BUTTON);
     JPanel scrollPanel = new JPanel();
     JTextArea inputALS = new JTextArea(scheduler.SchedulerConstants.INPUTALS_TEXT,200,200);
     JScrollPane scroll = new JScrollPane(inputALS);
+    JPanel scrollPanelInputs = new JPanel();
+    JTextArea inputPlaceholder = new JTextArea(scheduler.SchedulerConstants.INPUT_PLACEHOLDER,200,200);
+    JScrollPane inputScroll = new JScrollPane(inputPlaceholder);
+    JPanel outputPanel = new JPanel();
+    JTextArea outputPlaceholder = new JTextArea(scheduler.SchedulerConstants.OUTPUT_PLACEHOLDER, 200, 200);
+    JScrollPane outputScroll = new JScrollPane(outputPlaceholder);
     JMenuBar menubar = new JMenuBar();
-    ImageIcon icon = new ImageIcon("alert.jpg");
-    JMenu file = new JMenu("File");
-    JMenuItem eMenuItem = new JMenuItem("Exit", icon);
-    //JMenuItem eMenuItem = new JMenuItem("Exit");
+    JMenu file = new JMenu(scheduler.SchedulerConstants.FILE_JMENU);
+    JMenuItem eMenuItem = new JMenuItem(scheduler.SchedulerConstants.EXIT_MENUITEM);
+    String analyzerOutputString = "";
 
 	public MLBUI() {
 		initUI();
@@ -59,11 +59,12 @@ public class MLBUI extends JFrame {
     }
 
 	private void initUI() {
-		setTitle("Team Scheduler");
+		setTitle(scheduler.SchedulerConstants.APP_TITLE);
         setSize(800, 500);
         setLocationRelativeTo(null);
-        createMenuBar();      
-        createLayout(appInfo, scroll, saveModelButton, evaluateButton);
+        createMenuBar();  
+        createMainAppBody();    
+        createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
@@ -71,21 +72,21 @@ public class MLBUI extends JFrame {
 
         String[] lines = inputALS.getText().split("\\n");
         try {
-            PrintWriter out = new PrintWriter("scheduler\\model.als");
+            PrintWriter out = new PrintWriter(scheduler.SchedulerConstants.SAVE_MODEL_LOCATION);
             for(String line : lines) {
                 debug(line);
                 out.println(line);
             }
             out.close();
         } catch (Exception e) {
-            System.out.println("Failed to create model file.");
+            System.out.println(scheduler.SchedulerConstants.CREATE_FILE_ERROR);
         }
 
     }
 
     private String[] getAnalyzerInput() {
         String[] analyzerInputs = new String[1];
-        Path path = Paths.get("scheduler\\model.als");
+        Path path = Paths.get(scheduler.SchedulerConstants.SAVE_MODEL_LOCATION);
         Path absolutePath = path.toAbsolutePath();
         analyzerInputs[0] = absolutePath.toString();
         return analyzerInputs;
@@ -95,7 +96,7 @@ public class MLBUI extends JFrame {
 
         file.setMnemonic(KeyEvent.VK_F);
         eMenuItem.setMnemonic(KeyEvent.VK_E);
-        eMenuItem.setToolTipText("Exit application");
+        eMenuItem.setToolTipText(scheduler.SchedulerConstants.EXIT_TOOLTIP);
         eMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -108,54 +109,56 @@ public class MLBUI extends JFrame {
     }
 
     private void createMainAppBody() {
-        saveModelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                saveModelToFile();
-                debug("Model saved!");
-            }
-        });
         evaluateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
                 try {
-                    analyzer.runAnalysis(getAnalyzerInput());
+                    saveModelToFile();
+                    debug("Model saved!");
+                    analyzerOutputString = analyzer.runAnalysis(getAnalyzerInput());
+                    debug(analyzerOutputString);
                 } catch(Exception e) {
-                    debug("Failure to run analyzer");
+                    debug(scheduler.SchedulerConstants.RUN_FAILURE);
                 }
-                debug("Evaluation started!");
+                debug(scheduler.SchedulerConstants.RUN_SUCCESS);
             }
         });
-        createTextAreaScroll();
+        createTextAreaScroll(scrollPanel, scroll);
+        createTextAreaScroll(scrollPanelInputs, inputScroll);
+        createTextAreaScroll(scrollPanelInputs, inputScroll);
     }
 
-    private void createTextAreaScroll() {
-        scrollPanel.setSize(230,230);
-        scrollPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPanel.add(scroll); 
+    private void createTextAreaScroll(JPanel thisPanel, JScrollPane thisScrollPane) {
+        thisPanel.setSize(230,230);
+        thisPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        thisScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        thisPanel.add(thisScrollPane); 
     }
 
 	private void createLayout(JComponent... arg) {
 
-        Container pane = getContentPane();
-        GroupLayout gl = new GroupLayout(pane);
-        pane.setLayout(gl);
-
+        GroupLayout gl = new GroupLayout(getContentPane());
+        getContentPane().setLayout(gl);
         gl.setAutoCreateContainerGaps(true);
+        gl.setAutoCreateGaps(true);
 
         gl.setHorizontalGroup(gl.createSequentialGroup()
+            .addGroup(gl.createParallelGroup()
                 .addComponent(arg[0])
+                .addComponent(arg[3]))
+            .addGroup(gl.createParallelGroup()
                 .addComponent(arg[1])
-                .addComponent(arg[2])
-                .addComponent(arg[3])
+                .addComponent(arg[2]))
+            .addComponent(arg[4])
         );
 
         gl.setVerticalGroup(gl.createSequentialGroup()
-                .addComponent(arg[0])
+            .addComponent(arg[0])
+            .addGroup(gl.createParallelGroup()
                 .addComponent(arg[1])
-                .addComponent(arg[2])
                 .addComponent(arg[3])
+                .addComponent(arg[4]))
+            .addComponent(arg[2])
         );
     }
 
