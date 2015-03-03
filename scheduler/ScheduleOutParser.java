@@ -38,17 +38,14 @@ public class ScheduleOutParser {
 
 	public ArrayList<String> parseGameDetails() {
 		details = new ArrayList<String>();
-
-		//this/game<:team1={game$0->team$2, game$1->team$1, game$2->team$2, game$3->team$0, game$4->team$1}
-	    //this/game<:team2={game$0->team$1, game$1->team$0, game$2->team$0, game$3->team$2, game$4->team$0}
 		int start = originalOutput.indexOf("this/game<:team1={");
 		int middle = originalOutput.indexOf("this/game<:team2={", start);
 		int middle2 = originalOutput.indexOf("this/game<:gt={",middle);
 		int end = originalOutput.indexOf("this/schedule={", middle2);
-		debug("The start of teamlist is: " + start);
-		debug("The middle of teamlist is: " + middle);
-		debug("The middle2 of the teamlist is" + middle2);
-		debug("The end of teamlist is: " + end);
+		//debug("The start of teamlist is: " + start);
+		//debug("The middle of teamlist is: " + middle);
+		//debug("The middle2 of the teamlist is" + middle2);
+		//debug("The end of teamlist is: " + end);
 		StringTokenizer parts = new StringTokenizer(originalOutput.substring(start,middle),"{");
 		StringTokenizer parts2 = new StringTokenizer(originalOutput.substring(middle,middle2), "{");
 		StringTokenizer parts3 = new StringTokenizer(originalOutput.substring(middle2, end), "{");
