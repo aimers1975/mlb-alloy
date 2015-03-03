@@ -1,5 +1,6 @@
 package scheduler;
 
+import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
@@ -40,16 +41,18 @@ public class MLBUI extends JFrame {
     JTextArea inputPlaceholder = new JTextArea(scheduler.SchedulerConstants.INPUT_PLACEHOLDER,200,200);
     JScrollPane inputScroll = new JScrollPane(inputPlaceholder);
     JPanel outputPanel = new JPanel();
-    JTextArea outputPlaceholder = new JTextArea(scheduler.SchedulerConstants.OUTPUT_PLACEHOLDER, 200, 200);
+    JTextArea outputPlaceholder = new JTextArea(200, 200);
     JScrollPane outputScroll = new JScrollPane(outputPlaceholder);
     JMenuBar menubar = new JMenuBar();
     JMenu file = new JMenu(scheduler.SchedulerConstants.FILE_JMENU);
     JMenuItem eMenuItem = new JMenuItem(scheduler.SchedulerConstants.EXIT_MENUITEM);
     String analyzerOutputString = "";
+    ScheduleOutParser parser;
 
 	public MLBUI() {
 		initUI();
         analyzer = new MlbAppControl();
+
 	}
 
     private void debug(String msg) {
@@ -109,6 +112,7 @@ public class MLBUI extends JFrame {
     }
 
     private void createMainAppBody() {
+
         evaluateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -117,6 +121,20 @@ public class MLBUI extends JFrame {
                     debug("Model saved!");
                     analyzerOutputString = analyzer.runAnalysis(getAnalyzerInput());
                     debug(analyzerOutputString);
+                    parser = new ScheduleOutParser(analyzerOutputString);
+                    ArrayList<String> games = parser.parseGames();
+                    ArrayList<String> details = parser.parseGameDetails();
+                    outputPlaceholder.removeAll();
+                    for(int i=0; i<games.size(); i++) {
+                        debug(games.get(i));
+                        outputPlaceholder.append(games.get(i) + ": \n");
+                        debug("    " + details.get(i*3));
+                        outputPlaceholder.append("    " + details.get(i*3) + "\n");
+                        debug("    " + details.get(i*3+1));
+                        outputPlaceholder.append("    " + details.get(i*3+1) + "\n");
+                        debug("    " + details.get(i*3+2));
+                        outputPlaceholder.append("    " + details.get(i*3+2) + "\n");
+                    }
                 } catch(Exception e) {
                     debug(scheduler.SchedulerConstants.RUN_FAILURE);
                 }
