@@ -51,7 +51,7 @@ public class MlbAppControl {
                 A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
                 // Print the outcome
                 returnAns = ans.toString();
-                //System.out.println(returnAns);
+                System.out.println(returnAns);
                 // If satisfiable...
                 if (ans.satisfiable()) {
                     // You can query "ans" to find out the values of each set or type.
@@ -61,11 +61,11 @@ public class MlbAppControl {
                     ans.writeXML("alloy_example_output.xml");
                     //
                     // You can then visualize the XML file by calling this:
-                    if (viz==null) {
+                    //if (viz==null) {
                         viz = new VizGUI(false, "alloy_example_output.xml", null);
-                    } else {
-                        viz.loadXML("alloy_example_output.xml", true);
-                    }
+                    //} else {
+                    //    viz.loadXML("alloy_example_output.xml", true);
+                    //}
                 }
             }
         }

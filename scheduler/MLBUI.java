@@ -120,20 +120,28 @@ public class MLBUI extends JFrame {
                     saveModelToFile();
                     debug("Model saved!");
                     analyzerOutputString = analyzer.runAnalysis(getAnalyzerInput());
-                    debug(analyzerOutputString);
+                    //debug(analyzerOutputString);
                     parser = new ScheduleOutParser(analyzerOutputString);
-                    ArrayList<String> games = parser.parseGames();
+                    ArrayList<String> series = parser.parseSeries();
                     ArrayList<String> details = parser.parseGameDetails();
                     outputPlaceholder.removeAll();
-                    for(int i=0; i<games.size(); i++) {
-                        debug(games.get(i));
-                        outputPlaceholder.append(games.get(i) + ": \n");
-                        debug("    " + details.get(i*3));
-                        outputPlaceholder.append("    " + details.get(i*3) + "\n");
-                        debug("    " + details.get(i*3+1));
-                        outputPlaceholder.append("    " + details.get(i*3+1) + "\n");
-                        debug("    " + details.get(i*3+2));
-                        outputPlaceholder.append("    " + details.get(i*3+2) + "\n");
+                    debug("Series size is: " + series.size());
+                    debug("Details size is: " + details.size());
+                    for(int i=0; i<series.size(); i++) {
+                        debug(series.get(i));
+                        outputPlaceholder.append(series.get(i) + ": \n");
+                        debug("    " + details.get(i*5));
+                        outputPlaceholder.append("    " + details.get(i*5) + "\n");
+                        debug("    " + details.get(i*5+1));
+                        outputPlaceholder.append("    " + details.get(i*5+1) + "\n");
+                        debug("    " + details.get(i*5+2));
+                        outputPlaceholder.append("    " + details.get(i*5+2) + "\n");
+                        debug("    " + details.get(i*5+3));
+                        outputPlaceholder.append("    " + details.get(i*5+3) + "\n");
+                        debug("    " + details.get(i*5+4));
+                        outputPlaceholder.append("    " + details.get(i*5+4) + "\n");
+                        //debug("    " + details.get(i*3+5));
+                        //outputPlaceholder.append("    " + details.get(i*6+5) + "\n");
                     }
                 } catch(Exception e) {
                     debug(scheduler.SchedulerConstants.RUN_FAILURE);
