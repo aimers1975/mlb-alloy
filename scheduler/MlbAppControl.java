@@ -62,7 +62,7 @@ public class MlbAppControl {
                     //
                     // You can then visualize the XML file by calling this:
                     //if (viz==null) {
-                        viz = new VizGUI(false, "alloy_example_output.xml", null);
+                    //    viz = new VizGUI(false, "alloy_example_output.xml", null);
                     //} else {
                     //    viz.loadXML("alloy_example_output.xml", true);
                     //}

@@ -123,26 +123,21 @@ public class MLBUI extends JFrame {
                     //debug(analyzerOutputString);
                     parser = new ScheduleOutParser(analyzerOutputString);
                     ArrayList<String> series = parser.parseSeries();
-                    ArrayList<String> details = parser.parseGameDetails();
                     outputPlaceholder.removeAll();
                     debug("Series size is: " + series.size());
-                    debug("Details size is: " + details.size());
                     for(int i=0; i<series.size(); i++) {
                         debug(series.get(i));
                         outputPlaceholder.append(series.get(i) + ": \n");
-                        debug("    " + details.get(i*5));
-                        outputPlaceholder.append("    " + details.get(i*5) + "\n");
-                        debug("    " + details.get(i*5+1));
-                        outputPlaceholder.append("    " + details.get(i*5+1) + "\n");
-                        debug("    " + details.get(i*5+2));
-                        outputPlaceholder.append("    " + details.get(i*5+2) + "\n");
-                        debug("    " + details.get(i*5+3));
-                        outputPlaceholder.append("    " + details.get(i*5+3) + "\n");
-                        debug("    " + details.get(i*5+4));
-                        outputPlaceholder.append("    " + details.get(i*5+4) + "\n");
-                        //debug("    " + details.get(i*3+5));
-                        //outputPlaceholder.append("    " + details.get(i*6+5) + "\n");
+                        ArrayList<String> temp = parser.getTeamsForSeries(series.get(i));
+                        for(int k=0; k<temp.size(); k++) {
+                            outputPlaceholder.append("     " + temp.get(k) + "\n");
+                        }
+                        temp = parser.getGamesForSeries(series.get(i));
+                        for(int m=0; m<temp.size(); m++) {
+                            outputPlaceholder.append("     " + temp.get(m) + "\n");
+                        }
                     }
+                    
                 } catch(Exception e) {
                     debug(scheduler.SchedulerConstants.RUN_FAILURE);
                 }
