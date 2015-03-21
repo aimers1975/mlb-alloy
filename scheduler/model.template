@@ -105,6 +105,7 @@ pred noFourGameAwayStands(This:schedule) {
 pred noFourGameHomeStands(This:schedule) {
   no disj a,b:series | a.hteam = b.hteam and b.g1 in (a.g1.(Ordering.order).(Ordering.order).(Ordering.order) + a.g1.(Ordering.order).(Ordering.order).(Ordering.order).(Ordering.order)) 
 }
+//%genCustomPred%
 
 pred show(This:schedule) {
 //%genPredTeamNumberGames%
@@ -112,6 +113,7 @@ pred show(This:schedule) {
 //%genPredSetFourGameSeries%
 //%genPredNoFourGameAwayStands%
 //%genPredNoConsecutiveSeries%
+//%genPredCustomInShow%
 }
 
 run show for 

@@ -34,6 +34,8 @@ public class ModelFileGenerator {
 		addPredHasHalfHomeGames();
 		//addPredNoFourGameAwayStands();
 		addPredNoConsecutiveSeries();
+		addCustomPred("pred myCustomPred(This:schedule) {\n  //This is a test \n}");
+		addCustomPredInShow("  myCustomPred[This]\n");
 		writeWorkingModelToFile("scheduler\\amygenerated.als");
 		for(int i=0; i<workingModel.size(); i++) {
 			debug(workingModel.get(i));
@@ -72,6 +74,19 @@ public class ModelFileGenerator {
 		//debug("Index of HalfHomeGames: " + index);
 		workingModel.set(index,"  hasHalfHomeGames[This]");
 	}
+
+	public void addCustomPred(String customPred) {
+		int index = workingModel.indexOf("//%genCustomPred%");
+		debug("Index of custompred: " + index);
+		workingModel.set(index,customPred);
+	}
+
+	public void addCustomPredInShow(String customPredInShow) {
+		int index = workingModel.indexOf("//%genPredCustomInShow%");
+		debug("Index of custompredinshow: " + index);
+		workingModel.set(index,customPredInShow);
+	}
+
 	public void addPredSetFourGameSeries(int numSeries) {	
 		//all a: team | countFourGameSeries[This,a] = 4
 		StringBuilder sb = new StringBuilder();
