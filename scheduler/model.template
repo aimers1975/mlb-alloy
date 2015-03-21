@@ -1,0 +1,118 @@
+abstract sig day { }
+
+one sig 
+%generatePossibleDays%
+extends day {}
+
+one sig schedule { allSeries: set series}
+
+%addTeams%
+
+one sig Ordering { order: day -> day }
+
+fact LinearOrder {
+%generateDayOrder%
+}
+
+sig series {
+    ateam: one team,
+    hteam: one team,
+    g1: one day,
+    g2: one day,
+    g3: one day,
+    g4: lone day
+}
+
+fact consecutiveGames {
+    all a: schedule.*allSeries | a.g2 = a.g1.(Ordering.order) and a.g3 = a.g2.(Ordering.order) and (a.g4 = a.g3.(Ordering.order) or a.g4 = none)    
+}
+
+fact cardinality {
+    // All series are in our schedule
+    all n: series | n in schedule.*allSeries
+    // All series don't have repeat game days
+    all n: schedule.allSeries | (n.g2 !in n.(g1+g3+g4)) and (n.g1 !in n.(g2+g3+g4)) and (n.g3 !in n.(g1+g2+g4))
+    // Any two series in the schedule if there is overlap in game days, they can't have the same teams
+    all disj a,b: schedule.*allSeries | #{a.(g1+g2+g3+g4) & b.(g1+g2+g3+g4)} > 0 => #{a.(ateam+hteam) & b.(ateam+hteam)}=0
+    // All teams are in the schedule
+    all m: team | m in schedule.allSeries.*(ateam+hteam)
+    // A series can't have the same team playing itself
+    all a: series | a.hteam !in a.ateam
+}
+
+fact teamCardinality {
+//%generateNumSeries%
+%generateNumTeams%
+//%generateDivideTeams
+//%generateDivideTeamsConstraints
+}
+
+fact daysUnavailableGameOne {
+%unavailableGameOneDays%
+}
+
+// Count instances of series that include a specific teams in a schedule
+fun countOne[s:schedule, t1:team] : Int {
+ #{x: s.*allSeries | t1 in x.(ateam+hteam)}
+}
+
+// Count series played as home team
+fun countHomeGames[s:schedule, t1:team] : Int {
+  #{x: s.*allSeries | t1 in x.(hteam)}
+}
+
+// Count series played as away team
+fun countAwayGames[s:schedule, t1:team] : Int {
+  #{x: s.*allSeries | t1 in x.(ateam)}
+}
+
+// Count instances of series that include two specific teams in a schedule
+fun count[s:schedule, t1:team, t2:team] : Int {
+ #{x: s.*allSeries | t1 in x.(ateam+hteam) and t2 in x.(ateam+hteam)}
+}
+
+// Count # of series for a team that has 4 games
+fun countFourGameSeries[s:schedule,ct:team] : Int {
+   #{x: s.*allSeries | (ct in x.(ateam+hteam)) and (#{x.g1+x.g2+x.g3+x.g4} = 4) }
+}
+
+ 
+// All teams must have a certain number of series against the same team - todo, fix sched.
+pred teamNumberGames(This:schedule) {
+//%setTeamNumberGames%
+}
+
+// Ensure half teams games are home games and half are away
+pred hasHalfHomeGames(This:schedule) {
+    all a: team | countHomeGames[This,a] = countAwayGames[This,a]
+}
+
+//Consecutive series between the same two teams are to be avoided.
+pred noConsecutiveSeries (This:schedule) {
+    all disj a,b:This.*allSeries | (#{a.(ateam+hteam) & b.(ateam+hteam)} = 2) => (b.g1 !in a.g1.(Ordering.order).(Ordering.order).(Ordering.order))
+}
+
+// Determine number of 4-game series each team has in this schedule chunk
+pred setFourGameSeries(This:schedule) {
+//%setNumberFourGames%
+}
+
+pred noFourGameAwayStands(This:schedule) {
+  no disj a,b:series | a.ateam = b.ateam and b.g1 in (a.g1.(Ordering.order).(Ordering.order).(Ordering.order) + a.g1.(Ordering.order).(Ordering.order).(Ordering.order).(Ordering.order)) 
+}
+
+// Not sure if this is working...
+pred noFourGameHomeStands(This:schedule) {
+  no disj a,b:series | a.hteam = b.hteam and b.g1 in (a.g1.(Ordering.order).(Ordering.order).(Ordering.order) + a.g1.(Ordering.order).(Ordering.order).(Ordering.order).(Ordering.order)) 
+}
+
+pred show(This:schedule) {
+//%genPredTeamNumberGames%
+//%genPredHasHalfHomeGames%
+//%genPredSetFourGameSeries%
+//%genPredNoFourGameAwayStands%
+//%genPredNoConsecutiveSeries%
+}
+
+run show for 
+%generateRuns%

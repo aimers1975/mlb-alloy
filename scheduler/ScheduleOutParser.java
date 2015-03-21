@@ -20,6 +20,21 @@ public class ScheduleOutParser {
 		games = new ArrayList<String>();
 	}
 
+    public ArrayList<String> getAllTeams() {
+    	HashSet<String> teamHash = new HashSet<String>();
+    	for(int i=0; i<teams.size();i++) {
+    		teamHash.add(teams.get(i));
+    	}
+    	Iterator<String> iterator = teamHash.iterator();
+    	ArrayList<String> returnArray = new ArrayList<String>();
+    	while(iterator.hasNext()) {
+    	 	returnArray.add(iterator.next());
+    	}
+    	return returnArray;
+
+
+    }
+
 	public ArrayList<String> parseSeries() {
 		series = new ArrayList<String>();
 		int start = originalOutput.indexOf("this/schedule<:allSeries={");
@@ -45,12 +60,12 @@ public class ScheduleOutParser {
 
 	public ArrayList<String> getTeamsForSeries(String seriesName) {
 		ArrayList<String> seriesTeams = new ArrayList<String>();
-		debug("Finding teams for series: " + seriesName);
+		//debug("Finding teams for series: " + seriesName);
 		if(series != null && series.size() != 0) {
 		    int index = series.indexOf(seriesName);
-		    debug("Adding to teamlist: " + teams.get(index*2));
+		    //debug("Adding to teamlist: " + teams.get(index*2));
 		    seriesTeams.add(teams.get(index*2));
-		    debug("Adding to teamlist: " + teams.get(index*2+1));
+		    //debug("Adding to teamlist: " + teams.get(index*2+1));
 		    seriesTeams.add(teams.get(index*2+1));
 		    return seriesTeams;
 		}
@@ -59,29 +74,51 @@ public class ScheduleOutParser {
 
 	public ArrayList<String> getGamesForSeries(String seriesName) {
 		ArrayList<String> seriesGames = new ArrayList<String>();
-		debug("Finding games for series: " + seriesName);
+		//debug("Finding games for series: " + seriesName);
 		if(series != null && series.size() != 0) {
 		    int index = series.indexOf(seriesName);
-		    debug("Adding to gamelist: " + games.get(index*3));
+		    //debug("Adding to gamelist: " + games.get(index*3));
 		    seriesGames.add(games.get(index*3));
-		    debug("Adding to gamelist: " + games.get(index*3+1));
+		    //debug("Adding to gamelist: " + games.get(index*3+1));
 		    seriesGames.add(games.get(index*3+1));
-		    debug("Adding to gamelist: " + games.get(index*3+2));
+		    //debug("Adding to gamelist: " + games.get(index*3+2));
 		    seriesGames.add(games.get(index*3+2));
 		    index = extraGames.indexOf(seriesName);
 		    if(index != -1) {
 		    	String debugGame = extraGames.get(index+1);
-		    	debug("The extra game day is: " + debugGame);
+		    	//debug("The extra game day is: " + debugGame);
 		    	seriesGames.add(extraGames.get(index+1));
 		    }
-		    debug("Extra game had a series at: " + index + " for: " + seriesName);
+		    //debug("Extra game had a series at: " + index + " for: " + seriesName);
 		    return seriesGames;
 		}
 		return new ArrayList<String>();
 	}
 
 	public ArrayList<String> getTeamSchedule(String team) {
+		//loop through all series
+		//get teams for a series
+		//get games if the series includes the team
+		ArrayList<String> teamSchedule = new ArrayList<String>();
+		for(int i=0; i<series.size(); i++) {
+			ArrayList<String> currentTeams = getTeamsForSeries(series.get(i));
+			int thisIndex = currentTeams.indexOf(team);
+			if(thisIndex == 0) {
+				teamSchedule.add(currentTeams.get(1));
+				teamSchedule.addAll(getGamesForSeries(series.get(i)));
+			} else if (thisIndex == 1) {
+				teamSchedule.add(currentTeams.get(0));
+				teamSchedule.addAll(getGamesForSeries(series.get(i)));				
+			}
+		}
+		return teamSchedule;
+	}
 
+	public ArrayList<String> findNoGameDays() {
+		return new ArrayList<String>();
+	}
+
+	public ArrayList<String> findNoGameDaysByTeam(String team) {
 		return new ArrayList<String>();
 	}
 
@@ -112,14 +149,14 @@ public class ScheduleOutParser {
 		StringTokenizer parts5 = new StringTokenizer(originalOutput.substring(middle4, middle5), "{");
 		//debug("substring: " + originalOutput.substring(middle4,middle5));
 		StringTokenizer parts6 = new StringTokenizer(originalOutput.substring(middle5, end), "{");
-		debug("substring: " + originalOutput.substring(middle5,end));
+		//debug("substring: " + originalOutput.substring(middle5,end));
 		if(parts.hasMoreTokens()) {
 			parts.nextToken();
 			parts2.nextToken();
 			parts3.nextToken();
 			parts4.nextToken();
 			parts5.nextToken();
-			debug(parts6.nextToken());
+			parts6.nextToken();
 		}
 		if(parts.hasMoreTokens()) {
 			parts = new StringTokenizer(parts.nextToken(), "->, }");
@@ -132,10 +169,10 @@ public class ScheduleOutParser {
 		}
 		String storeSeries = parts6.nextToken();
 		Boolean addExtraGame = false;
-		debug("First store series is: " + storeSeries);
+		//debug("First store series is: " + storeSeries);
 		while (parts.hasMoreTokens()) {
           String thisSeries = parts.nextToken();
-          debug("Checking series: " + thisSeries);
+          //debug("Checking series: " + thisSeries);
           parts2.nextToken();
           parts3.nextToken();
           parts4.nextToken();
@@ -163,9 +200,9 @@ public class ScheduleOutParser {
           	if(addExtraGame) {
           	  extraGames.add(parts6.nextToken());
           	  addExtraGame = false;
-          	  debug("Extra game added to: " + thisSeries);
+          	  //debug("Extra game added to: " + thisSeries);
               storeSeries = parts6.nextToken();
-              debug("New store series is: " + storeSeries);
+              //debug("New store series is: " + storeSeries);
           	}
           }
      	}
@@ -173,12 +210,13 @@ public class ScheduleOutParser {
 	}
 
 	public ArrayList<String> getExtraGames() {
+		//debug("Got extra games");
 		if(extraGames != null) {
 			if(extraGames.size() > 0) {
 				return extraGames;
 			}
 		}
-		debug("Extra games was empty, returning empty arraylist.");
+		//debug("Extra games was empty, returning empty arraylist.");
 		return new ArrayList<String>();
 	} 
 

@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JPanel;
+import javax.swing.JCheckBox;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JMenuBar;
@@ -26,6 +27,7 @@ import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import scheduler.SchedulerConstants;
+import scheduler.ModelFileGenerator;
 
 
 public class MLBUI extends JFrame {
@@ -77,7 +79,7 @@ public class MLBUI extends JFrame {
         try {
             PrintWriter out = new PrintWriter(scheduler.SchedulerConstants.SAVE_MODEL_LOCATION);
             for(String line : lines) {
-                debug(line);
+                //debug(line);
                 out.println(line);
             }
             out.close();
@@ -126,7 +128,7 @@ public class MLBUI extends JFrame {
                     outputPlaceholder.removeAll();
                     debug("Series size is: " + series.size());
                     for(int i=0; i<series.size(); i++) {
-                        debug(series.get(i));
+                        //debug(series.get(i));
                         outputPlaceholder.append(series.get(i) + ": \n");
                         ArrayList<String> temp = parser.getTeamsForSeries(series.get(i));
                         for(int k=0; k<temp.size(); k++) {
@@ -137,7 +139,16 @@ public class MLBUI extends JFrame {
                             outputPlaceholder.append("     " + temp.get(m) + "\n");
                         }
                     }
-                    
+                    outputPlaceholder.append("\n****************\nListing Team Schedules: \n");
+                    ArrayList<String> currentTeams = parser.getAllTeams();
+                    debug("The current teams size is: " + currentTeams.size());
+                    for(int i=0; i< currentTeams.size(); i++) {
+                        outputPlaceholder.append("Schedule: " + currentTeams.get(i) + " is: \n");
+                        ArrayList teamSchedule = parser.getTeamSchedule(currentTeams.get(i));
+                        for(int j=0; j< teamSchedule.size(); j++) {
+                            outputPlaceholder.append("  " + teamSchedule.get(j) + "\n");
+                        } 
+                    }
                 } catch(Exception e) {
                     debug(scheduler.SchedulerConstants.RUN_FAILURE);
                 }
@@ -185,6 +196,7 @@ public class MLBUI extends JFrame {
 
 	public static void main(String args[]) {
 
+        ModelFileGenerator test = new ModelFileGenerator();
         EventQueue.invokeLater(new Runnable() {        
             @Override
             public void run() {

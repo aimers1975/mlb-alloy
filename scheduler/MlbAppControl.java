@@ -49,6 +49,8 @@ public class MlbAppControl {
                 // Execute the command
                 debug("============ Command "+command+": ============");
                 A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
+                //A4Solution count = ans.next();
+
                 // Print the outcome
                 returnAns = ans.toString();
                 System.out.println(returnAns);

@@ -8,6 +8,7 @@ public class SchedulerConstants {
     public static final String EXIT_MENUITEM = "Exit";
     public static final String FILE_JMENU = "Exit";
     public static final String SAVE_MODEL_LOCATION = "scheduler\\model.als";
+    public static final String TEMPLATE_MODEL_LOCATION = "scheduler\\model.template";
     public static final String CREATE_FILE_ERROR = "Failed to create model file.";
     public static final String EXIT_TOOLTIP = "Exit application";
     public static final String RUN_FAILURE = "Failure to run analyzer";
