@@ -106,8 +106,9 @@ public class MLBUI extends JFrame {
 
     private void saveModelToFile() {
 
-        String[] lines = inputALS.getText().split("\\n");
-        try {
+        //String[] lines = inputALS.getText().split("\\n");
+        ModelFileGenerator newModel = new ModelFileGenerator();
+        /*try {
             PrintWriter out = new PrintWriter(scheduler.SchedulerConstants.SAVE_MODEL_LOCATION);
             for(String line : lines) {
                 //debug(line);
@@ -116,30 +117,55 @@ public class MLBUI extends JFrame {
             out.close();
         } catch (Exception e) {
             System.out.println(scheduler.SchedulerConstants.CREATE_FILE_ERROR);
-        }
+        }*/
         if(addNoFourGameAwayStands.isSelected()) {
             debug("No four game away stands is selected.");
+            newModel.addPredNoFourGameAwayStands();
         }
         if(addPredHasHalfHomeGames.isSelected()) {
             debug("Has half home games is selected.");
+            newModel.addPredHasHalfHomeGames();
         }
         if(addPredNoConsecutiveSeries.isSelected()){
             debug("No consecutive is selected");
+            newModel.addPredNoConsecutiveSeries();
         }
         String numTeamGroupsString = String.valueOf(numTeamGroups.getSelectedItem());
         String numTeamsPerGroupString = String.valueOf(numTeamsPerGroup.getSelectedItem());
-        String numSeriesString = String.valueOf(numSeries.getSelectedItem());
-        String numRunsString = String.valueOf(numRuns.getSelectedItem());
-        String dayRangeStartString = String.valueOf(dayRangeStart.getSelectedItem());
-        String dayRangeEndString = String.valueOf(dayRangeEnd.getSelectedItem());
-        String teamNumGamesMinString = String.valueOf(teamNumGamesMin.getSelectedItem());
-        String teamNumGamesMaxString = String.valueOf(teamNumGamesMax.getSelectedItem());
-        String numFourGameSeriesString = String.valueOf(numFourGameSeries.getSelectedItem());
-        String customPredString = customPred.getText();
-        String customPredInShowString = customPredInShow.getText();
         debug("Number team groups: " + numTeamGroupsString);
         debug("Number of teams per group: " + numTeamsPerGroupString);
+        newModel.setupNumberTeams(Integer.parseInt(numTeamGroupsString),Integer.parseInt(numTeamsPerGroupString));
+        String numSeriesString = String.valueOf(numSeries.getSelectedItem());
         debug("Number of series specified: " + numSeriesString);
+        if(!numSeriesString.equals("No Value")) {
+            newModel.setupNumberSeries(Integer.parseInt(numSeriesString));
+        }
+        String numRunsString = String.valueOf(numRuns.getSelectedItem());
+        if(!numSeriesString.equals("No Value")) {
+            if(Integer.parseInt(numRunsString) < Integer.parseInt(numSeriesString)) {
+                newModel.setupRuns(Integer.parseInt(numSeriesString));
+            } else {
+                newModel.setupRuns(Integer.parseInt(numRunsString));
+            }
+        } else {
+            newModel.setupRuns(Integer.parseInt(numRunsString));
+        }
+        String dayRangeStartString = String.valueOf(dayRangeStart.getSelectedItem());
+        String dayRangeEndString = String.valueOf(dayRangeEnd.getSelectedItem());
+        if(Integer.parseInt(dayRangeStartString) < Integer.parseInt(dayRangeEndString)) {
+            newModel.setupPossibleDays(Integer.parseInt(dayRangeStartString),Integer.parseInt(dayRangeEndString));
+        }
+        String teamNumGamesMinString = String.valueOf(teamNumGamesMin.getSelectedItem());
+        String teamNumGamesMaxString = String.valueOf(teamNumGamesMax.getSelectedItem());
+        if(Integer.parseInt(teamNumGamesMinString) < Integer.parseInt(teamNumGamesMaxString)) {
+            newModel.addPredTeamNumberGames(Integer.parseInt(teamNumGamesMinString),Integer.parseInt(teamNumGamesMaxString));
+        }
+        String numFourGameSeriesString = String.valueOf(numFourGameSeries.getSelectedItem());
+        if(!numFourGameSeriesString.equals("No Value")) {
+            newModel.addPredSetFourGameSeries(Integer.parseInt(numFourGameSeriesString));
+        }
+        String customPredString = customPred.getText();
+        String customPredInShowString = customPredInShow.getText();
         debug("Number of four game series per team: " + numFourGameSeriesString);
         debug("Number of runs specified: " + numRunsString);
         debug("Day range start: " + dayRangeStartString);
@@ -148,6 +174,10 @@ public class MLBUI extends JFrame {
         debug("Team number games max: " + teamNumGamesMaxString);
         debug("Additional custom predicate added: " + customPredString);
         debug("Predicate call added to show: " + customPredInShowString);
+    
+        //addCustomPred("pred myCustomPred(This:schedule) {\n  //This is a test \n}");
+        //addCustomPredInShow("  myCustomPred[This]\n");
+        newModel.writeWorkingModelToFile(scheduler.SchedulerConstants.SAVE_MODEL_LOCATION);
         
     }
 
@@ -176,7 +206,7 @@ public class MLBUI extends JFrame {
     }
 
     private void createInputScroll() {
-        String[] numList = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
+        String[] numList = {"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
                             "21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39",
                             "40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60",
                             "61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80",
@@ -186,7 +216,7 @@ public class MLBUI extends JFrame {
                             "140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159",
                             "160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179",
                             "180"};
-        String[] numListWithBlank = {"No Value","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
+        String[] numListWithBlank = {"No Value","0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
                             "21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39",
                             "40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60",
                             "61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80",
@@ -308,8 +338,6 @@ public class MLBUI extends JFrame {
     }
 
 	public static void main(String args[]) {
-
-        ModelFileGenerator test = new ModelFileGenerator();
         EventQueue.invokeLater(new Runnable() {        
             @Override
             public void run() {

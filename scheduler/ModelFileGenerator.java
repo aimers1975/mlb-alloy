@@ -25,25 +25,13 @@ public class ModelFileGenerator {
 		} catch (Exception e) {
 			debug("Error reading from template file.");
 		}
-		setupPossibleDays(1,15);
-		//setupNumberSeries(5);
-		setupRuns(30);
-		setupNumberTeams(3,5);
-		//addPredTeamNumberGames(3,2);
-		addPredSetFourGameSeries(2);
-		addPredHasHalfHomeGames();
-		//addPredNoFourGameAwayStands();
-		addPredNoConsecutiveSeries();
-		addCustomPred("pred myCustomPred(This:schedule) {\n  //This is a test \n}");
-		addCustomPredInShow("  myCustomPred[This]\n");
-		writeWorkingModelToFile("scheduler\\amygenerated.als");
-		for(int i=0; i<workingModel.size(); i++) {
-			debug(workingModel.get(i));
-		}
+		//for(int i=0; i<workingModel.size(); i++) {
+		//	debug(workingModel.get(i));
+		//}
 	}
 
 	public void writeWorkingModelToFile(String location) {
-
+		debug("Writing model to: " + location);
         try {
             PrintWriter out = new PrintWriter(location);
             for(String line : workingModel) {
