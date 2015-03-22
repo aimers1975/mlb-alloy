@@ -112,11 +112,7 @@ public class MLBUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
-    private void saveModelToFile() {
-
-        //Check input parameters and create the model.  format of current params: 1-5-20-20-1-35-1-3-0-T-T-T-
-        // 1-5-20-20-1-20-No Value-No Value-0-F-F-F-
-        ModelFileGenerator newModel = new ModelFileGenerator();
+    private void updateCurrentParameters() {
         currentParameters = new StringBuilder();
         currentParameters.append(String.valueOf(numTeamGroups.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(numTeamsPerGroup.getSelectedItem()) + "-");
@@ -142,6 +138,13 @@ public class MLBUI extends JFrame {
         } else {
             currentParameters.append("F" + "-");
         }
+    }
+
+    private void saveModelToFile() {
+
+        //Check input parameters and create the model.  format of current params: 1-5-20-20-1-35-1-3-0-T-T-T-
+        // 1-5-20-20-1-20-No Value-No Value-0-F-F-F-
+        ModelFileGenerator newModel = new ModelFileGenerator();
         String[] params = currentParameters.toString().split("-");
         debug("Param array length: " + params.length);
         debug("Current parameters is: " + currentParameters.toString());
@@ -162,6 +165,7 @@ public class MLBUI extends JFrame {
         //params[3] number of runs
         if(!params[2].equals("No Value")) {
             if(Integer.parseInt(params[3]) < Integer.parseInt(params[2])) {
+                debug("NOTE: Not enough runs specified, \ncorrected to " + params[2] + " to match number of series!\n");
                 newModel.setupRuns(Integer.parseInt(params[2]));
             } else {
                 newModel.setupRuns(Integer.parseInt(params[3]));
@@ -292,6 +296,7 @@ public class MLBUI extends JFrame {
         evaluateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
+                    updateCurrentParameters();
                     saveModelToFile();
                     debug("Model saved!");
                     evalThread = new AnalyzerThread("Testing");
@@ -315,7 +320,7 @@ public class MLBUI extends JFrame {
             PrintWriter out = new PrintWriter(scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + parametersUsed);
             String[] temp = saveOutput.split("\\n");
             for(String line : temp) {
-                debug(line);
+                //debug(line);
                 out.println(line);
             }
             out.close();
@@ -329,6 +334,35 @@ public class MLBUI extends JFrame {
         returnOutput = outputCache.get(currentParameters.toString());
         debug("Cached output: " + returnOutput);
         return returnOutput;
+    }
+
+    private void updateOutputUI(String outputToUpdate) {
+        parser = new ScheduleOutParser(outputToUpdate);
+        ArrayList<String> series = parser.parseSeries();
+        outputPlaceholder.setText("");
+        debug("Series size is: " + series.size());
+        for(int i=0; i<series.size(); i++) {
+            //debug(series.get(i));
+            outputPlaceholder.append(series.get(i) + ": \n");
+            ArrayList<String> temp = parser.getTeamsForSeries(series.get(i));
+            for(int k=0; k<temp.size(); k++) {
+                outputPlaceholder.append("     " + temp.get(k) + "\n");
+            }
+            temp = parser.getGamesForSeries(series.get(i));
+            for(int m=0; m<temp.size(); m++) {
+                outputPlaceholder.append("     " + temp.get(m) + "\n");
+            }
+        }
+        outputPlaceholder.append("\n****************\nListing Team Schedules: \n");
+        ArrayList<String> currentTeams = parser.getAllTeams();
+        debug("The current teams size is: " + currentTeams.size());
+        for(int i=0; i< currentTeams.size(); i++) {
+            outputPlaceholder.append("Schedule: " + currentTeams.get(i) + " is: \n");
+            ArrayList teamSchedule = parser.getTeamSchedule(currentTeams.get(i));
+            for(int j=0; j< teamSchedule.size(); j++) {
+                outputPlaceholder.append("  " + teamSchedule.get(j) + "\n");
+            } 
+        }
     }
 
 
@@ -387,32 +421,7 @@ public class MLBUI extends JFrame {
                 outputCache.put(currentParameters.toString(),analyzerOutputString);
                 saveAnalyzerOutput(analyzerOutputString,currentParameters.toString());
                 //debug(analyzerOutputString);
-                parser = new ScheduleOutParser(analyzerOutputString);
-                ArrayList<String> series = parser.parseSeries();
-                outputPlaceholder.removeAll();
-                debug("Series size is: " + series.size());
-                for(int i=0; i<series.size(); i++) {
-                    //debug(series.get(i));
-                    outputPlaceholder.append(series.get(i) + ": \n");
-                    ArrayList<String> temp = parser.getTeamsForSeries(series.get(i));
-                    for(int k=0; k<temp.size(); k++) {
-                        outputPlaceholder.append("     " + temp.get(k) + "\n");
-                    }
-                    temp = parser.getGamesForSeries(series.get(i));
-                    for(int m=0; m<temp.size(); m++) {
-                        outputPlaceholder.append("     " + temp.get(m) + "\n");
-                    }
-                }
-                outputPlaceholder.append("\n****************\nListing Team Schedules: \n");
-                ArrayList<String> currentTeams = parser.getAllTeams();
-                debug("The current teams size is: " + currentTeams.size());
-                for(int i=0; i< currentTeams.size(); i++) {
-                    outputPlaceholder.append("Schedule: " + currentTeams.get(i) + " is: \n");
-                    ArrayList teamSchedule = parser.getTeamSchedule(currentTeams.get(i));
-                    for(int j=0; j< teamSchedule.size(); j++) {
-                        outputPlaceholder.append("  " + teamSchedule.get(j) + "\n");
-                    } 
-                }
+                updateOutputUI(analyzerOutputString);
             }
         } catch(Exception e) {
             outputPlaceholder.setText(scheduler.SchedulerConstants.RUN_FAILURE);

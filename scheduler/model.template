@@ -116,5 +116,7 @@ pred show(This:schedule) {
 //%genPredCustomInShow%
 }
 
+//NOTE: Runs will be correct to ensure they are greater than number 
+//of series specified.
 run show for 
 %generateRuns%

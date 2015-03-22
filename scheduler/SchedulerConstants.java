@@ -12,7 +12,7 @@ public class SchedulerConstants {
     public static final String OUTPUT_CACHE_LOCATION = "scheduler\\outputCache\\";
     public static final String CREATE_FILE_ERROR = "Failed to create model file.";
     public static final String EXIT_TOOLTIP = "Exit application";
-    public static final String RUN_FAILURE = "Failure to run analyzer";
+    public static final String RUN_FAILURE = "Failure to run analyzer, or no instance found...";
     public static final String RUN_SUCCESS = "Evaluation started!";
     public static final String ADD_PRED_HAS_HALF_HOME_CHECKBOX = "Every team has half home games.";
     public static final String ADD_NO_FOUR_GAME_AWAY_STANDS = "No four game away stands.";
