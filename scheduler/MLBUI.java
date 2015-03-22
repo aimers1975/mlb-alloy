@@ -30,6 +30,8 @@ import javax.swing.JComponent;
 import scheduler.MlbAppControl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import scheduler.SchedulerConstants;
@@ -117,12 +119,12 @@ public class MLBUI extends JFrame {
         currentParameters.append(String.valueOf(numTeamGroups.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(numTeamsPerGroup.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(numSeries.getSelectedItem()) + "-");
-        currentParameters.append(String.valueOf(numRuns.getSelectedItem()) + "-");
+        currentParameters.append(String.valueOf(numFourGameSeries.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(dayRangeStart.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(dayRangeEnd.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(teamNumGamesMin.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(teamNumGamesMax.getSelectedItem()) + "-");
-        currentParameters.append(String.valueOf(numFourGameSeries.getSelectedItem()) + "-");
+        
         if(addNoFourGameAwayStands.isSelected()) {
             currentParameters.append("T" + "-");
         } else {
@@ -138,6 +140,7 @@ public class MLBUI extends JFrame {
         } else {
             currentParameters.append("F" + "-");
         }
+        currentParameters.append(String.valueOf(numRuns.getSelectedItem()) + "-");
     }
 
     private void saveModelToFile() {
@@ -157,21 +160,10 @@ public class MLBUI extends JFrame {
         if(!params[2].equals("No Value")) {
             newModel.setupNumberSeries(Integer.parseInt(params[2]));
         }
-
-        debug("Number of runs specified: " + params[3]);
-        //Make sure number of runs is at least as many as number of series
-        //specified, if number of series was specified otherwise no 
-        //instance will be found
-        //params[3] number of runs
-        if(!params[2].equals("No Value")) {
-            if(Integer.parseInt(params[3]) < Integer.parseInt(params[2])) {
-                debug("NOTE: Not enough runs specified, \ncorrected to " + params[2] + " to match number of series!\n");
-                newModel.setupRuns(Integer.parseInt(params[2]));
-            } else {
-                newModel.setupRuns(Integer.parseInt(params[3]));
-            }
-        } else {
-            newModel.setupRuns(Integer.parseInt(params[3]));
+        //params[3] number of four game series per team
+        debug("Number of four game series per team: " + params[3]);
+        if(!params[3].equals("No Value")) {
+            newModel.addPredSetFourGameSeries(Integer.parseInt(params[3]));
         }
         //params[4] and params[5] - day range start and end.
         debug("Day range start: " + params[4]);
@@ -191,11 +183,7 @@ public class MLBUI extends JFrame {
                 newModel.addPredTeamNumberGames(Integer.parseInt(params[6]),0);              
             }
         } 
-        //params[8] number of four game series per team
-        debug("Number of four game series per team: " + params[8]);
-        if(!params[8].equals("No Value")) {
-            newModel.addPredSetFourGameSeries(Integer.parseInt(params[8]));
-        }
+
         String customPredString = customPred.getText();
         String customPredInShowString = customPredInShow.getText();
         debug("Additional custom predicate added: " + customPredString);
@@ -204,17 +192,32 @@ public class MLBUI extends JFrame {
             newModel.addCustomPred(customPredString);
             newModel.addCustomPredInShow(customPredInShowString);
         }
-        if(params[9].equals("T")) {
+        if(params[8].equals("T")) {
             debug("No four game away stands is selected.");
             newModel.addPredNoFourGameAwayStands();
         } 
-        if(params[10].equals("T")) {
+        if(params[9].equals("T")) {
             debug("Has half home games is selected.");
             newModel.addPredHasHalfHomeGames();
         }
-        if(params[11].equals("T")){
+        if(params[10].equals("T")){
             debug("No consecutive is selected");
             newModel.addPredNoConsecutiveSeries();
+        }
+        debug("Number of runs specified: " + params[11]);
+        //Make sure number of runs is at least as many as number of series
+        //specified, if number of series was specified otherwise no 
+        //instance will be found
+        //params[4] number of runs
+        if(!params[2].equals("No Value")) {
+            if(Integer.parseInt(params[11]) < Integer.parseInt(params[2])) {
+                debug("NOTE: Not enough runs specified, \ncorrected to " + params[2] + " to match number of series!\n");
+                newModel.setupRuns(Integer.parseInt(params[2]));
+            } else {
+                newModel.setupRuns(Integer.parseInt(params[11]));
+            }
+        } else {
+            newModel.setupRuns(Integer.parseInt(params[11]));
         }
         ArrayList<String> currentModel = newModel.getModel();
         inputALS.setText("");
@@ -303,6 +306,7 @@ public class MLBUI extends JFrame {
                         evalThread = new AnalyzerThread("Testing");
                         evalThread.start();
                     } else {
+                        saveModelToFile();
                         updateOutputUI(checkCachedOutput(currentParameters.toString()));
 
                     }
@@ -338,7 +342,20 @@ public class MLBUI extends JFrame {
     private String checkCachedOutput(String inputParams) {
         String returnOutput = null;
         returnOutput = outputCache.get(currentParameters.toString());
-        debug("Cached output: " + returnOutput);
+        StringBuilder sb = new StringBuilder();
+        if(returnOutput == null) {
+            debug("File found in output cache.");
+            try (BufferedReader br = new BufferedReader(new FileReader(scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + inputParams))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                returnOutput = sb.toString();
+            } catch (Exception e) {
+                debug("File not found in output cache.");
+            }
+        }
+        //debug("Cached output: " + returnOutput);
         return returnOutput;
     }
 
