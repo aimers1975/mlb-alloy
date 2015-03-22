@@ -114,85 +114,83 @@ public class MLBUI extends JFrame {
 
     private void saveModelToFile() {
 
-        //Check input parameters and create the model
+        //Check input parameters and create the model.  format of current params: 1-5-20-20-1-35-1-3-0-T-T-T-
+        // 1-5-20-20-1-20-No Value-No Value-0-F-F-F-
         ModelFileGenerator newModel = new ModelFileGenerator();
         currentParameters = new StringBuilder();
-        String numTeamGroupsString = String.valueOf(numTeamGroups.getSelectedItem());
-        currentParameters.append(numTeamGroupsString + "-");
-        String numTeamsPerGroupString = String.valueOf(numTeamsPerGroup.getSelectedItem());
-        currentParameters.append(numTeamsPerGroupString + "-");
-        String numSeriesString = String.valueOf(numSeries.getSelectedItem());
-        currentParameters.append(numSeriesString + "-");
-        String numRunsString = String.valueOf(numRuns.getSelectedItem());
-        currentParameters.append(numRunsString + "-");
-        String dayRangeStartString = String.valueOf(dayRangeStart.getSelectedItem());
-        currentParameters.append(dayRangeStartString + "-");
-        String dayRangeEndString = String.valueOf(dayRangeEnd.getSelectedItem());
-        currentParameters.append(dayRangeEndString + "-");
-        String teamNumGamesMinString = String.valueOf(teamNumGamesMin.getSelectedItem());
-        currentParameters.append(teamNumGamesMinString + "-");
-        String teamNumGamesMaxString = String.valueOf(teamNumGamesMax.getSelectedItem());
-        currentParameters.append(teamNumGamesMaxString + "-");
-        String numFourGameSeriesString = String.valueOf(numFourGameSeries.getSelectedItem());
-        currentParameters.append(numFourGameSeriesString + "-");
+        currentParameters.append(String.valueOf(numTeamGroups.getSelectedItem()) + "-");
+        currentParameters.append(String.valueOf(numTeamsPerGroup.getSelectedItem()) + "-");
+        currentParameters.append(String.valueOf(numSeries.getSelectedItem()) + "-");
+        currentParameters.append(String.valueOf(numRuns.getSelectedItem()) + "-");
+        currentParameters.append(String.valueOf(dayRangeStart.getSelectedItem()) + "-");
+        currentParameters.append(String.valueOf(dayRangeEnd.getSelectedItem()) + "-");
+        currentParameters.append(String.valueOf(teamNumGamesMin.getSelectedItem()) + "-");
+        currentParameters.append(String.valueOf(teamNumGamesMax.getSelectedItem()) + "-");
+        currentParameters.append(String.valueOf(numFourGameSeries.getSelectedItem()) + "-");
         if(addNoFourGameAwayStands.isSelected()) {
-            debug("No four game away stands is selected.");
-            newModel.addPredNoFourGameAwayStands();
             currentParameters.append("T" + "-");
         } else {
             currentParameters.append("F" + "-");
         }
         if(addPredHasHalfHomeGames.isSelected()) {
-            debug("Has half home games is selected.");
-            newModel.addPredHasHalfHomeGames();
             currentParameters.append("T" + "-");
         } else {
             currentParameters.append("F" + "-");
         }
         if(addPredNoConsecutiveSeries.isSelected()){
-            debug("No consecutive is selected");
-            newModel.addPredNoConsecutiveSeries();
             currentParameters.append("T" + "-");
         } else {
             currentParameters.append("F" + "-");
         }
+        String[] params = currentParameters.toString().split("-");
+        debug("Param array length: " + params.length);
         debug("Current parameters is: " + currentParameters.toString());
-        checkCachedOutput(currentParameters.toString());
-        debug("Number team groups: " + numTeamGroupsString);
-        debug("Number of teams per group: " + numTeamsPerGroupString);
-        newModel.setupNumberTeams(Integer.parseInt(numTeamGroupsString),Integer.parseInt(numTeamsPerGroupString));
-
-        debug("Number of series specified: " + numSeriesString);
-        if(!numSeriesString.equals("No Value")) {
-            newModel.setupNumberSeries(Integer.parseInt(numSeriesString));
+        debug("Number team groups: " + params[0]);
+        debug("Number of teams per group: " + params[1]);
+        //params[0] and params[1] = number of team groups and number of teams per group
+        newModel.setupNumberTeams(Integer.parseInt(params[0]),Integer.parseInt(params[1]));
+        //params[2] number of series
+        debug("Number of series specified: " + params[2]);
+        if(!params[2].equals("No Value")) {
+            newModel.setupNumberSeries(Integer.parseInt(params[2]));
         }
 
-        debug("Number of runs specified: " + numRunsString);
-        if(!numSeriesString.equals("No Value")) {
-            if(Integer.parseInt(numRunsString) < Integer.parseInt(numSeriesString)) {
-                newModel.setupRuns(Integer.parseInt(numSeriesString));
+        debug("Number of runs specified: " + params[3]);
+        //Make sure number of runs is at least as many as number of series
+        //specified, if number of series was specified otherwise no 
+        //instance will be found
+        //params[3] number of runs
+        if(!params[2].equals("No Value")) {
+            if(Integer.parseInt(params[3]) < Integer.parseInt(params[2])) {
+                newModel.setupRuns(Integer.parseInt(params[2]));
             } else {
-                newModel.setupRuns(Integer.parseInt(numRunsString));
+                newModel.setupRuns(Integer.parseInt(params[3]));
             }
         } else {
-            newModel.setupRuns(Integer.parseInt(numRunsString));
+            newModel.setupRuns(Integer.parseInt(params[3]));
         }
-
-        debug("Day range start: " + dayRangeStartString);
-        debug("Day range end: " + dayRangeEndString);
-        if(Integer.parseInt(dayRangeStartString) < Integer.parseInt(dayRangeEndString)) {
-            newModel.setupPossibleDays(Integer.parseInt(dayRangeStartString),Integer.parseInt(dayRangeEndString));
+        //params[4] and params[5] - day range start and end.
+        debug("Day range start: " + params[4]);
+        debug("Day range end: " + params[5]);
+        if(Integer.parseInt(params[4]) < Integer.parseInt(params[5])) {
+            newModel.setupPossibleDays(Integer.parseInt(params[4]),Integer.parseInt(params[5]));
         }
-
-        debug("Team number games min: " + teamNumGamesMinString);
-        debug("Team number games max: " + teamNumGamesMaxString);
-        if(Integer.parseInt(teamNumGamesMinString) < Integer.parseInt(teamNumGamesMaxString)) {
-            newModel.addPredTeamNumberGames(Integer.parseInt(teamNumGamesMinString),Integer.parseInt(teamNumGamesMaxString));
-        }
-
-        debug("Number of four game series per team: " + numFourGameSeriesString);
-        if(!numFourGameSeriesString.equals("No Value")) {
-            newModel.addPredSetFourGameSeries(Integer.parseInt(numFourGameSeriesString));
+        //params[6] and params[7] - number of games against all teams min and max
+        debug("Team number games min: " + params[6]);
+        debug("Team number games max: " + params[7]);
+        if(!params[6].equals("No Value")) {
+            if(!params[7].equals("No Value")) {
+                if(Integer.parseInt(params[6]) < Integer.parseInt(params[7])) {
+                    newModel.addPredTeamNumberGames(Integer.parseInt(params[6]),Integer.parseInt(params[7]));
+                }
+            } else {
+                newModel.addPredTeamNumberGames(Integer.parseInt(params[6]),0);              
+            }
+        } 
+        //params[8] number of four game series per team
+        debug("Number of four game series per team: " + params[8]);
+        if(!params[8].equals("No Value")) {
+            newModel.addPredSetFourGameSeries(Integer.parseInt(params[8]));
         }
         String customPredString = customPred.getText();
         String customPredInShowString = customPredInShow.getText();
@@ -201,6 +199,18 @@ public class MLBUI extends JFrame {
         if(customPredString != null && customPredInShowString != null) {
             newModel.addCustomPred(customPredString);
             newModel.addCustomPredInShow(customPredInShowString);
+        }
+        if(params[9].equals("T")) {
+            debug("No four game away stands is selected.");
+            newModel.addPredNoFourGameAwayStands();
+        } 
+        if(params[10].equals("T")) {
+            debug("Has half home games is selected.");
+            newModel.addPredHasHalfHomeGames();
+        }
+        if(params[11].equals("T")){
+            debug("No consecutive is selected");
+            newModel.addPredNoConsecutiveSeries();
         }
         ArrayList<String> currentModel = newModel.getModel();
         inputALS.setText("");
