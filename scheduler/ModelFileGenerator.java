@@ -30,12 +30,16 @@ public class ModelFileGenerator {
 		//}
 	}
 
+	public ArrayList<String> getModel() {
+		return workingModel;
+	}
+
 	public void writeWorkingModelToFile(String location) {
 		debug("Writing model to: " + location);
         try {
             PrintWriter out = new PrintWriter(location);
             for(String line : workingModel) {
-                debug(line);
+                //debug(line);
                 out.println(line);
             }
             out.close();
@@ -65,13 +69,13 @@ public class ModelFileGenerator {
 
 	public void addCustomPred(String customPred) {
 		int index = workingModel.indexOf("//%genCustomPred%");
-		debug("Index of custompred: " + index);
+		//debug("Index of custompred: " + index);
 		workingModel.set(index,customPred);
 	}
 
 	public void addCustomPredInShow(String customPredInShow) {
 		int index = workingModel.indexOf("//%genPredCustomInShow%");
-		debug("Index of custompredinshow: " + index);
+		//debug("Index of custompredinshow: " + index);
 		workingModel.set(index,customPredInShow);
 	}
 

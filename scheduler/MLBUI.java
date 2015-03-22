@@ -1,6 +1,7 @@
 package scheduler;
 
 import java.util.*;
+import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
@@ -33,6 +34,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import scheduler.SchedulerConstants;
 import scheduler.ModelFileGenerator;
+//import scheduler.AnalyzerThread;
 
 
 public class MLBUI extends JFrame {
@@ -42,7 +44,7 @@ public class MLBUI extends JFrame {
     JLabel appInfo = new JLabel(scheduler.SchedulerConstants.APP_LABEL);
     JButton evaluateButton = new JButton(scheduler.SchedulerConstants.EVALUATE_BUTTON);
     JPanel scrollPanel = new JPanel();
-    JTextArea inputALS = new JTextArea(scheduler.SchedulerConstants.INPUTALS_TEXT,200,200);
+    JTextArea inputALS = new JTextArea(200,200);
     JScrollPane scroll = new JScrollPane(inputALS);
     JLabel numTeamGroupsLabel = new JLabel(scheduler.SchedulerConstants.NUM_TEAM_GROUP_LABEL);
     JComboBox numTeamGroups;
@@ -80,6 +82,9 @@ public class MLBUI extends JFrame {
     JMenuItem eMenuItem = new JMenuItem(scheduler.SchedulerConstants.EXIT_MENUITEM);
     String analyzerOutputString = "";
     ScheduleOutParser parser;
+    StringBuilder currentParameters;
+    HashMap<String,String> outputCache = new HashMap<String,String>();
+    AnalyzerThread evalThread;
 
 	public MLBUI() {
 		initUI();
@@ -106,41 +111,59 @@ public class MLBUI extends JFrame {
 
     private void saveModelToFile() {
 
-        //String[] lines = inputALS.getText().split("\\n");
+        //Check input parameters and create the model
         ModelFileGenerator newModel = new ModelFileGenerator();
-        /*try {
-            PrintWriter out = new PrintWriter(scheduler.SchedulerConstants.SAVE_MODEL_LOCATION);
-            for(String line : lines) {
-                //debug(line);
-                out.println(line);
-            }
-            out.close();
-        } catch (Exception e) {
-            System.out.println(scheduler.SchedulerConstants.CREATE_FILE_ERROR);
-        }*/
+        currentParameters = new StringBuilder();
+        String numTeamGroupsString = String.valueOf(numTeamGroups.getSelectedItem());
+        currentParameters.append(numTeamGroupsString + "-");
+        String numTeamsPerGroupString = String.valueOf(numTeamsPerGroup.getSelectedItem());
+        currentParameters.append(numTeamsPerGroupString + "-");
+        String numSeriesString = String.valueOf(numSeries.getSelectedItem());
+        currentParameters.append(numSeriesString + "-");
+        String numRunsString = String.valueOf(numRuns.getSelectedItem());
+        currentParameters.append(numRunsString + "-");
+        String dayRangeStartString = String.valueOf(dayRangeStart.getSelectedItem());
+        currentParameters.append(dayRangeStartString + "-");
+        String dayRangeEndString = String.valueOf(dayRangeEnd.getSelectedItem());
+        currentParameters.append(dayRangeEndString + "-");
+        String teamNumGamesMinString = String.valueOf(teamNumGamesMin.getSelectedItem());
+        currentParameters.append(teamNumGamesMinString + "-");
+        String teamNumGamesMaxString = String.valueOf(teamNumGamesMax.getSelectedItem());
+        currentParameters.append(teamNumGamesMaxString + "-");
+        String numFourGameSeriesString = String.valueOf(numFourGameSeries.getSelectedItem());
+        currentParameters.append(numFourGameSeriesString + "-");
         if(addNoFourGameAwayStands.isSelected()) {
             debug("No four game away stands is selected.");
             newModel.addPredNoFourGameAwayStands();
+            currentParameters.append("T" + "-");
+        } else {
+            currentParameters.append("F" + "-");
         }
         if(addPredHasHalfHomeGames.isSelected()) {
             debug("Has half home games is selected.");
             newModel.addPredHasHalfHomeGames();
+            currentParameters.append("T" + "-");
+        } else {
+            currentParameters.append("F" + "-");
         }
         if(addPredNoConsecutiveSeries.isSelected()){
             debug("No consecutive is selected");
             newModel.addPredNoConsecutiveSeries();
+            currentParameters.append("T" + "-");
+        } else {
+            currentParameters.append("F" + "-");
         }
-        String numTeamGroupsString = String.valueOf(numTeamGroups.getSelectedItem());
-        String numTeamsPerGroupString = String.valueOf(numTeamsPerGroup.getSelectedItem());
+        debug("Current parameters is: " + currentParameters.toString());
         debug("Number team groups: " + numTeamGroupsString);
         debug("Number of teams per group: " + numTeamsPerGroupString);
         newModel.setupNumberTeams(Integer.parseInt(numTeamGroupsString),Integer.parseInt(numTeamsPerGroupString));
-        String numSeriesString = String.valueOf(numSeries.getSelectedItem());
+
         debug("Number of series specified: " + numSeriesString);
         if(!numSeriesString.equals("No Value")) {
             newModel.setupNumberSeries(Integer.parseInt(numSeriesString));
         }
-        String numRunsString = String.valueOf(numRuns.getSelectedItem());
+
+        debug("Number of runs specified: " + numRunsString);
         if(!numSeriesString.equals("No Value")) {
             if(Integer.parseInt(numRunsString) < Integer.parseInt(numSeriesString)) {
                 newModel.setupRuns(Integer.parseInt(numSeriesString));
@@ -150,35 +173,37 @@ public class MLBUI extends JFrame {
         } else {
             newModel.setupRuns(Integer.parseInt(numRunsString));
         }
-        String dayRangeStartString = String.valueOf(dayRangeStart.getSelectedItem());
-        String dayRangeEndString = String.valueOf(dayRangeEnd.getSelectedItem());
+
+        debug("Day range start: " + dayRangeStartString);
+        debug("Day range end: " + dayRangeEndString);
         if(Integer.parseInt(dayRangeStartString) < Integer.parseInt(dayRangeEndString)) {
             newModel.setupPossibleDays(Integer.parseInt(dayRangeStartString),Integer.parseInt(dayRangeEndString));
         }
-        String teamNumGamesMinString = String.valueOf(teamNumGamesMin.getSelectedItem());
-        String teamNumGamesMaxString = String.valueOf(teamNumGamesMax.getSelectedItem());
+
+        debug("Team number games min: " + teamNumGamesMinString);
+        debug("Team number games max: " + teamNumGamesMaxString);
         if(Integer.parseInt(teamNumGamesMinString) < Integer.parseInt(teamNumGamesMaxString)) {
             newModel.addPredTeamNumberGames(Integer.parseInt(teamNumGamesMinString),Integer.parseInt(teamNumGamesMaxString));
         }
-        String numFourGameSeriesString = String.valueOf(numFourGameSeries.getSelectedItem());
+
+        debug("Number of four game series per team: " + numFourGameSeriesString);
         if(!numFourGameSeriesString.equals("No Value")) {
             newModel.addPredSetFourGameSeries(Integer.parseInt(numFourGameSeriesString));
         }
         String customPredString = customPred.getText();
         String customPredInShowString = customPredInShow.getText();
-        debug("Number of four game series per team: " + numFourGameSeriesString);
-        debug("Number of runs specified: " + numRunsString);
-        debug("Day range start: " + dayRangeStartString);
-        debug("Day range end: " + dayRangeEndString);
-        debug("Team number games min: " + teamNumGamesMinString);
-        debug("Team number games max: " + teamNumGamesMaxString);
         debug("Additional custom predicate added: " + customPredString);
         debug("Predicate call added to show: " + customPredInShowString);
-    
-        //addCustomPred("pred myCustomPred(This:schedule) {\n  //This is a test \n}");
-        //addCustomPredInShow("  myCustomPred[This]\n");
-        newModel.writeWorkingModelToFile(scheduler.SchedulerConstants.SAVE_MODEL_LOCATION);
-        
+        if(customPredString != null && customPredInShowString != null) {
+            newModel.addCustomPred(customPredString);
+            newModel.addCustomPredInShow(customPredInShowString);
+        }
+        ArrayList<String> currentModel = newModel.getModel();
+        inputALS.setText("");
+        for(int i=0;i<currentModel.size(); i++) {
+            inputALS.append(currentModel.get(i) + "\n");
+        }
+        newModel.writeWorkingModelToFile(scheduler.SchedulerConstants.SAVE_MODEL_LOCATION);       
     }
 
     private String[] getAnalyzerInput() {
@@ -273,7 +298,11 @@ public class MLBUI extends JFrame {
                 try {
                     saveModelToFile();
                     debug("Model saved!");
+                    evalThread = new AnalyzerThread("Testing");
+                    evalThread.start();
                     analyzerOutputString = analyzer.runAnalysis(getAnalyzerInput());
+                    outputCache.put(currentParameters.toString(),analyzerOutputString);
+                    saveAnalyzerOutput(analyzerOutputString,currentParameters.toString());
                     //debug(analyzerOutputString);
                     parser = new ScheduleOutParser(analyzerOutputString);
                     ArrayList<String> series = parser.parseSeries();
@@ -307,6 +336,23 @@ public class MLBUI extends JFrame {
                 debug(scheduler.SchedulerConstants.RUN_SUCCESS);
             }
         });
+    }
+
+    private void saveAnalyzerOutput(String saveOutput, String parametersUsed) {
+        debug("Saving analyzer output for future use.");
+        debug("Writing model to: " + scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + parametersUsed);
+        try {
+            PrintWriter out = new PrintWriter(scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + parametersUsed);
+            String[] temp = saveOutput.split("\\n");
+            for(String line : temp) {
+                debug(line);
+                out.println(line);
+            }
+            out.close();
+        } catch (Exception e) {
+            System.out.println(scheduler.SchedulerConstants.CREATE_FILE_ERROR);
+        }
+
     }
 
 
@@ -346,4 +392,36 @@ public class MLBUI extends JFrame {
             }
         });
 	}
+
+    public class AnalyzerThread extends Thread {
+
+    Boolean debug = true;
+ 
+ 
+//  public static void main(String args[]) {
+//      new ThreadTest("eBay").start();
+//      new ThreadTest("Paypal").start();
+//      new ThreadTest("Google").start();
+//  }
+    public AnalyzerThread(String str) {
+        super(str);
+    }
+ 
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            debug("Thread test");
+            try {
+                sleep((int) (Math.random() * 2000));
+            } catch (InterruptedException e) {
+            }
+        }
+        System.out.println("Test Finished for: " + getName());
+    }
+
+//  private void debug(String msg) {
+//        if(debug) {
+ //           System.out.println(this.getClass().getSimpleName() + ": " + msg);
+ //       }
+//    }
+}
 }
