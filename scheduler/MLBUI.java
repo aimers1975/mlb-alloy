@@ -368,8 +368,10 @@ public class MLBUI extends JFrame {
             //debug(series.get(i));
             outputPlaceholder.append(series.get(i) + ": \n");
             ArrayList<String> temp = parser.getTeamsForSeries(series.get(i));
-            for(int k=0; k<temp.size(); k++) {
-                outputPlaceholder.append("     " + temp.get(k) + "\n");
+            debug("Team size is: " + temp.size());
+            if(temp.size() == 2) {
+                outputPlaceholder.append("     Away team: " + temp.get(0) + "\n");
+                outputPlaceholder.append("     Home team: " + temp.get(1) + "\n");
             }
             temp = parser.getGamesForSeries(series.get(i));
             for(int m=0; m<temp.size(); m++) {
@@ -380,7 +382,7 @@ public class MLBUI extends JFrame {
         ArrayList<String> currentTeams = parser.getAllTeams();
         debug("The current teams size is: " + currentTeams.size());
         for(int i=0; i< currentTeams.size(); i++) {
-            outputPlaceholder.append("Schedule: " + currentTeams.get(i) + " is: \n");
+            outputPlaceholder.append("Schedule " + currentTeams.get(i) + " is: \n");
             ArrayList teamSchedule = parser.getTeamSchedule(currentTeams.get(i));
             for(int j=0; j< teamSchedule.size(); j++) {
                 outputPlaceholder.append("  " + teamSchedule.get(j) + "\n");

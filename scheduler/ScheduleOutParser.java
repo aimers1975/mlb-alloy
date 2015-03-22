@@ -104,6 +104,11 @@ public class ScheduleOutParser {
 			ArrayList<String> currentTeams = getTeamsForSeries(series.get(i));
 			int thisIndex = currentTeams.indexOf(team);
 			if(thisIndex == 0) {
+				teamSchedule.add("Opponent is Home team.");
+			} else {
+				teamSchedule.add("Opponent is Away team.");
+			}
+			if(thisIndex == 0) {
 				teamSchedule.add(currentTeams.get(1));
 				teamSchedule.addAll(getGamesForSeries(series.get(i)));
 			} else if (thisIndex == 1) {
