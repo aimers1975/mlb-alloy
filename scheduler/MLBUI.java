@@ -255,12 +255,12 @@ public class MLBUI extends JFrame {
     }
 
     private void createInputScroll() {
-        numTeamGroups = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST);
+        numTeamGroups = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_NO_ZERO);
         scrollPanelInputs.setMinimumSize(new Dimension(300, 300));  
         scrollPanelInputs.add(numTeamGroupsLabel);
         scrollPanelInputs.add(numTeamGroups);
         scrollPanelInputs.add(numTeamsPerGroupLabel);
-        numTeamsPerGroup = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST);
+        numTeamsPerGroup = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_TEAMS);
         scrollPanelInputs.add(numTeamsPerGroup);
         scrollPanelInputs.add(numSeriesLabel);
         numSeries = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
@@ -269,10 +269,10 @@ public class MLBUI extends JFrame {
         numFourGameSeries = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
         scrollPanelInputs.add(numFourGameSeries);
         scrollPanelInputs.add(dayRangeStartLabel);
-        dayRangeStart = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST);
+        dayRangeStart = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_DAY_START);
         scrollPanelInputs.add(dayRangeStart);
         scrollPanelInputs.add(dayRangeEndLabel);
-        dayRangeEnd = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST);
+        dayRangeEnd = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_DAY_END);
         scrollPanelInputs.add(dayRangeEnd);
         scrollPanelInputs.add(teamNumGamesMinLabel);
         teamNumGamesMin = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
@@ -283,7 +283,7 @@ public class MLBUI extends JFrame {
         scrollPanelInputs.add(addNoFourGameAwayStands);
         scrollPanelInputs.add(addPredNoConsecutiveSeries);
         scrollPanelInputs.add(addPredHasHalfHomeGames);
-        numRuns = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
+        numRuns = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_TEAMS);
         scrollPanelInputs.add(numRunsLabel);
         scrollPanelInputs.add(numRuns);
         scrollPanelInputs.add(customPredInShowLabel);
