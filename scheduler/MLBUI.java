@@ -43,6 +43,9 @@ public class MLBUI extends JFrame {
     Boolean debug = true;
     JLabel appInfo = new JLabel(scheduler.SchedulerConstants.APP_LABEL);
     JButton evaluateButton = new JButton(scheduler.SchedulerConstants.EVALUATE_BUTTON);
+    JButton stopCurrentEvaluationButton = new JButton(scheduler.SchedulerConstants.STOP_EVAL_BUTTOM);
+    JButton saveToOverallScheduleButton = new JButton(scheduler.SchedulerConstants.SAVE_TO_OVERALL_SCHEDULE_BUTTOM);
+    JButton showOverallScheduleButton = new JButton(scheduler.SchedulerConstants.SHOW_OVERALL_SCHEDULE_BUTTON);
     JPanel scrollPanel = new JPanel();
     JTextArea inputALS = new JTextArea(200,200);
     JScrollPane scroll = new JScrollPane(inputALS);
@@ -100,12 +103,12 @@ public class MLBUI extends JFrame {
 
 	private void initUI() {
 		setTitle(scheduler.SchedulerConstants.APP_TITLE);
-        setSize(800, 500);
+        setSize(1200, 600);
         setLocationRelativeTo(null);
         createMenuBar();  
         createMainAppBody();
         createInputScroll ();
-        createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll);
+        createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
@@ -154,6 +157,7 @@ public class MLBUI extends JFrame {
             currentParameters.append("F" + "-");
         }
         debug("Current parameters is: " + currentParameters.toString());
+        checkCachedOutput(currentParameters.toString());
         debug("Number team groups: " + numTeamGroupsString);
         debug("Number of teams per group: " + numTeamsPerGroupString);
         newModel.setupNumberTeams(Integer.parseInt(numTeamGroupsString),Integer.parseInt(numTeamsPerGroupString));
@@ -222,6 +226,9 @@ public class MLBUI extends JFrame {
         eMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
+                if(evalThread != null) {
+                    evalThread.interrupt();
+                }
                 System.exit(0);
             }
         });
@@ -231,55 +238,35 @@ public class MLBUI extends JFrame {
     }
 
     private void createInputScroll() {
-        String[] numList = {"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
-                            "21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39",
-                            "40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60",
-                            "61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80",
-                            "81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100",
-                            "101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119",
-                            "120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139",
-                            "140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159",
-                            "160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179",
-                            "180"};
-        String[] numListWithBlank = {"No Value","0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
-                            "21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39",
-                            "40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60",
-                            "61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80",
-                            "81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100",
-                            "101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119",
-                            "120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139",
-                            "140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159",
-                            "160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179",
-                            "180"};
-        numTeamGroups = new JComboBox<String>(numList);
+        numTeamGroups = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST);
         scrollPanelInputs.setMinimumSize(new Dimension(300, 300));  
         scrollPanelInputs.add(numTeamGroupsLabel);
         scrollPanelInputs.add(numTeamGroups);
         scrollPanelInputs.add(numTeamsPerGroupLabel);
-        numTeamsPerGroup = new JComboBox<String>(numList);
+        numTeamsPerGroup = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST);
         scrollPanelInputs.add(numTeamsPerGroup);
         scrollPanelInputs.add(numSeriesLabel);
-        numSeries = new JComboBox<String>(numListWithBlank);
+        numSeries = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
         scrollPanelInputs.add(numSeries);
         scrollPanelInputs.add(numFourGameSeriesLabel);
-        numFourGameSeries = new JComboBox<String>(numListWithBlank);
+        numFourGameSeries = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
         scrollPanelInputs.add(numFourGameSeries);
         scrollPanelInputs.add(dayRangeStartLabel);
-        dayRangeStart = new JComboBox<String>(numList);
+        dayRangeStart = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST);
         scrollPanelInputs.add(dayRangeStart);
         scrollPanelInputs.add(dayRangeEndLabel);
-        dayRangeEnd = new JComboBox<String>(numList);
+        dayRangeEnd = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST);
         scrollPanelInputs.add(dayRangeEnd);
         scrollPanelInputs.add(teamNumGamesMinLabel);
-        teamNumGamesMin = new JComboBox<String>(numListWithBlank);
+        teamNumGamesMin = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
         scrollPanelInputs.add(teamNumGamesMin);
         scrollPanelInputs.add(teamNumGamesMaxLabel);
-        teamNumGamesMax = new JComboBox<String>(numListWithBlank);
+        teamNumGamesMax = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
         scrollPanelInputs.add(teamNumGamesMax);
         scrollPanelInputs.add(addNoFourGameAwayStands);
         scrollPanelInputs.add(addPredNoConsecutiveSeries);
         scrollPanelInputs.add(addPredHasHalfHomeGames);
-        numRuns = new JComboBox<String>(numListWithBlank);
+        numRuns = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
         scrollPanelInputs.add(numRunsLabel);
         scrollPanelInputs.add(numRuns);
         scrollPanelInputs.add(customPredInShowLabel);
@@ -295,52 +282,25 @@ public class MLBUI extends JFrame {
         evaluateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                try {
                     saveModelToFile();
                     debug("Model saved!");
                     evalThread = new AnalyzerThread("Testing");
                     evalThread.start();
-                    analyzerOutputString = analyzer.runAnalysis(getAnalyzerInput());
-                    outputCache.put(currentParameters.toString(),analyzerOutputString);
-                    saveAnalyzerOutput(analyzerOutputString,currentParameters.toString());
-                    //debug(analyzerOutputString);
-                    parser = new ScheduleOutParser(analyzerOutputString);
-                    ArrayList<String> series = parser.parseSeries();
-                    outputPlaceholder.removeAll();
-                    debug("Series size is: " + series.size());
-                    for(int i=0; i<series.size(); i++) {
-                        //debug(series.get(i));
-                        outputPlaceholder.append(series.get(i) + ": \n");
-                        ArrayList<String> temp = parser.getTeamsForSeries(series.get(i));
-                        for(int k=0; k<temp.size(); k++) {
-                            outputPlaceholder.append("     " + temp.get(k) + "\n");
-                        }
-                        temp = parser.getGamesForSeries(series.get(i));
-                        for(int m=0; m<temp.size(); m++) {
-                            outputPlaceholder.append("     " + temp.get(m) + "\n");
-                        }
-                    }
-                    outputPlaceholder.append("\n****************\nListing Team Schedules: \n");
-                    ArrayList<String> currentTeams = parser.getAllTeams();
-                    debug("The current teams size is: " + currentTeams.size());
-                    for(int i=0; i< currentTeams.size(); i++) {
-                        outputPlaceholder.append("Schedule: " + currentTeams.get(i) + " is: \n");
-                        ArrayList teamSchedule = parser.getTeamSchedule(currentTeams.get(i));
-                        for(int j=0; j< teamSchedule.size(); j++) {
-                            outputPlaceholder.append("  " + teamSchedule.get(j) + "\n");
-                        } 
-                    }
-                } catch(Exception e) {
-                    debug(scheduler.SchedulerConstants.RUN_FAILURE);
-                }
-                debug(scheduler.SchedulerConstants.RUN_SUCCESS);
             }
         });
+        stopCurrentEvaluationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                    outputPlaceholder.setText(scheduler.SchedulerConstants.EVAL_STOP_MESSAGE);
+                    evalThread.interrupt();
+                    evalThread = null;
+            }
+        });
+
     }
 
     private void saveAnalyzerOutput(String saveOutput, String parametersUsed) {
-        debug("Saving analyzer output for future use.");
-        debug("Writing model to: " + scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + parametersUsed);
+        debug("Saving analyzer output for future use to: " + scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + parametersUsed);
         try {
             PrintWriter out = new PrintWriter(scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + parametersUsed);
             String[] temp = saveOutput.split("\\n");
@@ -352,7 +312,13 @@ public class MLBUI extends JFrame {
         } catch (Exception e) {
             System.out.println(scheduler.SchedulerConstants.CREATE_FILE_ERROR);
         }
+    }
 
+    private String checkCachedOutput(String inputParams) {
+        String returnOutput = new String();
+        returnOutput = outputCache.get(currentParameters.toString());
+        debug("Cached output: " + returnOutput);
+        return returnOutput;
     }
 
 
@@ -362,14 +328,15 @@ public class MLBUI extends JFrame {
         getContentPane().setLayout(gl);
         gl.setAutoCreateContainerGaps(true);
         gl.setAutoCreateGaps(true);
-
+//createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton);
         gl.setHorizontalGroup(gl.createSequentialGroup()
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[0])
                 .addComponent(arg[3]))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[1])
-                .addComponent(arg[2]))
+                .addComponent(arg[2])
+                .addComponent(arg[5]))
             .addComponent(arg[4])
         );
 
@@ -380,6 +347,7 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[3])
                 .addComponent(arg[4]))
             .addComponent(arg[2])
+            .addComponent(arg[5])
         );
     }
 
@@ -397,31 +365,50 @@ public class MLBUI extends JFrame {
 
     Boolean debug = true;
  
- 
-//  public static void main(String args[]) {
-//      new ThreadTest("eBay").start();
-//      new ThreadTest("Paypal").start();
-//      new ThreadTest("Google").start();
-//  }
     public AnalyzerThread(String str) {
         super(str);
     }
  
     public void run() {
-        for (int i = 0; i < 5; i++) {
-            debug("Thread test");
-            try {
-                sleep((int) (Math.random() * 2000));
-            } catch (InterruptedException e) {
+        try {
+            outputPlaceholder.setText(scheduler.SchedulerConstants.START_EVAL_MESSAGE);
+            analyzerOutputString = analyzer.runAnalysis(getAnalyzerInput());
+            if(!isInterrupted()) {
+                outputCache.put(currentParameters.toString(),analyzerOutputString);
+                saveAnalyzerOutput(analyzerOutputString,currentParameters.toString());
+                //debug(analyzerOutputString);
+                parser = new ScheduleOutParser(analyzerOutputString);
+                ArrayList<String> series = parser.parseSeries();
+                outputPlaceholder.removeAll();
+                debug("Series size is: " + series.size());
+                for(int i=0; i<series.size(); i++) {
+                    //debug(series.get(i));
+                    outputPlaceholder.append(series.get(i) + ": \n");
+                    ArrayList<String> temp = parser.getTeamsForSeries(series.get(i));
+                    for(int k=0; k<temp.size(); k++) {
+                        outputPlaceholder.append("     " + temp.get(k) + "\n");
+                    }
+                    temp = parser.getGamesForSeries(series.get(i));
+                    for(int m=0; m<temp.size(); m++) {
+                        outputPlaceholder.append("     " + temp.get(m) + "\n");
+                    }
+                }
+                outputPlaceholder.append("\n****************\nListing Team Schedules: \n");
+                ArrayList<String> currentTeams = parser.getAllTeams();
+                debug("The current teams size is: " + currentTeams.size());
+                for(int i=0; i< currentTeams.size(); i++) {
+                    outputPlaceholder.append("Schedule: " + currentTeams.get(i) + " is: \n");
+                    ArrayList teamSchedule = parser.getTeamSchedule(currentTeams.get(i));
+                    for(int j=0; j< teamSchedule.size(); j++) {
+                        outputPlaceholder.append("  " + teamSchedule.get(j) + "\n");
+                    } 
+                }
             }
+        } catch(Exception e) {
+            outputPlaceholder.setText(scheduler.SchedulerConstants.RUN_FAILURE);
+            debug(scheduler.SchedulerConstants.RUN_FAILURE);
         }
-        System.out.println("Test Finished for: " + getName());
+        debug(scheduler.SchedulerConstants.RUN_SUCCESS);
     }
-
-//  private void debug(String msg) {
-//        if(debug) {
- //           System.out.println(this.getClass().getSimpleName() + ": " + msg);
- //       }
-//    }
-}
+    }
 }

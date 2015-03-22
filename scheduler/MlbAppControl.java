@@ -53,14 +53,14 @@ public class MlbAppControl {
 
                 // Print the outcome
                 returnAns = ans.toString();
-                System.out.println(returnAns);
+                //System.out.println(returnAns);
                 // If satisfiable...
                 if (ans.satisfiable()) {
                     // You can query "ans" to find out the values of each set or type.
                     // This can be useful for debugging.
                     //
                     // You can also write the outcome to an XML file
-                    ans.writeXML("alloy_example_output.xml");
+                    //ans.writeXML("alloy_example_output.xml");
                     //
                     // You can then visualize the XML file by calling this:
                     //if (viz==null) {
