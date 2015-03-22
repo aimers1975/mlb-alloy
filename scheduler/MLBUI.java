@@ -297,10 +297,16 @@ public class MLBUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                     updateCurrentParameters();
-                    saveModelToFile();
-                    debug("Model saved!");
-                    evalThread = new AnalyzerThread("Testing");
-                    evalThread.start();
+                    if(checkCachedOutput(currentParameters.toString())==null){
+                        saveModelToFile();
+                        debug("Model saved!");
+                        evalThread = new AnalyzerThread("Testing");
+                        evalThread.start();
+                    } else {
+                        updateOutputUI(checkCachedOutput(currentParameters.toString()));
+
+                    }
+
             }
         });
         stopCurrentEvaluationButton.addActionListener(new ActionListener() {
@@ -330,7 +336,7 @@ public class MLBUI extends JFrame {
     }
 
     private String checkCachedOutput(String inputParams) {
-        String returnOutput = new String();
+        String returnOutput = null;
         returnOutput = outputCache.get(currentParameters.toString());
         debug("Cached output: " + returnOutput);
         return returnOutput;
