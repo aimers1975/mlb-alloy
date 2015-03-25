@@ -105,7 +105,7 @@ public class ScheduleOutParser {
 			int thisIndex = currentTeams.indexOf(team);
 			if(thisIndex == 0) {
 				teamSchedule.add("Opponent is Home team.");
-			} else {
+			} else if (thisIndex ==1){
 				teamSchedule.add("Opponent is Away team.");
 			}
 			if(thisIndex == 0) {

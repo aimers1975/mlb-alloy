@@ -69,6 +69,10 @@ public class MLBUI extends JFrame {
     JComboBox teamNumGamesMin;
     JLabel teamNumGamesMaxLabel = new JLabel(scheduler.SchedulerConstants.TEAM_NUM_GAMES_MAX_LABEL);
     JComboBox teamNumGamesMax;
+    JLabel teamSingleNumGamesMinLabel = new JLabel(scheduler.SchedulerConstants.TEAM_SINGLE_NUM_GAMES_MIN_LABEL);
+    JComboBox teamSingleNumGamesMin;
+    JLabel teamSingleNumGamesMaxLabel = new JLabel(scheduler.SchedulerConstants.TEAM_SINGLE_NUM_GAMES_MAX_LABEL);
+    JComboBox teamSingleNumGamesMax;
     JCheckBox addPredHasHalfHomeGames = new JCheckBox(scheduler.SchedulerConstants.ADD_PRED_HAS_HALF_HOME_CHECKBOX);
     JCheckBox addNoFourGameAwayStands = new JCheckBox(scheduler.SchedulerConstants.ADD_NO_FOUR_GAME_AWAY_STANDS);
     JCheckBox addPredNoConsecutiveSeries = new JCheckBox(scheduler.SchedulerConstants.ADD_PRED_NO_CONSECUTIVE_SERIES);
@@ -77,7 +81,7 @@ public class MLBUI extends JFrame {
     JLabel customPredLabel = new JLabel(scheduler.SchedulerConstants.CUSTOM_PRED_LABEL);
     JTextArea customPred = new JTextArea(1,1);
     JScrollPane customPredScrollPane = new JScrollPane(customPred);
-    JPanel scrollPanelInputs = new JPanel(new GridLayout(26, 1));
+    JPanel scrollPanelInputs = new JPanel(new GridLayout(30, 1));
     JScrollPane inputScroll;
     JPanel outputPanel = new JPanel();
     JTextArea outputPlaceholder = new JTextArea(200, 200);
@@ -124,6 +128,8 @@ public class MLBUI extends JFrame {
         currentParameters.append(String.valueOf(dayRangeEnd.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(teamNumGamesMin.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(teamNumGamesMax.getSelectedItem()) + "-");
+        currentParameters.append(String.valueOf(teamSingleNumGamesMin.getSelectedItem()) + "-");
+        currentParameters.append(String.valueOf(teamSingleNumGamesMax.getSelectedItem()) + "-");
         
         if(addNoFourGameAwayStands.isSelected()) {
             currentParameters.append("T" + "-");
@@ -183,6 +189,18 @@ public class MLBUI extends JFrame {
                 newModel.addPredTeamNumberGames(Integer.parseInt(params[6]),0);              
             }
         } 
+        //params[8] and params[9] - number of games against all teams min and max
+        debug("Single team number games min: " + params[8]);
+        debug("Single team number games max: " + params[9]);
+        if(!params[8].equals("No Value")) {
+            if(!params[9].equals("No Value")) {
+                if(Integer.parseInt(params[8]) <= Integer.parseInt(params[8])) {
+                    newModel.addPredSingleTeamNumberGames(Integer.parseInt(params[8]),Integer.parseInt(params[9]));
+                }
+            } else {
+                newModel.addPredSingleTeamNumberGames(Integer.parseInt(params[8]),0);              
+            }
+        } 
 
         String customPredString = customPred.getText();
         String customPredInShowString = customPredInShow.getText();
@@ -192,32 +210,32 @@ public class MLBUI extends JFrame {
             newModel.addCustomPred(customPredString);
             newModel.addCustomPredInShow(customPredInShowString);
         }
-        if(params[8].equals("T")) {
+        if(params[10].equals("T")) {
             debug("No four game away stands is selected.");
             newModel.addPredNoFourGameAwayStands();
         } 
-        if(params[9].equals("T")) {
+        if(params[11].equals("T")) {
             debug("Has half home games is selected.");
             newModel.addPredHasHalfHomeGames();
         }
-        if(params[10].equals("T")){
+        if(params[12].equals("T")){
             debug("No consecutive is selected");
             newModel.addPredNoConsecutiveSeries();
         }
-        debug("Number of runs specified: " + params[11]);
+        debug("Number of runs specified: " + params[13]);
         //Make sure number of runs is at least as many as number of series
         //specified, if number of series was specified otherwise no 
         //instance will be found
-        //params[4] number of runs
+        //params[2] number of series
         if(!params[2].equals("No Value")) {
-            if(Integer.parseInt(params[11]) < Integer.parseInt(params[2])) {
+            if(Integer.parseInt(params[13]) < Integer.parseInt(params[2])) {
                 debug("NOTE: Not enough runs specified, \ncorrected to " + params[2] + " to match number of series!\n");
                 newModel.setupRuns(Integer.parseInt(params[2]));
             } else {
-                newModel.setupRuns(Integer.parseInt(params[11]));
+                newModel.setupRuns(Integer.parseInt(params[13]));
             }
         } else {
-            newModel.setupRuns(Integer.parseInt(params[11]));
+            newModel.setupRuns(Integer.parseInt(params[13]));
         }
         ArrayList<String> currentModel = newModel.getModel();
         inputALS.setText("");
@@ -280,6 +298,12 @@ public class MLBUI extends JFrame {
         scrollPanelInputs.add(teamNumGamesMaxLabel);
         teamNumGamesMax = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
         scrollPanelInputs.add(teamNumGamesMax);
+        scrollPanelInputs.add(teamSingleNumGamesMinLabel);
+        teamSingleNumGamesMin = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
+        scrollPanelInputs.add(teamSingleNumGamesMin);
+        scrollPanelInputs.add(teamSingleNumGamesMaxLabel);
+        teamSingleNumGamesMax = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
+        scrollPanelInputs.add(teamSingleNumGamesMax);
         scrollPanelInputs.add(addNoFourGameAwayStands);
         scrollPanelInputs.add(addPredNoConsecutiveSeries);
         scrollPanelInputs.add(addPredHasHalfHomeGames);
@@ -361,9 +385,18 @@ public class MLBUI extends JFrame {
 
     private void updateOutputUI(String outputToUpdate) {
         parser = new ScheduleOutParser(outputToUpdate);
+        //Mapper is experimental, will write mapped schedule to file, schedule.out
+        //One if number of teams in parsed schedule is a division schedule, i.e.
+        //5 teams or less teams.
         ArrayList<String> series = parser.parseSeries();
         outputPlaceholder.setText("");
         debug("Series size is: " + series.size());
+        Mapper testmapper = new Mapper();
+        debug("Get all teams: " + parser.getAllTeams().size());
+        if(0 < parser.getAllTeams().size() && parser.getAllTeams().size() < 6) {
+            debug("Calling create div schedule");
+            testmapper.createDivisionSchedule(parser);
+        }
         for(int i=0; i<series.size(); i++) {
             //debug(series.get(i));
             outputPlaceholder.append(series.get(i) + ": \n");

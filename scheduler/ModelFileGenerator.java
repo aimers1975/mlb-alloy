@@ -112,6 +112,26 @@ public class ModelFileGenerator {
 		workingModel.set(index,"  teamNumberGames[This]");	
 	}
 
+	public void addPredSingleTeamNumberGames(int min, int max) {
+		//all a: team | countOne[schedule,a] =4// and count[schedule,a,b] <3
+		debug("In adding single team num games.");
+		StringBuilder sb = new StringBuilder();
+		if(max>min) {
+			sb.append("  all a: team | countOne[schedule,a] > " + String.valueOf(min) + " and countOne[schedule,a] < " + String.valueOf(max) + "\n");
+		} else if(max==min) {
+			sb.append("  all a: team | countOne[schedule,a] = " + String.valueOf(min));
+		} else {
+			sb.append("  all a: team | countOne[schedule,a] > " + String.valueOf(min));
+		}
+		//debug(sb.toString());
+		int index = workingModel.indexOf("//%setsingleTeamNumberGames%");
+		//debug("Index of predNumGames: " + index);
+		workingModel.set(index,sb.toString());
+		index = workingModel.indexOf("//%genPredSingleTeamNumberGames");
+		//debug("Index of predNumGames: " + index);
+		workingModel.set(index,"  singleTeamNumberGames[This]");
+	}
+
 	public void setupNumberSeries(int series) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("#series=" + series + "\n");
@@ -149,9 +169,12 @@ public class ModelFileGenerator {
 			sb = new StringBuilder();
 			index = workingModel.indexOf("%generateNumTeams%");
 			debug("Index of generated num teams");
+			sb.append("#team = " + Integer.valueOf(teamGroups*numPerGroup) + "\n");
 			for(int i=0; i<teamGroups; i++) {
 				sb.append("#team" + String.valueOf(i) + " = " + String.valueOf(numPerGroup) + "\n");
+				sb.append("all a: series | (a.hteam in team" + i + " => a.ateam !in team" + i + ") and (a.ateam in team" + i + " => a.hteam !in team" + i + ")\n");
 			}
+
 			workingModel.set(index, sb.toString());
 		}
 	}

@@ -82,6 +82,11 @@ pred teamNumberGames(This:schedule) {
 //%setTeamNumberGames%
 }
 
+// All teams must have a certain number of series
+pred singleTeamNumberGames(This:schedule) {
+//%setsingleTeamNumberGames%
+}
+
 // Ensure half teams games are home games and half are away
 pred hasHalfHomeGames(This:schedule) {
     all a: team | countHomeGames[This,a] = countAwayGames[This,a]
@@ -109,6 +114,7 @@ pred noFourGameHomeStands(This:schedule) {
 
 pred show(This:schedule) {
 //%genPredTeamNumberGames%
+//%genPredSingleTeamNumberGames
 //%genPredHasHalfHomeGames%
 //%genPredSetFourGameSeries%
 //%genPredNoFourGameAwayStands%
