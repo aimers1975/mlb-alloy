@@ -1,379 +1,469 @@
 Day: 0
 Day: 1
   Game: 0
-    Home: Chicago White Sox
+    Home: Detroit Tigers
+    Away: Houston Astros
+    Time: 12pm CST
+    Location: Detroit Tigers Field
+  Game: 1
+    Home: New York Yankees
+    Away: Baltimore Orioles
+    Time: 12pm CST
+    Location: New York Yankees Field
+  Game: 2
+    Home: Oakland Athletics
+    Away: Kansas City Royals
+    Time: 12pm CST
+    Location: Oakland Athletics Field
+  Game: 3
+    Home: Tampa Bay Rays
+    Away: Minnesota Twins
+    Time: 12pm CST
+    Location: Tampa Bay Rays Field
+  Game: 4
+    Home: Los Angeles Angels of Anaheim
     Away: Cleveland Indians
     Time: 12pm CST
-    Location: Chicago White Sox Field
-  Game: 1
-    Home: Atlanta Braves
+    Location: Los Angeles Angels of Anaheim Field
+  Game: 5
+    Home: Toronto Blue Jays
+    Away: Seattle Mariners
+    Time: 12pm CST
+    Location: Toronto Blue Jays Field
+  Game: 6
+    Home: New York Mets
+    Away: Arizona Diamondbacks
+    Time: 12pm CST
+    Location: New York Mets Field
+  Game: 7
+    Home: Milwaukee Brewers
+    Away: Chicago Cubs
+    Time: 12pm CST
+    Location: Milwaukee Brewers Field
+  Game: 8
+    Home: Los Angeles Dodgers
+    Away: Philadelphia Phillies
+    Time: 12pm CST
+    Location: Los Angeles Dodgers Field
+  Game: 9
+    Home: Pittsburgh Pirates
+    Away: Washington Nationals
+    Time: 12pm CST
+    Location: Pittsburgh Pirates Field
+  Game: 10
+    Home: Colorado Rockies
     Away: Miami Marlins
     Time: 12pm CST
-    Location: Atlanta Braves Field
-  Game: 2
-    Home: Chicago Cubs
-    Away: Cincinnati Reds
+    Location: Colorado Rockies Field
+  Game: 11
+    Home: St. Louis Cardinals
+    Away: San Diego Padres
     Time: 12pm CST
-    Location: Chicago Cubs Field
-  Game: 3
-    Home: Baltimore Orioles
-    Away: Boston Red Sox
-    Time: 12pm CST
-    Location: Baltimore Orioles Field
-  Game: 4
-    Home: Houston Astros
-    Away: Los Angeles Angels of Anaheim
-    Time: 12pm CST
-    Location: Houston Astros Field
-  Game: 5
-    Home: Arizona Diamondbacks
-    Away: Colorado Rockies
-    Time: 12pm CST
-    Location: Arizona Diamondbacks Field
+    Location: St. Louis Cardinals Field
 Day: 2
   Game: 0
-    Home: Chicago White Sox
+    Home: Detroit Tigers
+    Away: Houston Astros
+    Time: 12pm CST
+    Location: Detroit Tigers Field
+  Game: 1
+    Home: New York Yankees
+    Away: Baltimore Orioles
+    Time: 12pm CST
+    Location: New York Yankees Field
+  Game: 2
+    Home: Oakland Athletics
+    Away: Kansas City Royals
+    Time: 12pm CST
+    Location: Oakland Athletics Field
+  Game: 3
+    Home: Tampa Bay Rays
+    Away: Minnesota Twins
+    Time: 12pm CST
+    Location: Tampa Bay Rays Field
+  Game: 4
+    Home: Los Angeles Angels of Anaheim
     Away: Cleveland Indians
     Time: 12pm CST
-    Location: Chicago White Sox Field
-  Game: 1
-    Home: Atlanta Braves
+    Location: Los Angeles Angels of Anaheim Field
+  Game: 5
+    Home: Toronto Blue Jays
+    Away: Seattle Mariners
+    Time: 12pm CST
+    Location: Toronto Blue Jays Field
+  Game: 6
+    Home: New York Mets
+    Away: Arizona Diamondbacks
+    Time: 12pm CST
+    Location: New York Mets Field
+  Game: 7
+    Home: Milwaukee Brewers
+    Away: Chicago Cubs
+    Time: 12pm CST
+    Location: Milwaukee Brewers Field
+  Game: 8
+    Home: Los Angeles Dodgers
+    Away: Philadelphia Phillies
+    Time: 12pm CST
+    Location: Los Angeles Dodgers Field
+  Game: 9
+    Home: Pittsburgh Pirates
+    Away: Washington Nationals
+    Time: 12pm CST
+    Location: Pittsburgh Pirates Field
+  Game: 10
+    Home: Colorado Rockies
     Away: Miami Marlins
     Time: 12pm CST
-    Location: Atlanta Braves Field
-  Game: 2
-    Home: Chicago Cubs
-    Away: Cincinnati Reds
+    Location: Colorado Rockies Field
+  Game: 11
+    Home: St. Louis Cardinals
+    Away: San Diego Padres
     Time: 12pm CST
-    Location: Chicago Cubs Field
-  Game: 3
-    Home: Baltimore Orioles
-    Away: Boston Red Sox
-    Time: 12pm CST
-    Location: Baltimore Orioles Field
-  Game: 4
-    Home: Houston Astros
-    Away: Los Angeles Angels of Anaheim
-    Time: 12pm CST
-    Location: Houston Astros Field
-  Game: 5
-    Home: Arizona Diamondbacks
-    Away: Colorado Rockies
-    Time: 12pm CST
-    Location: Arizona Diamondbacks Field
+    Location: St. Louis Cardinals Field
 Day: 3
   Game: 0
-    Home: Chicago White Sox
+    Home: Detroit Tigers
+    Away: Houston Astros
+    Time: 12pm CST
+    Location: Detroit Tigers Field
+  Game: 1
+    Home: New York Yankees
+    Away: Baltimore Orioles
+    Time: 12pm CST
+    Location: New York Yankees Field
+  Game: 2
+    Home: Oakland Athletics
+    Away: Kansas City Royals
+    Time: 12pm CST
+    Location: Oakland Athletics Field
+  Game: 3
+    Home: Tampa Bay Rays
+    Away: Minnesota Twins
+    Time: 12pm CST
+    Location: Tampa Bay Rays Field
+  Game: 4
+    Home: Los Angeles Angels of Anaheim
     Away: Cleveland Indians
     Time: 12pm CST
-    Location: Chicago White Sox Field
-  Game: 1
-    Home: Atlanta Braves
+    Location: Los Angeles Angels of Anaheim Field
+  Game: 5
+    Home: Toronto Blue Jays
+    Away: Seattle Mariners
+    Time: 12pm CST
+    Location: Toronto Blue Jays Field
+  Game: 6
+    Home: New York Mets
+    Away: Arizona Diamondbacks
+    Time: 12pm CST
+    Location: New York Mets Field
+  Game: 7
+    Home: Milwaukee Brewers
+    Away: Chicago Cubs
+    Time: 12pm CST
+    Location: Milwaukee Brewers Field
+  Game: 8
+    Home: Los Angeles Dodgers
+    Away: Philadelphia Phillies
+    Time: 12pm CST
+    Location: Los Angeles Dodgers Field
+  Game: 9
+    Home: Pittsburgh Pirates
+    Away: Washington Nationals
+    Time: 12pm CST
+    Location: Pittsburgh Pirates Field
+  Game: 10
+    Home: Colorado Rockies
     Away: Miami Marlins
     Time: 12pm CST
-    Location: Atlanta Braves Field
-  Game: 2
-    Home: Chicago Cubs
-    Away: Cincinnati Reds
+    Location: Colorado Rockies Field
+  Game: 11
+    Home: St. Louis Cardinals
+    Away: San Diego Padres
     Time: 12pm CST
-    Location: Chicago Cubs Field
-  Game: 3
-    Home: Baltimore Orioles
-    Away: Boston Red Sox
-    Time: 12pm CST
-    Location: Baltimore Orioles Field
-  Game: 4
+    Location: St. Louis Cardinals Field
+Day: 4
+  Game: 0
     Home: Houston Astros
-    Away: Los Angeles Angels of Anaheim
+    Away: Oakland Athletics
     Time: 12pm CST
     Location: Houston Astros Field
-  Game: 5
+  Game: 1
     Home: Arizona Diamondbacks
-    Away: Colorado Rockies
+    Away: Los Angeles Dodgers
     Time: 12pm CST
     Location: Arizona Diamondbacks Field
-Day: 4
 Day: 5
   Game: 0
-    Home: Chicago White Sox
-    Away: Cleveland Indians
-    Time: 12pm CST
-    Location: Chicago White Sox Field
-  Game: 1
-    Home: Atlanta Braves
-    Away: Miami Marlins
-    Time: 12pm CST
-    Location: Atlanta Braves Field
-  Game: 2
-    Home: Chicago Cubs
-    Away: Cincinnati Reds
-    Time: 12pm CST
-    Location: Chicago Cubs Field
-  Game: 3
-    Home: Baltimore Orioles
-    Away: Boston Red Sox
-    Time: 12pm CST
-    Location: Baltimore Orioles Field
-  Game: 4
     Home: Houston Astros
-    Away: Los Angeles Angels of Anaheim
+    Away: Oakland Athletics
     Time: 12pm CST
     Location: Houston Astros Field
-  Game: 5
+  Game: 1
     Home: Arizona Diamondbacks
-    Away: Colorado Rockies
+    Away: Los Angeles Dodgers
     Time: 12pm CST
     Location: Arizona Diamondbacks Field
 Day: 6
   Game: 0
-    Home: Chicago White Sox
-    Away: Cleveland Indians
+    Home: Texas Rangers
+    Away: Chicago White Sox
     Time: 12pm CST
-    Location: Chicago White Sox Field
+    Location: Texas Rangers Field
   Game: 1
-    Home: Atlanta Braves
-    Away: Miami Marlins
-    Time: 12pm CST
-    Location: Atlanta Braves Field
-  Game: 2
-    Home: Chicago Cubs
-    Away: Cincinnati Reds
-    Time: 12pm CST
-    Location: Chicago Cubs Field
-  Game: 3
-    Home: Baltimore Orioles
-    Away: Boston Red Sox
-    Time: 12pm CST
-    Location: Baltimore Orioles Field
-  Game: 4
     Home: Houston Astros
-    Away: Los Angeles Angels of Anaheim
+    Away: Oakland Athletics
     Time: 12pm CST
     Location: Houston Astros Field
-  Game: 5
+  Game: 2
+    Home: San Francisco Giants
+    Away: Atlanta Braves
+    Time: 12pm CST
+    Location: San Francisco Giants Field
+  Game: 3
     Home: Arizona Diamondbacks
-    Away: Colorado Rockies
+    Away: Los Angeles Dodgers
     Time: 12pm CST
     Location: Arizona Diamondbacks Field
 Day: 7
   Game: 0
-    Home: Chicago White Sox
-    Away: Cleveland Indians
+    Home: Texas Rangers
+    Away: Chicago White Sox
     Time: 12pm CST
-    Location: Chicago White Sox Field
+    Location: Texas Rangers Field
   Game: 1
-    Home: Atlanta Braves
-    Away: Miami Marlins
+    Home: San Francisco Giants
+    Away: Atlanta Braves
     Time: 12pm CST
-    Location: Atlanta Braves Field
-  Game: 2
-    Home: Chicago Cubs
-    Away: Cincinnati Reds
-    Time: 12pm CST
-    Location: Chicago Cubs Field
-  Game: 3
-    Home: Baltimore Orioles
-    Away: Boston Red Sox
-    Time: 12pm CST
-    Location: Baltimore Orioles Field
-  Game: 4
-    Home: Houston Astros
-    Away: Los Angeles Angels of Anaheim
-    Time: 12pm CST
-    Location: Houston Astros Field
-  Game: 5
-    Home: Arizona Diamondbacks
-    Away: Colorado Rockies
-    Time: 12pm CST
-    Location: Arizona Diamondbacks Field
+    Location: San Francisco Giants Field
 Day: 8
+  Game: 0
+    Home: Texas Rangers
+    Away: Chicago White Sox
+    Time: 12pm CST
+    Location: Texas Rangers Field
+  Game: 1
+    Home: San Francisco Giants
+    Away: Atlanta Braves
+    Time: 12pm CST
+    Location: San Francisco Giants Field
 Day: 9
   Game: 0
-    Home: Cleveland Indians
-    Away: Chicago White Sox
+    Home: Minnesota Twins
+    Away: Boston Red Sox
     Time: 12pm CST
-    Location: Cleveland Indians Field
+    Location: Minnesota Twins Field
   Game: 1
-    Home: Miami Marlins
-    Away: Atlanta Braves
+    Home: Washington Nationals
+    Away: Cincinnati Reds
     Time: 12pm CST
-    Location: Miami Marlins Field
-  Game: 2
-    Home: Cincinnati Reds
-    Away: Chicago Cubs
-    Time: 12pm CST
-    Location: Cincinnati Reds Field
-  Game: 3
-    Home: Boston Red Sox
-    Away: Baltimore Orioles
-    Time: 12pm CST
-    Location: Boston Red Sox Field
-  Game: 4
-    Home: Los Angeles Angels of Anaheim
-    Away: Houston Astros
-    Time: 12pm CST
-    Location: Los Angeles Angels of Anaheim Field
-  Game: 5
-    Home: Colorado Rockies
-    Away: Arizona Diamondbacks
-    Time: 12pm CST
-    Location: Colorado Rockies Field
+    Location: Washington Nationals Field
 Day: 10
   Game: 0
-    Home: Cleveland Indians
-    Away: Chicago White Sox
+    Home: Minnesota Twins
+    Away: Boston Red Sox
     Time: 12pm CST
-    Location: Cleveland Indians Field
+    Location: Minnesota Twins Field
   Game: 1
-    Home: Miami Marlins
-    Away: Atlanta Braves
+    Home: Washington Nationals
+    Away: Cincinnati Reds
     Time: 12pm CST
-    Location: Miami Marlins Field
-  Game: 2
-    Home: Cincinnati Reds
-    Away: Chicago Cubs
-    Time: 12pm CST
-    Location: Cincinnati Reds Field
-  Game: 3
-    Home: Boston Red Sox
-    Away: Baltimore Orioles
-    Time: 12pm CST
-    Location: Boston Red Sox Field
-  Game: 4
-    Home: Los Angeles Angels of Anaheim
-    Away: Houston Astros
-    Time: 12pm CST
-    Location: Los Angeles Angels of Anaheim Field
-  Game: 5
-    Home: Colorado Rockies
-    Away: Arizona Diamondbacks
-    Time: 12pm CST
-    Location: Colorado Rockies Field
+    Location: Washington Nationals Field
 Day: 11
   Game: 0
-    Home: Cleveland Indians
-    Away: Chicago White Sox
+    Home: Minnesota Twins
+    Away: Boston Red Sox
     Time: 12pm CST
-    Location: Cleveland Indians Field
+    Location: Minnesota Twins Field
   Game: 1
-    Home: Miami Marlins
-    Away: Atlanta Braves
+    Home: Washington Nationals
+    Away: Cincinnati Reds
     Time: 12pm CST
-    Location: Miami Marlins Field
-  Game: 2
-    Home: Cincinnati Reds
-    Away: Chicago Cubs
-    Time: 12pm CST
-    Location: Cincinnati Reds Field
-  Game: 3
-    Home: Boston Red Sox
-    Away: Baltimore Orioles
-    Time: 12pm CST
-    Location: Boston Red Sox Field
-  Game: 4
-    Home: Los Angeles Angels of Anaheim
-    Away: Houston Astros
-    Time: 12pm CST
-    Location: Los Angeles Angels of Anaheim Field
-  Game: 5
-    Home: Colorado Rockies
-    Away: Arizona Diamondbacks
-    Time: 12pm CST
-    Location: Colorado Rockies Field
+    Location: Washington Nationals Field
 Day: 12
 Day: 13
   Game: 0
-    Home: Cleveland Indians
-    Away: Chicago White Sox
-    Time: 12pm CST
-    Location: Cleveland Indians Field
-  Game: 1
-    Home: Miami Marlins
-    Away: Atlanta Braves
-    Time: 12pm CST
-    Location: Miami Marlins Field
-  Game: 2
-    Home: Cincinnati Reds
-    Away: Chicago Cubs
-    Time: 12pm CST
-    Location: Cincinnati Reds Field
-  Game: 3
     Home: Boston Red Sox
-    Away: Baltimore Orioles
+    Away: Toronto Blue Jays
     Time: 12pm CST
     Location: Boston Red Sox Field
+  Game: 1
+    Home: Chicago White Sox
+    Away: Texas Rangers
+    Time: 12pm CST
+    Location: Chicago White Sox Field
+  Game: 2
+    Home: Kansas City Royals
+    Away: Los Angeles Angels of Anaheim
+    Time: 12pm CST
+    Location: Kansas City Royals Field
+  Game: 3
+    Home: Seattle Mariners
+    Away: Detroit Tigers
+    Time: 12pm CST
+    Location: Seattle Mariners Field
   Game: 4
-    Home: Los Angeles Angels of Anaheim
-    Away: Houston Astros
+    Home: Cleveland Indians
+    Away: New York Yankees
     Time: 12pm CST
-    Location: Los Angeles Angels of Anaheim Field
+    Location: Cleveland Indians Field
   Game: 5
-    Home: Colorado Rockies
-    Away: Arizona Diamondbacks
+    Home: Baltimore Orioles
+    Away: Tampa Bay Rays
     Time: 12pm CST
-    Location: Colorado Rockies Field
+    Location: Baltimore Orioles Field
+  Game: 6
+    Home: Cincinnati Reds
+    Away: St. Louis Cardinals
+    Time: 12pm CST
+    Location: Cincinnati Reds Field
+  Game: 7
+    Home: Atlanta Braves
+    Away: San Francisco Giants
+    Time: 12pm CST
+    Location: Atlanta Braves Field
+  Game: 8
+    Home: Philadelphia Phillies
+    Away: Colorado Rockies
+    Time: 12pm CST
+    Location: Philadelphia Phillies Field
+  Game: 9
+    Home: San Diego Padres
+    Away: New York Mets
+    Time: 12pm CST
+    Location: San Diego Padres Field
+  Game: 10
+    Home: Miami Marlins
+    Away: Milwaukee Brewers
+    Time: 12pm CST
+    Location: Miami Marlins Field
+  Game: 11
+    Home: Chicago Cubs
+    Away: Pittsburgh Pirates
+    Time: 12pm CST
+    Location: Chicago Cubs Field
 Day: 14
   Game: 0
-    Home: Cleveland Indians
-    Away: Chicago White Sox
-    Time: 12pm CST
-    Location: Cleveland Indians Field
-  Game: 1
-    Home: Miami Marlins
-    Away: Atlanta Braves
-    Time: 12pm CST
-    Location: Miami Marlins Field
-  Game: 2
-    Home: Cincinnati Reds
-    Away: Chicago Cubs
-    Time: 12pm CST
-    Location: Cincinnati Reds Field
-  Game: 3
     Home: Boston Red Sox
-    Away: Baltimore Orioles
+    Away: Toronto Blue Jays
     Time: 12pm CST
     Location: Boston Red Sox Field
+  Game: 1
+    Home: Chicago White Sox
+    Away: Texas Rangers
+    Time: 12pm CST
+    Location: Chicago White Sox Field
+  Game: 2
+    Home: Kansas City Royals
+    Away: Los Angeles Angels of Anaheim
+    Time: 12pm CST
+    Location: Kansas City Royals Field
+  Game: 3
+    Home: Seattle Mariners
+    Away: Detroit Tigers
+    Time: 12pm CST
+    Location: Seattle Mariners Field
   Game: 4
-    Home: Los Angeles Angels of Anaheim
-    Away: Houston Astros
+    Home: Cleveland Indians
+    Away: New York Yankees
     Time: 12pm CST
-    Location: Los Angeles Angels of Anaheim Field
+    Location: Cleveland Indians Field
   Game: 5
-    Home: Colorado Rockies
-    Away: Arizona Diamondbacks
+    Home: Baltimore Orioles
+    Away: Tampa Bay Rays
     Time: 12pm CST
-    Location: Colorado Rockies Field
+    Location: Baltimore Orioles Field
+  Game: 6
+    Home: Cincinnati Reds
+    Away: St. Louis Cardinals
+    Time: 12pm CST
+    Location: Cincinnati Reds Field
+  Game: 7
+    Home: Atlanta Braves
+    Away: San Francisco Giants
+    Time: 12pm CST
+    Location: Atlanta Braves Field
+  Game: 8
+    Home: Philadelphia Phillies
+    Away: Colorado Rockies
+    Time: 12pm CST
+    Location: Philadelphia Phillies Field
+  Game: 9
+    Home: San Diego Padres
+    Away: New York Mets
+    Time: 12pm CST
+    Location: San Diego Padres Field
+  Game: 10
+    Home: Miami Marlins
+    Away: Milwaukee Brewers
+    Time: 12pm CST
+    Location: Miami Marlins Field
+  Game: 11
+    Home: Chicago Cubs
+    Away: Pittsburgh Pirates
+    Time: 12pm CST
+    Location: Chicago Cubs Field
 Day: 15
   Game: 0
-    Home: Cleveland Indians
-    Away: Chicago White Sox
-    Time: 12pm CST
-    Location: Cleveland Indians Field
-  Game: 1
-    Home: Miami Marlins
-    Away: Atlanta Braves
-    Time: 12pm CST
-    Location: Miami Marlins Field
-  Game: 2
-    Home: Cincinnati Reds
-    Away: Chicago Cubs
-    Time: 12pm CST
-    Location: Cincinnati Reds Field
-  Game: 3
     Home: Boston Red Sox
-    Away: Baltimore Orioles
+    Away: Toronto Blue Jays
     Time: 12pm CST
     Location: Boston Red Sox Field
+  Game: 1
+    Home: Chicago White Sox
+    Away: Texas Rangers
+    Time: 12pm CST
+    Location: Chicago White Sox Field
+  Game: 2
+    Home: Kansas City Royals
+    Away: Los Angeles Angels of Anaheim
+    Time: 12pm CST
+    Location: Kansas City Royals Field
+  Game: 3
+    Home: Seattle Mariners
+    Away: Detroit Tigers
+    Time: 12pm CST
+    Location: Seattle Mariners Field
   Game: 4
-    Home: Los Angeles Angels of Anaheim
-    Away: Houston Astros
+    Home: Cleveland Indians
+    Away: New York Yankees
     Time: 12pm CST
-    Location: Los Angeles Angels of Anaheim Field
+    Location: Cleveland Indians Field
   Game: 5
-    Home: Colorado Rockies
-    Away: Arizona Diamondbacks
+    Home: Baltimore Orioles
+    Away: Tampa Bay Rays
     Time: 12pm CST
-    Location: Colorado Rockies Field
+    Location: Baltimore Orioles Field
+  Game: 6
+    Home: Cincinnati Reds
+    Away: St. Louis Cardinals
+    Time: 12pm CST
+    Location: Cincinnati Reds Field
+  Game: 7
+    Home: Atlanta Braves
+    Away: San Francisco Giants
+    Time: 12pm CST
+    Location: Atlanta Braves Field
+  Game: 8
+    Home: Philadelphia Phillies
+    Away: Colorado Rockies
+    Time: 12pm CST
+    Location: Philadelphia Phillies Field
+  Game: 9
+    Home: San Diego Padres
+    Away: New York Mets
+    Time: 12pm CST
+    Location: San Diego Padres Field
+  Game: 10
+    Home: Miami Marlins
+    Away: Milwaukee Brewers
+    Time: 12pm CST
+    Location: Miami Marlins Field
+  Game: 11
+    Home: Chicago Cubs
+    Away: Pittsburgh Pirates
+    Time: 12pm CST
+    Location: Chicago Cubs Field
 Day: 16
 Day: 17
 Day: 18

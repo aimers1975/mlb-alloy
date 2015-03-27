@@ -396,12 +396,14 @@ public class MLBUI extends JFrame {
         if(0 < parser.getAllTeams().size() && parser.getAllTeams().size() < 6) {
             debug("Calling create div schedule");
             testmapper.createDivisionSchedule(parser);
+        } else if (5 < parser.getAllTeams().size() && parser.getAllTeams().size() < 16) {
+            debug("Calling create interdivision div schedule");
+            testmapper.createInterdivisionDivisionSchedule(parser);
         }
         for(int i=0; i<series.size(); i++) {
             //debug(series.get(i));
             outputPlaceholder.append(series.get(i) + ": \n");
             ArrayList<String> temp = parser.getTeamsForSeries(series.get(i));
-            debug("Team size is: " + temp.size());
             if(temp.size() == 2) {
                 outputPlaceholder.append("     Away team: " + temp.get(0) + "\n");
                 outputPlaceholder.append("     Home team: " + temp.get(1) + "\n");
