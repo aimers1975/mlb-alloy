@@ -45,9 +45,10 @@ public class MLBUI extends JFrame {
     Boolean debug = true;
     JLabel appInfo = new JLabel(scheduler.SchedulerConstants.APP_LABEL);
     JButton evaluateButton = new JButton(scheduler.SchedulerConstants.EVALUATE_BUTTON);
-    JButton stopCurrentEvaluationButton = new JButton(scheduler.SchedulerConstants.STOP_EVAL_BUTTOM);
-    JButton saveToOverallScheduleButton = new JButton(scheduler.SchedulerConstants.SAVE_TO_OVERALL_SCHEDULE_BUTTOM);
+    JButton stopCurrentEvaluationButton = new JButton(scheduler.SchedulerConstants.STOP_EVAL_BUTTON);
+    JButton saveToOverallScheduleButton = new JButton(scheduler.SchedulerConstants.SAVE_TO_OVERALL_SCHEDULE_BUTTON);
     JButton showOverallScheduleButton = new JButton(scheduler.SchedulerConstants.SHOW_OVERALL_SCHEDULE_BUTTON);
+    JButton resetSchedule = new JButton(scheduler.SchedulerConstants.RESET_SCHEDULE_BUTTON);
     JPanel scrollPanel = new JPanel();
     JTextArea inputALS = new JTextArea(200,200);
     JScrollPane scroll = new JScrollPane(inputALS);
@@ -94,10 +95,12 @@ public class MLBUI extends JFrame {
     StringBuilder currentParameters;
     HashMap<String,String> outputCache = new HashMap<String,String>();
     AnalyzerThread evalThread;
+    Mapper testmapper;
 
 	public MLBUI() {
 		initUI();
         analyzer = new MlbAppControl();
+        testmapper = new Mapper();
 
 	}
 
@@ -147,6 +150,10 @@ public class MLBUI extends JFrame {
             currentParameters.append("F" + "-");
         }
         currentParameters.append(String.valueOf(numRuns.getSelectedItem()) + "-");
+    }
+
+    private void resetSchedule() {
+        testmapper = new Mapper();
     }
 
     private void saveModelToFile() {
@@ -390,16 +397,25 @@ public class MLBUI extends JFrame {
         //5 teams or less teams.
         ArrayList<String> series = parser.parseSeries();
         outputPlaceholder.setText("");
-        debug("Series size is: " + series.size());
-        Mapper testmapper = new Mapper();
         debug("Get all teams: " + parser.getAllTeams().size());
         if(0 < parser.getAllTeams().size() && parser.getAllTeams().size() < 6) {
             debug("Calling create div schedule");
+            testmapper.loadTeams();
             testmapper.createDivisionSchedule(parser);
         } else if (5 < parser.getAllTeams().size() && parser.getAllTeams().size() < 16) {
             debug("Calling create interdivision div schedule");
-            testmapper.createInterdivisionDivisionSchedule(parser);
+            testmapper.loadTeams();
+            testmapper.createInterDivisionSchedule(parser);
+        } else if (15 < parser.getAllTeams().size() && parser.getAllTeams().size() < 31) {
+            testmapper.loadTeams();
+            testmapper.createInterLeagueSchedule(parser);
         }
+        //ArrayList<String> newTeams = testmapper.getAllTeams();
+        //if (newTeams.size() > 0) {
+        //    for(String thisTeam : newTeams) {
+        //        debug("Mapper teams game count for " + thisTeam + " is: " + testmapper.countGamesForTeam(thisTeam));
+        //    }
+        //}
         for(int i=0; i<series.size(); i++) {
             //debug(series.get(i));
             outputPlaceholder.append(series.get(i) + ": \n");

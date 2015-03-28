@@ -10,6 +10,7 @@ public class Mapper {
 	Schedule fullSchedule;
 	HashMap<String,ArrayList<String>> teamListHashMap;
     HashMap<String,ArrayList<String>> teamDivListHashMap;
+    ArrayList<String> leagueNameList;
 	Boolean debug = true;
 
 
@@ -17,8 +18,17 @@ public class Mapper {
 		fullSchedule = new Schedule();
 		teamListHashMap = new HashMap<String,ArrayList<String>>();
         teamDivListHashMap = new HashMap<String,ArrayList<String>>();
-		loadTeams();
+        leagueNameList = new ArrayList<String>();
+		//loadTeams();
 	}
+
+    public ArrayList<String> getAllTeams() {
+        return leagueNameList;
+    }
+
+    public int countGamesForTeam(String team) {
+        return fullSchedule.countGamesForTeam(team);
+    }
 
 	public void loadTeams() {
         try (BufferedReader br = new BufferedReader(new FileReader(scheduler.SchedulerConstants.INPUT_TEAM_LIST))) {
@@ -68,6 +78,8 @@ public class Mapper {
                 debug("Adding AL and NL to map");
                 teamDivListHashMap.put("AL",divisionTeams);
                 teamDivListHashMap.put("NL",divisionTeamsAL);
+                leagueNameList.addAll(divisionTeams);
+                leagueNameList.addAll(divisionTeamsAL);
             }
 
         } catch (Exception e) {
@@ -76,11 +88,6 @@ public class Mapper {
 	}
 
 	public void createDivisionSchedule(ScheduleOutParser thisParser) {
-		//loop through all series
-		//get team names
-		//map team name to team string
-		//create a game for each day
-		//add game to schedule
 		ArrayList<String> series = thisParser.parseSeries();
 		ArrayList<String> teams = thisParser.getAllTeams();
 		ArrayList<String> divisionNames;
@@ -109,12 +116,43 @@ public class Mapper {
 		    		}
 		    	}
 		    }
+            fullSchedule.repOk();
 			saveScheduleOutput(fullSchedule.toString());
 		}
 	}
 
 
-	public void createInterdivisionDivisionSchedule(ScheduleOutParser thisParser) {
+    public void createInterLeagueSchedule(ScheduleOutParser thisParser) {
+        ArrayList<String> series = thisParser.parseSeries();
+        ArrayList<String> teams = thisParser.getAllTeams();
+        ArrayList<String> divisionNames;
+        HashMap<String,String> teamNameMap = new HashMap<String,String>();
+        ArrayList<String> divNames = leagueNameList;
+        for(int i=0;i<teams.size();i++) {
+            debug("Adding team: " + teams.get(i) + " and mapping to: " + divNames.get(i));
+            teamNameMap.put(teams.get(i),divNames.get(i));
+        }
+        for(String thisSeries : series) {
+            ArrayList<String> thisSeriesTeams = thisParser.getTeamsForSeries(thisSeries);
+            ArrayList<String> thisSeriesGames = thisParser.getGamesForSeries(thisSeries);
+            for(String game : thisSeriesGames) {
+                //(String home, String away, String gametime, String field, int day)
+                if(thisSeriesTeams.size() == 2 && thisSeriesGames.size() > 0) {
+                    String home = teamNameMap.get(thisSeriesTeams.get(1));
+                    String away = teamNameMap.get(thisSeriesTeams.get(0));
+                    StringTokenizer dayNum = new StringTokenizer(game, "D");
+                    dayNum = new StringTokenizer(dayNum.nextToken(), "$");
+                    int day = Integer.parseInt(dayNum.nextToken());
+                    fullSchedule.addGameToSchedule(home,away,"12pm CST",home+" Field", day);
+                }
+            }
+        }
+        fullSchedule.repOk();
+        saveScheduleOutput(fullSchedule.toString());
+    }
+
+
+	public void createInterDivisionSchedule(ScheduleOutParser thisParser) {
 	//loop through all series
 	//get team names
 	//map team name to team string
@@ -154,6 +192,7 @@ public class Mapper {
                 }
             }
         }
+        fullSchedule.repOk();
         debug("Saving schedule out.");
         saveScheduleOutput(fullSchedule.toString());
     }
@@ -174,14 +213,6 @@ public class Mapper {
             System.out.println(scheduler.SchedulerConstants.CREATE_FILE_ERROR);
         }
     }
-
-	public void createInterDivisionSchedule(ScheduleOutParser thisParser) {
-
-	}
-
-	public void createInterLeaugeSchedule(ScheduleOutParser thisParser) {
-
-	}
 
     private void debug(String msg) {
         if(debug) {
