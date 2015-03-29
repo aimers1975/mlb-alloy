@@ -151,6 +151,10 @@ public class Mapper {
         saveScheduleOutput(fullSchedule.toString());
     }
 
+    public String toString() {
+        return fullSchedule.toString();
+    }
+
 
 	public void createInterDivisionSchedule(ScheduleOutParser thisParser) {
 	//loop through all series

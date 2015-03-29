@@ -10,6 +10,8 @@ public class ScheduleOutParser {
 	ArrayList<String> teams;
 	ArrayList<String> games;
 	Boolean debug = true;
+	int startDay;
+	int endDay;
 
 	public ScheduleOutParser(String outputToParse) {
 		originalOutput = outputToParse;
@@ -31,11 +33,39 @@ public class ScheduleOutParser {
     	 	returnArray.add(iterator.next());
     	}
     	return returnArray;
+    }
 
-
+    public void getStartAndEndDays() {
+    	int start = originalOutput.indexOf("this/day={D");
+    	int end = originalOutput.indexOf("$0}",start);
+    	boolean startSet = false;
+    	StringTokenizer parts = new StringTokenizer(originalOutput.substring(start,end), "{,");
+    	while(parts.hasMoreTokens()) {
+    		StringTokenizer st = new StringTokenizer(parts.nextToken(),"D$");
+    		String lastToken = new String();
+    		while(st.hasMoreTokens()) {
+    			lastToken = st.nextToken();
+    			if(!startSet) {
+    				try {
+						startDay = Integer.parseInt(lastToken);
+						startSet = true;  					
+    				} catch(Exception e) {
+    					debug("Couldn't parse start and end date from output.");
+    				}
+    			}
+    		}
+    		try {
+    			endDay = Integer.parseInt(lastToken);	
+    		} catch (Exception e) {
+    			debug("Couldn't parse start and end date from output.");
+    		}
+    		
+    	}
+    	debug("The start day is: " + start + " The end day is: " + end);
     }
 
 	public ArrayList<String> parseSeries() {
+		getStartAndEndDays();
 		series = new ArrayList<String>();
 		int start = originalOutput.indexOf("this/schedule<:allSeries={");
 		int end = originalOutput.indexOf("skolem $show_This={schedule", start);
@@ -120,11 +150,21 @@ public class ScheduleOutParser {
 	}
 
 	public ArrayList<String> findNoGameDays() {
+		//Not yet implemented
 		return new ArrayList<String>();
 	}
 
 	public ArrayList<String> findNoGameDaysByTeam(String team) {
+		//Not yet implemented
 		return new ArrayList<String>();
+	}
+
+	public int getStartDay() {
+		return startDay;
+	}
+
+	public int getEndDay(){
+		return endDay;
 	}
 
 	public ArrayList<String> parseGameDetails() {
@@ -170,7 +210,7 @@ public class ScheduleOutParser {
 			parts4 = new StringTokenizer(parts4.nextToken(), "->, }");
 			parts5 = new StringTokenizer(parts5.nextToken(), "->, }");
 			parts6 = new StringTokenizer(parts6.nextToken(), "->, }");
-			debug(parts6.toString());
+			//debug(parts6.toString());
 		}
 		String storeSeries = parts6.nextToken();
 		Boolean addExtraGame = false;

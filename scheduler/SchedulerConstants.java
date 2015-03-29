@@ -38,7 +38,8 @@ public class SchedulerConstants {
     public static final String STOP_EVAL_BUTTON = "Stop Current Evaluation";
     public static final String EVAL_STOP_MESSAGE = "Evaluation halted...";
     public static final String SAVE_TO_OVERALL_SCHEDULE_BUTTON = "Save To Overall Schedule";
-    public static final String RESET_SCHEDULE_BUTTON = "Save To Overall Schedule";
+    public static final String RESET_SCHEDULE_BUTTON = "Reset Full Schedule";
+    public static final String SHOW_FREE_DAYS_BUTTON = "Show Available Days";
     public static final String SHOW_OVERALL_SCHEDULE_BUTTON = "Show Overall Schedule";
     public static final String START_EVAL_MESSAGE ="Starting Evaluation...";
     public static final String[] NUM_LIST_DAY_START = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",

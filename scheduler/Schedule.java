@@ -14,7 +14,7 @@ public class Schedule {
 	Boolean debug = true;
 
 	public Schedule() {
-		seasonSchedule = new Day[180];
+		seasonSchedule = new Day[181];
 		allTeams = new HashSet<String>();
 		for(int i=0; i<seasonSchedule.length; i++) {
 			seasonSchedule[i] = new Day();
@@ -117,7 +117,6 @@ public class Schedule {
     }
 
     private void debugToFile(String saveOutput) {
-        debug("Saving analyzer output for future use to: " + scheduler.SchedulerConstants.SAVE_REPOK_LOCATION);
         try {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(scheduler.SchedulerConstants.SAVE_REPOK_LOCATION,true)));
             out.println(saveOutput + "\n");

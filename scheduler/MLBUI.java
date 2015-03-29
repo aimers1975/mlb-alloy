@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import scheduler.SchedulerConstants;
@@ -47,8 +48,9 @@ public class MLBUI extends JFrame {
     JButton evaluateButton = new JButton(scheduler.SchedulerConstants.EVALUATE_BUTTON);
     JButton stopCurrentEvaluationButton = new JButton(scheduler.SchedulerConstants.STOP_EVAL_BUTTON);
     JButton saveToOverallScheduleButton = new JButton(scheduler.SchedulerConstants.SAVE_TO_OVERALL_SCHEDULE_BUTTON);
+    JButton showFreeDaysButton = new JButton(scheduler.SchedulerConstants.SHOW_FREE_DAYS_BUTTON);
     JButton showOverallScheduleButton = new JButton(scheduler.SchedulerConstants.SHOW_OVERALL_SCHEDULE_BUTTON);
-    JButton resetSchedule = new JButton(scheduler.SchedulerConstants.RESET_SCHEDULE_BUTTON);
+    JButton resetScheduleButton = new JButton(scheduler.SchedulerConstants.RESET_SCHEDULE_BUTTON);
     JPanel scrollPanel = new JPanel();
     JTextArea inputALS = new JTextArea(200,200);
     JScrollPane scroll = new JScrollPane(inputALS);
@@ -96,11 +98,17 @@ public class MLBUI extends JFrame {
     HashMap<String,String> outputCache = new HashMap<String,String>();
     AnalyzerThread evalThread;
     Mapper testmapper;
+    boolean[] daysSaved;
 
 	public MLBUI() {
 		initUI();
         analyzer = new MlbAppControl();
         testmapper = new Mapper();
+        daysSaved = new boolean[181];
+        for(int i=0; i<daysSaved.length; i++) {
+            daysSaved[i] = false;
+        }
+
 
 	}
 
@@ -117,9 +125,23 @@ public class MLBUI extends JFrame {
         createMenuBar();  
         createMainAppBody();
         createInputScroll ();
-        createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton);
+        createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
+            showFreeDaysButton, showOverallScheduleButton);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
+
+    private void showNoGameDays() {
+        outputPlaceholder.setText("Days still available with no games:\n");
+        for(int i=0; i<daysSaved.length; i++) {
+            if(daysSaved[i]==false) {
+                outputPlaceholder.append("    Day " + i + "\n");
+            }
+        }
+    }
+
+    private void showOverallSchedule() {
+        outputPlaceholder.setText(testmapper.toString());
+    }
 
     private void updateCurrentParameters() {
         currentParameters = new StringBuilder();
@@ -154,6 +176,44 @@ public class MLBUI extends JFrame {
 
     private void resetSchedule() {
         testmapper = new Mapper();
+        for(int i=0; i<daysSaved.length; i++) {
+            daysSaved[i] = false;
+        }
+        try {
+            File file = new File(scheduler.SchedulerConstants.SAVE_REPOK_LOCATION);
+            file.delete();
+        } catch (Exception e) {
+            debug("Unable to delete repOk.out, possibly already deleted.");
+        }
+    }
+
+    private void saveSubScheduleToSchedule() {
+        if(parser != null) {
+            parser.getStartDay();
+            parser.getEndDay();
+            outputPlaceholder.setText("Saving to full schedule.\n");
+            for(int i=parser.getStartDay(); i<=parser.getEndDay(); i++) {
+                if(daysSaved[i] == true) {
+                    outputPlaceholder.append("WARNING: Games already saved on day: " + i + "\n");
+                } else {
+                    daysSaved[i] = true;
+                }
+            }
+            if(parser.getAllTeams().size()==5) {
+                debug("Calling create div schedule");
+                testmapper.loadTeams();
+                testmapper.createDivisionSchedule(parser);
+            } else if (parser.getAllTeams().size() == 15) {
+                debug("Calling create interdivision div schedule");
+                testmapper.loadTeams();
+                testmapper.createInterDivisionSchedule(parser);
+            } else if (parser.getAllTeams().size() == 30) {
+                testmapper.loadTeams();
+                testmapper.createInterLeagueSchedule(parser);
+            } else {
+                outputPlaceholder.append("Not a valid team # combination.");
+            }
+        }
     }
 
     private void saveModelToFile() {
@@ -352,6 +412,32 @@ public class MLBUI extends JFrame {
                     evalThread = null;
             }
         });
+        saveToOverallScheduleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                debug("Save to overall schedule clicked");
+                saveSubScheduleToSchedule();
+            }
+        });
+        resetScheduleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                debug("Clearing full schedule.");
+                resetSchedule();
+            }
+        });
+        showFreeDaysButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                showNoGameDays();
+            }
+        });
+        showOverallScheduleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                showOverallSchedule();
+            }
+        });
 
     }
 
@@ -398,24 +484,6 @@ public class MLBUI extends JFrame {
         ArrayList<String> series = parser.parseSeries();
         outputPlaceholder.setText("");
         debug("Get all teams: " + parser.getAllTeams().size());
-        if(0 < parser.getAllTeams().size() && parser.getAllTeams().size() < 6) {
-            debug("Calling create div schedule");
-            testmapper.loadTeams();
-            testmapper.createDivisionSchedule(parser);
-        } else if (5 < parser.getAllTeams().size() && parser.getAllTeams().size() < 16) {
-            debug("Calling create interdivision div schedule");
-            testmapper.loadTeams();
-            testmapper.createInterDivisionSchedule(parser);
-        } else if (15 < parser.getAllTeams().size() && parser.getAllTeams().size() < 31) {
-            testmapper.loadTeams();
-            testmapper.createInterLeagueSchedule(parser);
-        }
-        //ArrayList<String> newTeams = testmapper.getAllTeams();
-        //if (newTeams.size() > 0) {
-        //    for(String thisTeam : newTeams) {
-        //        debug("Mapper teams game count for " + thisTeam + " is: " + testmapper.countGamesForTeam(thisTeam));
-        //    }
-        //}
         for(int i=0; i<series.size(); i++) {
             //debug(series.get(i));
             outputPlaceholder.append(series.get(i) + ": \n");
@@ -448,16 +516,22 @@ public class MLBUI extends JFrame {
         getContentPane().setLayout(gl);
         gl.setAutoCreateContainerGaps(true);
         gl.setAutoCreateGaps(true);
-//createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton);
+//createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
+// showFreeDaysButton, showOverallScheduleButton);
         gl.setHorizontalGroup(gl.createSequentialGroup()
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[0])
-                .addComponent(arg[3]))
+                .addComponent(arg[3])
+                .addComponent(arg[8])
+                .addComponent(arg[9]))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[1])
                 .addComponent(arg[2])
                 .addComponent(arg[5]))
-            .addComponent(arg[4])
+            .addGroup(gl.createParallelGroup()
+                .addComponent(arg[4])
+                .addComponent(arg[6])
+                .addComponent(arg[7]))
         );
 
         gl.setVerticalGroup(gl.createSequentialGroup()
@@ -466,8 +540,14 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[1])
                 .addComponent(arg[3])
                 .addComponent(arg[4]))
-            .addComponent(arg[2])
-            .addComponent(arg[5])
+            .addGroup(gl.createParallelGroup()
+                .addComponent(arg[8])
+                .addComponent(arg[2])
+                .addComponent(arg[6]))
+            .addGroup(gl.createParallelGroup()
+                .addComponent(arg[9])
+                .addComponent(arg[5])
+                .addComponent(arg[7]))
         );
     }
 
