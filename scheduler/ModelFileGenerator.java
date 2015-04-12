@@ -95,6 +95,7 @@ public class ModelFileGenerator {
 	}
 	public void addPredTeamNumberGames(int min, int max) {	
 		//  all disj a,b: team | count[schedule,a,b] =1// and count[schedule,a,b] <3
+		debug("CALLING ADD PRED TEAM NUMBER GAMES");
 		StringBuilder sb = new StringBuilder();
 		if(max>min) {
 			sb.append("  all disj a,b: team | count[schedule,a,b] > " + String.valueOf(min) + " and count[schedule,a,b] < " + String.valueOf(max) + "\n");

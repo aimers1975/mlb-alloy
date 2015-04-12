@@ -250,9 +250,9 @@ public class MLBUI extends JFrame {
         debug("Team number games max: " + params[7]);
         if(!params[6].equals("No Value")) {
             if(!params[7].equals("No Value")) {
-                if(Integer.parseInt(params[6]) < Integer.parseInt(params[7])) {
+                if(Integer.parseInt(params[6]) <= Integer.parseInt(params[7])) {
                     newModel.addPredTeamNumberGames(Integer.parseInt(params[6]),Integer.parseInt(params[7]));
-                }
+                } 
             } else {
                 newModel.addPredTeamNumberGames(Integer.parseInt(params[6]),0);              
             }
