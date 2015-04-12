@@ -92,19 +92,20 @@ public class MLBUI extends JFrame {
     JMenuBar menubar = new JMenuBar();
     JMenu file = new JMenu(scheduler.SchedulerConstants.FILE_JMENU);
     JMenuItem eMenuItem = new JMenuItem(scheduler.SchedulerConstants.EXIT_MENUITEM);
-    String analyzerOutputString = "";
+    ArrayList<String> analyzerOutputStringArrayList;
     ScheduleOutParser parser;
     StringBuilder currentParameters;
-    HashMap<String,String> outputCache = new HashMap<String,String>();
+    //HashMap<String,String[]> outputCache = new HashMap<String,String>();
     AnalyzerThread evalThread;
     Mapper testmapper;
-    boolean[] daysSaved;
+    Boolean[] daysSaved;
 
 	public MLBUI() {
 		initUI();
         analyzer = new MlbAppControl();
         testmapper = new Mapper();
-        daysSaved = new boolean[181];
+        daysSaved = new Boolean[181];
+        analyzerOutputStringArrayList = new ArrayList<String>();
         for(int i=0; i<daysSaved.length; i++) {
             daysSaved[i] = false;
         }
@@ -391,14 +392,15 @@ public class MLBUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                     updateCurrentParameters();
-                    if(checkCachedOutput(currentParameters.toString())==null){
+                    ArrayList<String> cachedOutput = checkCachedOutput(currentParameters.toString());
+                    if(cachedOutput.isEmpty()){
                         saveModelToFile();
                         debug("Model saved!");
                         evalThread = new AnalyzerThread("Testing");
                         evalThread.start();
                     } else {
                         saveModelToFile();
-                        updateOutputUI(checkCachedOutput(currentParameters.toString()));
+                        updateOutputUI(cachedOutput);
 
                     }
 
@@ -441,43 +443,60 @@ public class MLBUI extends JFrame {
 
     }
 
-    private void saveAnalyzerOutput(String saveOutput, String parametersUsed) {
+    private void saveAnalyzerOutput(ArrayList<String> saveOutput, String parametersUsed) {
         debug("Saving analyzer output for future use to: " + scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + parametersUsed);
-        try {
-            PrintWriter out = new PrintWriter(scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + parametersUsed);
-            String[] temp = saveOutput.split("\\n");
-            for(String line : temp) {
-                //debug(line);
-                out.println(line);
+        if(!saveOutput.isEmpty()) {
+            int fileCount = 0;
+            Boolean success = (new File(scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + parametersUsed)).mkdirs();
+            if (!success) { debug("Solution directory failed for " + parametersUsed);} else {
+                debug("Solution directory success.");
             }
-            out.close();
-        } catch (Exception e) {
-            System.out.println(scheduler.SchedulerConstants.CREATE_FILE_ERROR);
+            try {
+                while(!saveOutput.isEmpty()) {
+                    PrintWriter out = new PrintWriter(scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + parametersUsed + "\\solution" + fileCount);
+                    String currentOutput = saveOutput.remove(fileCount);
+                    String[] temp = currentOutput.split("\\n");
+                    for(String line : temp) {
+                        //debug(line);
+                        out.println(line);
+                    }
+                    out.close();
+                    fileCount++;
+                }
+            } catch (Exception e) {
+                System.out.println(scheduler.SchedulerConstants.CREATE_FILE_ERROR);
+            }
         }
     }
 
-    private String checkCachedOutput(String inputParams) {
-        String returnOutput = null;
-        returnOutput = outputCache.get(currentParameters.toString());
-        StringBuilder sb = new StringBuilder();
-        if(returnOutput == null) {
-            debug("File found in output cache.");
-            try (BufferedReader br = new BufferedReader(new FileReader(scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + inputParams))) {
+    private ArrayList<String> checkCachedOutput(String inputParams) {
+        ArrayList<String> returnList = new ArrayList<String>();
+        Boolean outOfFiles = false;
+        int fileCount = 0;
+        while(!outOfFiles) {
+            String returnOutput = null;
+            StringBuilder sb = new StringBuilder();
+            try (BufferedReader br = new BufferedReader(new FileReader(scheduler.SchedulerConstants.OUTPUT_CACHE_LOCATION + inputParams + "\\solution" + fileCount))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     sb.append(line + "\n");
                 }
                 returnOutput = sb.toString();
+                returnList.add(returnOutput);
             } catch (Exception e) {
                 debug("File not found in output cache.");
+                outOfFiles = true;
             }
+            fileCount++;
+            debug(fileCount + " files found in output cache.");
         }
         //debug("Cached output: " + returnOutput);
-        return returnOutput;
+        return returnList;
     }
 
-    private void updateOutputUI(String outputToUpdate) {
-        parser = new ScheduleOutParser(outputToUpdate);
+    private void updateOutputUI(ArrayList<String> outputToUpdate) {
+        String thisOutput = outputToUpdate.get(0);
+        parser = new ScheduleOutParser(thisOutput);
         //Mapper is experimental, will write mapped schedule to file, schedule.out
         //One if number of teams in parsed schedule is a division schedule, i.e.
         //5 teams or less teams.
@@ -572,12 +591,12 @@ public class MLBUI extends JFrame {
     public void run() {
         try {
             outputPlaceholder.setText(scheduler.SchedulerConstants.START_EVAL_MESSAGE);
-            analyzerOutputString = analyzer.runAnalysis(getAnalyzerInput());
+            analyzerOutputStringArrayList = analyzer.runAnalysis(getAnalyzerInput());
             if(!isInterrupted()) {
-                outputCache.put(currentParameters.toString(),analyzerOutputString);
-                saveAnalyzerOutput(analyzerOutputString,currentParameters.toString());
-                //debug(analyzerOutputString);
-                updateOutputUI(analyzerOutputString);
+                //outputCache.put(currentParameters.toString(),analyzerOutputStringArrayList);
+                saveAnalyzerOutput(analyzerOutputStringArrayList,currentParameters.toString());
+                //debug(analyzerOutputStringArrayList);
+                updateOutputUI(analyzerOutputStringArrayList);
             }
         } catch(Exception e) {
             outputPlaceholder.setText(scheduler.SchedulerConstants.RUN_FAILURE);

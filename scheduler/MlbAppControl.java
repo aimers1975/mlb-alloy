@@ -10,6 +10,8 @@ import edu.mit.csail.sdg.alloy4compiler.translator.A4Options;
 import edu.mit.csail.sdg.alloy4compiler.translator.A4Solution;
 import edu.mit.csail.sdg.alloy4compiler.translator.TranslateAlloyToKodkod;
 import edu.mit.csail.sdg.alloy4viz.VizGUI;
+import java.util.Calendar;
+import java.util.ArrayList;
 
 public class MlbAppControl {
 	
@@ -32,8 +34,8 @@ public class MlbAppControl {
 		}
 	}
 
-	public String runAnalysis(String[] inputfiles) throws Err {
-            String returnAns = "";
+	public ArrayList<String> runAnalysis(String[] inputfiles) throws Err {
+            ArrayList<String> returnAns = new ArrayList<String>();
 	        for(String filename:inputfiles) {
             // Parse+typecheck the model
             debug("=========== Parsing+Typechecking "+filename+" =============");
@@ -48,11 +50,25 @@ public class MlbAppControl {
             for (Command command: world.getAllCommands()) {
                 // Execute the command
                 debug("============ Command "+command+": ============");
+                long millisStart = Calendar.getInstance().getTimeInMillis();
                 A4Solution ans = TranslateAlloyToKodkod.execute_command(rep, world.getAllReachableSigs(), command, options);
-                //A4Solution count = ans.next();
-
-                // Print the outcome
-                returnAns = ans.toString();
+                long millisEnd = Calendar.getInstance().getTimeInMillis();
+                long resultTime = millisEnd - millisStart;
+                debug("The time to solve was: " + resultTime + " milliseconds.");
+                A4Solution ans2 = ans;
+                returnAns.add("Solve time:: " + resultTime + " :: seconds\n" + ans2.toString());
+                int countAnswers = 0;
+                while(ans2.next() != null && countAnswers < 20) {
+                    countAnswers++;
+                    ans2 = ans2.next();
+                    returnAns.add("Solve time:: " + resultTime + " :: seconds\n" + ans2.toString());
+                }
+                debug("The answer count was: " + countAnswers);
+                //A4Solution ans = ans.next();
+                //long newTime = 0;
+                //.resultSAT(command,newTime,ans);
+                //debug("Checking the time: " + newTime);
+                // Print the outcome 
                 //System.out.println(returnAns);
                 // If satisfiable...
                 if (ans.satisfiable()) {
