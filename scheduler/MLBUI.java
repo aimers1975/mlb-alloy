@@ -51,6 +51,8 @@ public class MLBUI extends JFrame {
     JButton showFreeDaysButton = new JButton(scheduler.SchedulerConstants.SHOW_FREE_DAYS_BUTTON);
     JButton showOverallScheduleButton = new JButton(scheduler.SchedulerConstants.SHOW_OVERALL_SCHEDULE_BUTTON);
     JButton resetScheduleButton = new JButton(scheduler.SchedulerConstants.RESET_SCHEDULE_BUTTON);
+    JButton nextScheduleSolutionButton = new JButton(scheduler.SchedulerConstants.NEXT_SOLUTION_BUTTON);
+    JButton previousScheduleSolutionButton = new JButton(scheduler.SchedulerConstants.PREVIOUS_SOLUTION_BUTTON);
     JPanel scrollPanel = new JPanel();
     JTextArea inputALS = new JTextArea(200,200);
     JScrollPane scroll = new JScrollPane(inputALS);
@@ -101,12 +103,15 @@ public class MLBUI extends JFrame {
     AnalyzerThread evalThread;
     Mapper testmapper;
     Boolean[] daysSaved;
+    ArrayList<String> cachedOutput;
+    int currentSolution = 0;
 
 	public MLBUI() {
 		initUI();
         analyzer = new MlbAppControl();
         testmapper = new Mapper();
         daysSaved = new Boolean[181];
+        cachedOutput = new ArrayList<String>();
         analyzerOutputStringArrayList = new ArrayList<String>();
         for(int i=0; i<daysSaved.length; i++) {
             daysSaved[i] = false;
@@ -129,7 +134,7 @@ public class MLBUI extends JFrame {
         createMainAppBody();
         createInputScroll ();
         createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
-            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox);
+            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolutionButton, previousScheduleSolutionButton);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
@@ -193,7 +198,25 @@ public class MLBUI extends JFrame {
     private void saveSubScheduleToSchedule() {
         // TODO: refactor this to instead of doing repeats for each
         // division of the same subschedule, allow user to select
-        // the mappings of the teams to the saved schedule
+        // the mappings of the teams to the saved scheduleGenerate a game
+        /*
+        TODO: Generate a game - will need to add a second team name input
+        Generate a team schedule of 5 - five teams
+            - select a division - take first solution
+            - select a league - iterate through three solutions
+            - select all leagues iterate through six solutions
+            - select a name is invalid
+        Generate interdiv schedule - 15 teams
+            - select a division is not valid
+            - select a league - take first solution
+            - select all leagues - iterate through two solutions
+            - select a name is invalid
+        Generate a league schedule - 30 teams
+            - select a division is not valid
+            - select a league is not valid
+            - select all leagues take first solution
+            - select a name is invalid
+            */
         if(parser != null) {
             parser.getStartDay();
             parser.getEndDay();
@@ -209,6 +232,7 @@ public class MLBUI extends JFrame {
             // This is the part that would have to be refactored
             // Maybe we present a dropdown with the different team
             // catagories...Need to think on it more...
+            // Send mapper solution + list of team names
             if(parser.getAllTeams().size()==5) {
                 debug("Calling create div schedule");
                 testmapper.loadTeams();
@@ -401,7 +425,9 @@ public class MLBUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                     updateCurrentParameters();
-                    ArrayList<String> cachedOutput = checkCachedOutput(currentParameters.toString());
+                    cachedOutput = new ArrayList<String>();
+                    cachedOutput = checkCachedOutput(currentParameters.toString());
+                    currentSolution = 0;
                     if(cachedOutput.isEmpty()){
                         saveModelToFile();
                         debug("Model saved!");
@@ -409,7 +435,7 @@ public class MLBUI extends JFrame {
                         evalThread.start();
                     } else {
                         saveModelToFile();
-                        updateOutputUI(cachedOutput);
+                        updateOutputUI();
 
                     }
 
@@ -447,6 +473,42 @@ public class MLBUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                 showOverallSchedule();
+            }
+        });
+        nextScheduleSolutionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                if(!cachedOutput.isEmpty()) {
+                    currentSolution++;
+                    debug("Current solution is now: " + currentSolution);
+                    if(currentSolution >= cachedOutput.size()) {
+                        currentSolution = 0;
+                        debug("Reached end of solutions, loop to beginning.");
+                    }
+                    updateOutputUI();
+
+                } else {
+                    outputPlaceholder.setText("");
+                    outputPlaceholder.setText("First run analyzer for solution.");  
+                }
+            }
+        });
+        previousScheduleSolutionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                if(!cachedOutput.isEmpty()) {
+                    currentSolution--;
+                    debug("Current solution is now: " + currentSolution);
+                    if(currentSolution <= 0) {
+                        currentSolution = cachedOutput.size()-1;
+                        debug("Reached end of solutions, loop to beginning.");
+                    }
+                    updateOutputUI();
+
+                } else {
+                    outputPlaceholder.setText("");
+                    outputPlaceholder.setText("First run analyzer for solution.");  
+                }
             }
         });
 
@@ -503,7 +565,7 @@ public class MLBUI extends JFrame {
         return returnList;
     }
 
-    private void updateOutputUI(ArrayList<String> outputToUpdate) {
+    private void updateOutputUI() {
         // TODO: could add a next/back button to the UI to allow scrolling through 
         // multiple solutions, instead of just the first.
         // Todo: The execution time is now coming back in the model
@@ -511,33 +573,35 @@ public class MLBUI extends JFrame {
         // probably want to create some kind of java class to store the
         // time statistic for each sub schedule.  Or possibly add this info to 
         // the schedule class.
-        String thisOutput = outputToUpdate.get(0);
-        parser = new ScheduleOutParser(thisOutput);
-        ArrayList<String> series = parser.parseSeries();
-        outputPlaceholder.setText("");
-        debug("Get all teams: " + parser.getAllTeams().size());
-        for(int i=0; i<series.size(); i++) {
-            //debug(series.get(i));
-            outputPlaceholder.append(series.get(i) + ": \n");
-            ArrayList<String> temp = parser.getTeamsForSeries(series.get(i));
-            if(temp.size() == 2) {
-                outputPlaceholder.append("     Away team: " + temp.get(0) + "\n");
-                outputPlaceholder.append("     Home team: " + temp.get(1) + "\n");
+        if(!cachedOutput.isEmpty() && currentSolution < cachedOutput.size()) {
+            String thisOutput = cachedOutput.get(currentSolution);
+            parser = new ScheduleOutParser(thisOutput);
+            ArrayList<String> series = parser.parseSeries();
+            outputPlaceholder.setText("");
+            debug("Get all teams: " + parser.getAllTeams().size());
+            for(int i=0; i<series.size(); i++) {
+                //debug(series.get(i));
+                outputPlaceholder.append(series.get(i) + ": \n");
+                ArrayList<String> temp = parser.getTeamsForSeries(series.get(i));
+                if(temp.size() == 2) {
+                    outputPlaceholder.append("     Away team: " + temp.get(0) + "\n");
+                    outputPlaceholder.append("     Home team: " + temp.get(1) + "\n");
+                }
+                temp = parser.getGamesForSeries(series.get(i));
+                for(int m=0; m<temp.size(); m++) {
+                    outputPlaceholder.append("     " + temp.get(m) + "\n");
+                }
             }
-            temp = parser.getGamesForSeries(series.get(i));
-            for(int m=0; m<temp.size(); m++) {
-                outputPlaceholder.append("     " + temp.get(m) + "\n");
+            outputPlaceholder.append("\n****************\nListing Team Schedules: \n");
+            ArrayList<String> currentTeams = parser.getAllTeams();
+            debug("The current teams size is: " + currentTeams.size());
+            for(int i=0; i< currentTeams.size(); i++) {
+                outputPlaceholder.append("Schedule " + currentTeams.get(i) + " is: \n");
+                ArrayList teamSchedule = parser.getTeamSchedule(currentTeams.get(i));
+                for(int j=0; j< teamSchedule.size(); j++) {
+                    outputPlaceholder.append("  " + teamSchedule.get(j) + "\n");
+                } 
             }
-        }
-        outputPlaceholder.append("\n****************\nListing Team Schedules: \n");
-        ArrayList<String> currentTeams = parser.getAllTeams();
-        debug("The current teams size is: " + currentTeams.size());
-        for(int i=0; i< currentTeams.size(); i++) {
-            outputPlaceholder.append("Schedule " + currentTeams.get(i) + " is: \n");
-            ArrayList teamSchedule = parser.getTeamSchedule(currentTeams.get(i));
-            for(int j=0; j< teamSchedule.size(); j++) {
-                outputPlaceholder.append("  " + teamSchedule.get(j) + "\n");
-            } 
         }
     }
 
@@ -549,7 +613,7 @@ public class MLBUI extends JFrame {
         gl.setAutoCreateContainerGaps(true);
         gl.setAutoCreateGaps(true);
 //appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
-//            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox
+//            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolution, previousScheduleSolution
         gl.setHorizontalGroup(gl.createSequentialGroup()
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[0])
@@ -565,7 +629,9 @@ public class MLBUI extends JFrame {
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[4])
                 .addComponent(arg[10])
-                .addComponent(arg[11]))
+                .addComponent(arg[11])
+                .addComponent(arg[12])
+                .addComponent(arg[13]))
         );
 
         gl.setVerticalGroup(gl.createSequentialGroup()
@@ -584,7 +650,10 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[11]))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[6])
-                .addComponent(arg[7]))
+                .addComponent(arg[7])
+                .addComponent(arg[12]))
+            .addGroup(gl.createParallelGroup()
+                .addComponent(arg[13]))
         );
     }
 
@@ -609,12 +678,13 @@ public class MLBUI extends JFrame {
     public void run() {
         try {
             outputPlaceholder.setText(scheduler.SchedulerConstants.START_EVAL_MESSAGE);
-            analyzerOutputStringArrayList = analyzer.runAnalysis(getAnalyzerInput());
+            cachedOutput = analyzer.runAnalysis(getAnalyzerInput());
+            currentSolution = 0;
             if(!isInterrupted()) {
                 //outputCache.put(currentParameters.toString(),analyzerOutputStringArrayList);
-                saveAnalyzerOutput(analyzerOutputStringArrayList,currentParameters.toString());
+                saveAnalyzerOutput(cachedOutput,currentParameters.toString());
                 //debug(analyzerOutputStringArrayList);
-                updateOutputUI(analyzerOutputStringArrayList);
+                updateOutputUI();
             }
         } catch(Exception e) {
             outputPlaceholder.setText(scheduler.SchedulerConstants.RUN_FAILURE);

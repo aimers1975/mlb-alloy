@@ -39,6 +39,8 @@ public class SchedulerConstants {
     public static final String EVAL_STOP_MESSAGE = "Evaluation halted...";
     public static final String SAVE_TO_OVERALL_SCHEDULE_BUTTON = "Save To Overall Schedule";
     public static final String RESET_SCHEDULE_BUTTON = "Reset Full Schedule";
+    public static final String NEXT_SOLUTION_BUTTON = "Next Solution";
+    public static final String PREVIOUS_SOLUTION_BUTTON = "Previous Solution";
     public static final String SHOW_FREE_DAYS_BUTTON = "Show Available Days";
     public static final String SHOW_OVERALL_SCHEDULE_BUTTON = "Show Overall Schedule";
     public static final String START_EVAL_MESSAGE ="Starting Evaluation...";
