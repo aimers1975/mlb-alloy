@@ -42,6 +42,17 @@ public class SchedulerConstants {
     public static final String SHOW_FREE_DAYS_BUTTON = "Show Available Days";
     public static final String SHOW_OVERALL_SCHEDULE_BUTTON = "Show Overall Schedule";
     public static final String START_EVAL_MESSAGE ="Starting Evaluation...";
+    public static final String TEAM_NAME_LABEL = "Teams To Map To Full Schedule";
+    public static final String[] TEAM_NAME_MENU = {"Full Leagues", " Full American League", "  American League East", "   Baltimore Orioles",
+                                                    "   Boston Red Sox", "   New York Yankees", "   Tampa Bay Rays", "   Toronto Blue Jays", 
+                                                    "  American League West", "   Houston Astros", "   Los Angeles Angels of Anaheim", 
+                                                    "   Oakland Athletics", "   Seattle Mariners", "   Texas Rangers", "  American League Central",
+                                                    "   Chicago White Sox", "   Cleveland Indians", "   Detroit Tigers", "   Kansas City Royals", 
+                                                    "   Minnesota Twins", " Full National League", "  National League East", "   Atlanta Braves",
+                                                    "   Miami Marlins", "   New York Mets", "   Philadelphia Phillies", "   Washington Nationals", 
+                                                    "  National League West", "   Arizona Diamondbacks", "   Colorado Rockies", "   Los Angeles Dodgers",
+                                                    "   San Diego Padres", "   San Francisco Giants", "  National League Central", "   Chicago Cubs", 
+                                                    "   Cincinnati Reds", "   Milwaukee Brewers", "   Pittsburgh Pirates", "   St. Louis Cardinals"};
     public static final String[] NUM_LIST_DAY_START = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
                             "21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39",
                             "40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60",

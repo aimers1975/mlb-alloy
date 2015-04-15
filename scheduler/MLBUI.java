@@ -81,6 +81,8 @@ public class MLBUI extends JFrame {
     JCheckBox addPredNoConsecutiveSeries = new JCheckBox(scheduler.SchedulerConstants.ADD_PRED_NO_CONSECUTIVE_SERIES);
     JLabel customPredInShowLabel = new JLabel(scheduler.SchedulerConstants.CUSTOM_PRED_IN_SHOW_LABEL);
     JTextField customPredInShow = new JTextField();
+    JLabel teamNameLabel = new JLabel(scheduler.SchedulerConstants.TEAM_NAME_LABEL);
+    JComboBox teamNameComboBox = new JComboBox<String>(scheduler.SchedulerConstants.TEAM_NAME_MENU);
     JLabel customPredLabel = new JLabel(scheduler.SchedulerConstants.CUSTOM_PRED_LABEL);
     JTextArea customPred = new JTextArea(1,1);
     JScrollPane customPredScrollPane = new JScrollPane(customPred);
@@ -127,7 +129,7 @@ public class MLBUI extends JFrame {
         createMainAppBody();
         createInputScroll ();
         createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
-            showFreeDaysButton, showOverallScheduleButton);
+            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
@@ -189,6 +191,9 @@ public class MLBUI extends JFrame {
     }
 
     private void saveSubScheduleToSchedule() {
+        // TODO: refactor this to instead of doing repeats for each
+        // division of the same subschedule, allow user to select
+        // the mappings of the teams to the saved schedule
         if(parser != null) {
             parser.getStartDay();
             parser.getEndDay();
@@ -200,6 +205,10 @@ public class MLBUI extends JFrame {
                     daysSaved[i] = true;
                 }
             }
+
+            // This is the part that would have to be refactored
+            // Maybe we present a dropdown with the different team
+            // catagories...Need to think on it more...
             if(parser.getAllTeams().size()==5) {
                 debug("Calling create div schedule");
                 testmapper.loadTeams();
@@ -495,11 +504,15 @@ public class MLBUI extends JFrame {
     }
 
     private void updateOutputUI(ArrayList<String> outputToUpdate) {
+        // TODO: could add a next/back button to the UI to allow scrolling through 
+        // multiple solutions, instead of just the first.
+        // Todo: The execution time is now coming back in the model
+        // add a text output to show the time it took to generate the solution,
+        // probably want to create some kind of java class to store the
+        // time statistic for each sub schedule.  Or possibly add this info to 
+        // the schedule class.
         String thisOutput = outputToUpdate.get(0);
         parser = new ScheduleOutParser(thisOutput);
-        //Mapper is experimental, will write mapped schedule to file, schedule.out
-        //One if number of teams in parsed schedule is a division schedule, i.e.
-        //5 teams or less teams.
         ArrayList<String> series = parser.parseSeries();
         outputPlaceholder.setText("");
         debug("Get all teams: " + parser.getAllTeams().size());
@@ -535,22 +548,24 @@ public class MLBUI extends JFrame {
         getContentPane().setLayout(gl);
         gl.setAutoCreateContainerGaps(true);
         gl.setAutoCreateGaps(true);
-//createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
-// showFreeDaysButton, showOverallScheduleButton);
+//appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
+//            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox
         gl.setHorizontalGroup(gl.createSequentialGroup()
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[0])
                 .addComponent(arg[3])
                 .addComponent(arg[8])
-                .addComponent(arg[9]))
+                .addComponent(arg[9])
+                .addComponent(arg[6]))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[1])
                 .addComponent(arg[2])
-                .addComponent(arg[5]))
+                .addComponent(arg[5])
+                .addComponent(arg[7]))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[4])
-                .addComponent(arg[6])
-                .addComponent(arg[7]))
+                .addComponent(arg[10])
+                .addComponent(arg[11]))
         );
 
         gl.setVerticalGroup(gl.createSequentialGroup()
@@ -562,10 +577,13 @@ public class MLBUI extends JFrame {
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[8])
                 .addComponent(arg[2])
-                .addComponent(arg[6]))
+                .addComponent(arg[10]))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[9])
                 .addComponent(arg[5])
+                .addComponent(arg[11]))
+            .addGroup(gl.createParallelGroup()
+                .addComponent(arg[6])
                 .addComponent(arg[7]))
         );
     }
