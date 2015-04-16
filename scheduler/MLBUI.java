@@ -237,7 +237,7 @@ public class MLBUI extends JFrame {
                 debug("Calling create div schedule");
                 testmapper.loadTeams();
                 testmapper.createDivisionSchedule(parser);
-                debug("Got team name selection: " + String.valueOf(teamNameComboBox.getSelectedItem()));
+                debug("Got team name selection: " + (String.valueOf(teamNameComboBox.getSelectedItem()).trim()));
                 //testmapper.createSingleDivisionSchedule(parser, getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem());));
             } else if (parser.getAllTeams().size() == 15) {
                 debug("Calling create interdivision div schedule");
@@ -252,12 +252,40 @@ public class MLBUI extends JFrame {
         }
     }
 
-    public ArrayList<String> getTeamNamesSelected() {
+    public ArrayList<String> getTeamNamesSelected(String teamName) {
         // Get values from team name list dropdown
         // if division return 5 names within this division
         // if league return 15 team names from within this division
         // iff full league, return 30 names in league
-        return new ArrayList<String>();
+        ArrayList<String> thisTeamList = new ArrayList<String>();
+         switch (teamName) {
+            case "Full Leagues":
+                thisTeamList = new ArrayList<String>(Arrays.asList(scheduler.SchedulerConstants.FULL_LEAGUE_LIST));
+                break;
+            case "Full American League":
+                thisTeamList = new ArrayList<String>(Arrays.asList(scheduler.SchedulerConstants.AMERICAN_LEAGUE_LIST));
+                break;
+            case "American League East":
+                thisTeamList = new ArrayList<String>(Arrays.asList(scheduler.SchedulerConstants.AL_EAST_LIST));
+                break;
+            case "American League West":
+                thisTeamList = new ArrayList<String>(Arrays.asList(scheduler.SchedulerConstants.AL_WEST_LIST));
+                break;
+            case "American League Central":
+                thisTeamList = new ArrayList<String>(Arrays.asList(scheduler.SchedulerConstants.AL_CENTRAL_LIST));
+                break;
+            case "Full National League":
+                break;
+            case "National League East":
+                break;
+            case "National League West":
+                break;
+            case "National League Central":
+                break;
+            default:
+                debug("Found no team list for this selection.");
+        }
+        return thisTeamList;
     }
 
     private void saveModelToFile() {
