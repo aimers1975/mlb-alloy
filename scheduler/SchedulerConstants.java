@@ -55,6 +55,24 @@ public class SchedulerConstants {
                                                     "  National League West", "   Arizona Diamondbacks", "   Colorado Rockies", "   Los Angeles Dodgers",
                                                     "   San Diego Padres", "   San Francisco Giants", "  National League Central", "   Chicago Cubs", 
                                                     "   Cincinnati Reds", "   Milwaukee Brewers", "   Pittsburgh Pirates", "   St. Louis Cardinals"};
+    public static final String[] FULL_LEAGUE_LIST = {"Baltimore Orioles", "Boston Red Sox", "New York Yankees", "Tampa Bay Rays", "Toronto Blue Jays", 
+                                                    "Houston Astros", "Los Angeles Angels of Anaheim", "Oakland Athletics", "Seattle Mariners", "Texas Rangers", 
+                                                    "Chicago White Sox", "Cleveland Indians", "Detroit Tigers", "Kansas City Royals", "Minnesota Twins", 
+                                                    "Atlanta Braves", "Miami Marlins", "New York Mets", "Philadelphia Phillies", "Washington Nationals", 
+                                                    "Arizona Diamondbacks", "Colorado Rockies", "Los Angeles Dodgers", "San Diego Padres", "San Francisco Giants", 
+                                                    "Chicago Cubs", "Cincinnati Reds", "Milwaukee Brewers", "Pittsburgh Pirates", "St. Louis Cardinals"};
+    public static final String[] AMERICAN_LEAGUE_LIST = {"Baltimore Orioles", "Boston Red Sox", "New York Yankees", "Tampa Bay Rays", "Toronto Blue Jays", 
+                                                    "Houston Astros", "Los Angeles Angels of Anaheim", "Oakland Athletics", "Seattle Mariners", "Texas Rangers", 
+                                                    "Chicago White Sox", "Cleveland Indians", "Detroit Tigers", "Kansas City Royals", "Minnesota Twins"};
+    public static final String[] NATIONAL_LEAGUE_LIST = {"Atlanta Braves", "Miami Marlins", "New York Mets", "Philadelphia Phillies", "Washington Nationals", 
+                                                    "Arizona Diamondbacks", "Colorado Rockies", "Los Angeles Dodgers", "San Diego Padres", "San Francisco Giants", 
+                                                    "Chicago Cubs", "Cincinnati Reds", "Milwaukee Brewers", "Pittsburgh Pirates", "St. Louis Cardinals"};
+    public static final String[] AL_EAST_LIST = {"Baltimore Orioles", "Boston Red Sox", "New York Yankees", "Tampa Bay Rays", "Toronto Blue Jays"};
+    public static final String[] AL_WEST_LIST = {"Houston Astros", "Los Angeles Angels of Anaheim", "Oakland Athletics", "Seattle Mariners", "Texas Rangers"};
+    public static final String[] AL_CENTRAL_LIST = {"Chicago White Sox", "Cleveland Indians", "Detroit Tigers", "Kansas City Royals", "Minnesota Twins"};
+    public static final String[] NL_EAST_LIST = {"Atlanta Braves", "Miami Marlins", "New York Mets", "Philadelphia Phillies", "Washington Nationals"};
+    public static final String[] NL_WEST_LIST = {"Arizona Diamondbacks", "Colorado Rockies", "Los Angeles Dodgers", "San Diego Padres", "San Francisco Giants"};
+    public static final String[] NL_CENTRAL_LIST = {"Chicago Cubs", "Cincinnati Reds", "Milwaukee Brewers", "Pittsburgh Pirates", "St. Louis Cardinals"};
     public static final String[] NUM_LIST_DAY_START = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
                             "21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39",
                             "40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60",

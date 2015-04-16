@@ -121,6 +121,40 @@ public class Mapper {
 		}
 	}
 
+    public void createSingleDivisionSchedule(ScheduleOutParser thisParser, ArrayList<String> teamList) {
+        ArrayList<String> series = thisParser.parseSeries();
+        ArrayList<String> teams = thisParser.getAllTeams();
+        HashMap<String,String> teamNameMap = new HashMap<String,String>();
+        for(int i=0;i<teams.size();i++) {
+            if(i < teamList.size()) {
+                debug("Adding team: " + teams.get(i) + " and mapping to: " + teamList.get(i));
+                teamNameMap.put(teams.get(i),teamList.get(i));
+            } else {
+                debug("There were not enought teams in namelist for teams in this subschedule.");
+            }
+        }
+        for(String thisSeries : series) {
+            ArrayList<String> thisSeriesTeams = thisParser.getTeamsForSeries(thisSeries);
+            ArrayList<String> thisSeriesGames = thisParser.getGamesForSeries(thisSeries);
+            for(String game : thisSeriesGames) {
+                if(thisSeriesTeams.size() == 2 && thisSeriesGames.size() > 0) {
+                    String home = teamNameMap.get(thisSeriesTeams.get(1));
+                    String away = teamNameMap.get(thisSeriesTeams.get(0));
+                    StringTokenizer dayNum = new StringTokenizer(game, "D");
+                    dayNum = new StringTokenizer(dayNum.nextToken(), "$");
+                    int day = Integer.parseInt(dayNum.nextToken());
+                    if(!home.equals("") && !home.equals(null) && !away.equals("") && !away.equals(null)) {
+                        fullSchedule.addGameToSchedule(home,away,"12pm CST",home+" Field", day);
+                    } else {
+                        debug("No team map found for some series.");
+                    }
+                }
+            }
+        }
+        fullSchedule.repOk();
+        saveScheduleOutput(fullSchedule.toString());
+    }
+
 
     public void createInterLeagueSchedule(ScheduleOutParser thisParser) {
         ArrayList<String> series = thisParser.parseSeries();

@@ -237,6 +237,7 @@ public class MLBUI extends JFrame {
                 debug("Calling create div schedule");
                 testmapper.loadTeams();
                 testmapper.createDivisionSchedule(parser);
+                //testmapper.createSingleDivisionSchedule(parser, getTeamNamesSelected());
             } else if (parser.getAllTeams().size() == 15) {
                 debug("Calling create interdivision div schedule");
                 testmapper.loadTeams();
@@ -248,6 +249,14 @@ public class MLBUI extends JFrame {
                 outputPlaceholder.append("Not a valid team # combination.");
             }
         }
+    }
+
+    public ArrayList<String> getTeamNamesSelected() {
+        // Get values from team name list dropdown
+        // if division return 5 names within this division
+        // if league return 15 team names from within this division
+        // iff full league, return 30 names in league
+        return new ArrayList<String>();
     }
 
     private void saveModelToFile() {
