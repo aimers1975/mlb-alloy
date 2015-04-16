@@ -237,7 +237,8 @@ public class MLBUI extends JFrame {
                 debug("Calling create div schedule");
                 testmapper.loadTeams();
                 testmapper.createDivisionSchedule(parser);
-                //testmapper.createSingleDivisionSchedule(parser, getTeamNamesSelected());
+                debug("Got team name selection: " + String.valueOf(teamNameComboBox.getSelectedItem()));
+                //testmapper.createSingleDivisionSchedule(parser, getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem());));
             } else if (parser.getAllTeams().size() == 15) {
                 debug("Calling create interdivision div schedule");
                 testmapper.loadTeams();
