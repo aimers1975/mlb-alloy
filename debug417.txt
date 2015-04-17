@@ -1,0 +1,88 @@
+MLBUI: 1 files found in output cache.
+MLBUI: 2 files found in output cache.
+MLBUI: 3 files found in output cache.
+MLBUI: 4 files found in output cache.
+MLBUI: 5 files found in output cache.
+MLBUI: 6 files found in output cache.
+MLBUI: 7 files found in output cache.
+MLBUI: 8 files found in output cache.
+MLBUI: 9 files found in output cache.
+MLBUI: 10 files found in output cache.
+MLBUI: 11 files found in output cache.
+MLBUI: 12 files found in output cache.
+MLBUI: File not found in output cache.
+MLBUI: 13 files found in output cache.
+MLBUI: Param array length: 14
+MLBUI: Current parameters is: 1-5-No Value-0-1-15-1-1-4-4-T-T-T-30-
+MLBUI: Number team groups: 1
+MLBUI: Number of teams per group: 5
+MLBUI: Number of series specified: No Value
+MLBUI: Number of four game series per team: 0
+MLBUI: Day range start: 1
+MLBUI: Day range end: 15
+MLBUI: Team number games min: 1
+MLBUI: Team number games max: 1
+ModelFileGenerator: CALLING ADD PRED TEAM NUMBER GAMES
+MLBUI: Single team number games min: 4
+MLBUI: Single team number games max: 4
+ModelFileGenerator: In adding single team num games.
+MLBUI: Additional custom predicate added: 
+MLBUI: Predicate call added to show: 
+MLBUI: No four game away stands is selected.
+MLBUI: Has half home games is selected.
+MLBUI: No consecutive is selected
+MLBUI: Number of runs specified: 30
+ModelFileGenerator: Writing model to: scheduler\model.als
+ScheduleOutParser: Couldn't parse start and end date from output.
+ScheduleOutParser: Couldn't parse start and end date from output.
+ScheduleOutParser: The start day is: 596 The end day is: 698
+MLBUI: Get all teams: 5
+MLBUI: The current teams size is: 5
+MLBUI: Save to overall schedule clicked
+MLBUI: Calling create div schedule
+MLBUI: Got team name selection: American League East
+MLBUI: Switch on team name: American League East
+ScheduleOutParser: Couldn't parse start and end date from output.
+ScheduleOutParser: Couldn't parse start and end date from output.
+ScheduleOutParser: The start day is: 596 The end day is: 698
+Mapper: Adding team: team$4 and mapping to: Baltimore Orioles
+Mapper: Adding team: team$3 and mapping to: Boston Red Sox
+Mapper: Adding team: team$0 and mapping to: New York Yankees
+Mapper: Adding team: team$2 and mapping to: Tampa Bay Rays
+Mapper: Adding team: team$1 and mapping to: Toronto Blue Jays
+Mapper: Saving analyzer output for future use to: scheduler\schedule.out
+MLBUI: Current solution is now: 1
+MLBUI: Cached output size is: 12
+ScheduleOutParser: Couldn't parse start and end date from output.
+ScheduleOutParser: Couldn't parse start and end date from output.
+ScheduleOutParser: The start day is: 596 The end day is: 698
+MLBUI: Get all teams: 5
+MLBUI: The current teams size is: 5
+MLBUI: Save to overall schedule clicked
+MLBUI: Calling create div schedule
+MLBUI: Got team name selection: American League West
+MLBUI: Switch on team name: American League West
+ScheduleOutParser: Couldn't parse start and end date from output.
+ScheduleOutParser: Couldn't parse start and end date from output.
+ScheduleOutParser: The start day is: 596 The end day is: 698
+Mapper: Adding team: team$4 and mapping to: Houston Astros
+Mapper: Adding team: team$3 and mapping to: Los Angeles Angels of Anaheim
+Mapper: Adding team: team$0 and mapping to: Oakland Athletics
+Mapper: Adding team: team$2 and mapping to: Seattle Mariners
+Mapper: Adding team: team$1 and mapping to: Texas Rangers
+Mapper: Saving analyzer output for future use to: scheduler\schedule.out
+MLBUI: Clearing full schedule.
+MLBUI: Save to overall schedule clicked
+MLBUI: Calling create div schedule
+MLBUI: Got team name selection: American League West
+MLBUI: Switch on team name: American League West
+ScheduleOutParser: Couldn't parse start and end date from output.
+ScheduleOutParser: Couldn't parse start and end date from output.
+ScheduleOutParser: The start day is: 596 The end day is: 698
+Mapper: Adding team: team$4 and mapping to: Houston Astros
+Mapper: Adding team: team$3 and mapping to: Los Angeles Angels of Anaheim
+Mapper: Adding team: team$0 and mapping to: Oakland Athletics
+Mapper: Adding team: team$2 and mapping to: Seattle Mariners
+Mapper: Adding team: team$1 and mapping to: Texas Rangers
+Mapper: Saving analyzer output for future use to: scheduler\schedule.out
+MLBUI: Clearing full schedule.

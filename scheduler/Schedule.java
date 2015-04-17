@@ -133,37 +133,101 @@ public class Schedule {
     	//if its a new game increment game
     	//read in teams, time, location
     	//save game 
-/*        try (BufferedReader br = new BufferedReader(new FileReader(scheduler.SchedulerConstants.SAVE_SCHEDULE_LOCATION))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(scheduler.SchedulerConstants.SAVE_SCHEDULE_LOCATION))) {
             String line;
             String homeTeam;
             String awayTeam;
             String time;
             String location;
-            while ((line = br.readLine()) != null) {
+            int currentDay = 0;
+            int currentGame = 0;
+            line = br.readLine();
+            while (line != null) {
             	//debug(line);
             	if(line.contains("Day")) {
             		line = br.readLine();
-            		while((line = br.readLine()) != null) {
+            		currentGame=0;
+            		while(line != null && !line.contains("Day")) {       			
 	            		if(line.contains("Game")) {
 	            			line = br.readLine();
-	            			debug(line);
 	            			if(line.contains("Home")) {
-	            				StringTokenizer st = new StringTokenizer
+	            				StringTokenizer st = new StringTokenizer(line, ":");
+	            				st.nextToken();
+	            				if(st.hasMoreTokens()) {
+	            					homeTeam = st.nextToken();
+	            				} else {
+	            					debug("No home team name found");
+	            					break;
+	            				}
+	            			} else {
+	            				debug("Home string not found");
+	            				break;
 	            			}
+	            			line = br.readLine();
+	            			if(line.contains("Away")) {
+	            				StringTokenizer st = new StringTokenizer(line, ":");
+	            				st.nextToken();
+	            				if(st.hasMoreTokens()) {
+	            					awayTeam = st.nextToken();
+	            				} else {
+	            					debug("No home team name found");
+	            					break;
+	            				}
+	            			} else {
+	            				debug("Away string not found.");
+	            				break;
+	            			}
+	            			line = br.readLine();
+	            			if(line.contains("Time")) {
+	            				StringTokenizer st = new StringTokenizer(line, ":");
+	            				st.nextToken();
+	            				if(st.hasMoreTokens()) {
+	            					time = st.nextToken();
+	            				} else {
+	            					debug("No time found");
+	            					break;
+	            				}
+	            			} else {
+	            				debug("Time string not found.");
+	            				break;
+	            			}
+	            			line = br.readLine();
+	            			if(line.contains("Location")) {
+	            				StringTokenizer st = new StringTokenizer(line, ":");
+	            				st.nextToken();
+	            				if(st.hasMoreTokens()) {
+	            					location = st.nextToken();
+	            				} else {
+	            					debug("No time found");
+	            					break;
+	            				}
+	            			} else {
+	            				debug("Time string not found.");
+	            				break;
+	            			}
+	            			debug("FOUND A GAME: \n" + currentGame);
+	            			debug("Home: " + homeTeam + "\n");
+	            			debug("Away: " + awayTeam + "\n");
+	            			debug("Time: " + time + "\n");
+	            			debug("Location" + location + "\n");
+	            			addGameToSchedule(homeTeam, awayTeam, time, location, currentDay);
+	            			line = br.readLine();
+	            			currentGame++;
+	            			debug("Getting next line: " + line);
 	            		} else {
 	            			debug("Incorrect Schedule.out format. Expecting next game.");
 	            			continue;
 	            		}
 	            	}
-
             	} else {
             		debug("Incorrect Schedule.out format. Expecting next day.");
             		continue;
             	}
+            	currentDay++;
             }
         } catch (Exception e) {
             debug("Exception occurred loading schedule from file.");
-        }*/
+        }
 
     }
 }
