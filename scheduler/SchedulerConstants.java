@@ -43,18 +43,13 @@ public class SchedulerConstants {
     public static final String PREVIOUS_SOLUTION_BUTTON = "Previous Solution";
     public static final String SHOW_FREE_DAYS_BUTTON = "Show Available Days";
     public static final String SHOW_OVERALL_SCHEDULE_BUTTON = "Show Overall Schedule";
+    public static final String SHOW_TEAM_STATISTICS_BUTTON = "Show Team Statistics";
+    public static final String LOAD_LAST_SCHEDULE_BUTTON = "Load Last Schedule";
     public static final String START_EVAL_MESSAGE ="Starting Evaluation...";
     public static final String TEAM_NAME_LABEL = "Teams To Map To Full Schedule";
-    public static final String[] TEAM_NAME_MENU = {"Full Leagues", " Full American League", "  American League East", "   Baltimore Orioles",
-                                                    "   Boston Red Sox", "   New York Yankees", "   Tampa Bay Rays", "   Toronto Blue Jays", 
-                                                    "  American League West", "   Houston Astros", "   Los Angeles Angels of Anaheim", 
-                                                    "   Oakland Athletics", "   Seattle Mariners", "   Texas Rangers", "  American League Central",
-                                                    "   Chicago White Sox", "   Cleveland Indians", "   Detroit Tigers", "   Kansas City Royals", 
-                                                    "   Minnesota Twins", " Full National League", "  National League East", "   Atlanta Braves",
-                                                    "   Miami Marlins", "   New York Mets", "   Philadelphia Phillies", "   Washington Nationals", 
-                                                    "  National League West", "   Arizona Diamondbacks", "   Colorado Rockies", "   Los Angeles Dodgers",
-                                                    "   San Diego Padres", "   San Francisco Giants", "  National League Central", "   Chicago Cubs", 
-                                                    "   Cincinnati Reds", "   Milwaukee Brewers", "   Pittsburgh Pirates", "   St. Louis Cardinals"};
+    public static final String[] TEAM_NAME_MENU = {"Full Leagues", " Full American League", "  American League East", "  American League West", 
+                                                    "  American League Central", " Full National League", "  National League East", "  National League West", 
+                                                    "  National League Central"};
 //    public static final String[] TEAM_NAME_MENU2 = {"Full Leagues", " Full American League", "  American League East", "   Baltimore Orioles",
 //                                                    "   Boston Red Sox", "   New York Yankees", "   Tampa Bay Rays", "   Toronto Blue Jays", 
 //                                                    "  American League West", "   Houston Astros", "   Los Angeles Angels of Anaheim", 

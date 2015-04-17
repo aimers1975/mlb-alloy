@@ -30,6 +30,14 @@ public class Mapper {
         return fullSchedule.countGamesForTeam(team);
     }
 
+    public int countHomeGamesForTeam(String team) {
+        return fullSchedule.countHomeGamesForTeam(team);
+    }
+
+    public void loadLastSchedule() {
+        fullSchedule.loadScheduleFromFile();
+    }
+
 	public void loadTeams() {
         try (BufferedReader br = new BufferedReader(new FileReader(scheduler.SchedulerConstants.INPUT_TEAM_LIST))) {
             String line;

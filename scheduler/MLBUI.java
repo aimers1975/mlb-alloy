@@ -53,6 +53,8 @@ public class MLBUI extends JFrame {
     JButton resetScheduleButton = new JButton(scheduler.SchedulerConstants.RESET_SCHEDULE_BUTTON);
     JButton nextScheduleSolutionButton = new JButton(scheduler.SchedulerConstants.NEXT_SOLUTION_BUTTON);
     JButton previousScheduleSolutionButton = new JButton(scheduler.SchedulerConstants.PREVIOUS_SOLUTION_BUTTON);
+    JButton showCurrentTeamStatisticsButton = new JButton(scheduler.SchedulerConstants.SHOW_TEAM_STATISTICS_BUTTON);
+    JButton loadLastScheduleButton = new JButton(scheduler.SchedulerConstants.LOAD_LAST_SCHEDULE_BUTTON);
     JPanel scrollPanel = new JPanel();
     JTextArea inputALS = new JTextArea(200,200);
     JScrollPane scroll = new JScrollPane(inputALS);
@@ -134,7 +136,8 @@ public class MLBUI extends JFrame {
         createMainAppBody();
         createInputScroll ();
         createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
-            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolutionButton, previousScheduleSolutionButton);
+            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolutionButton, previousScheduleSolutionButton,
+            showCurrentTeamStatisticsButton, loadLastScheduleButton);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
@@ -149,6 +152,21 @@ public class MLBUI extends JFrame {
 
     private void showOverallSchedule() {
         outputPlaceholder.setText(testmapper.toString());
+    }
+
+    private void showCurrentTeamStatistics() {
+        String[] allTeams = scheduler.SchedulerConstants.FULL_LEAGUE_LIST;
+        outputPlaceholder.setText("");
+        for(String reportTeam : allTeams) {
+            int numGames = testmapper.countGamesForTeam(reportTeam);
+            outputPlaceholder.append(reportTeam + "  " + numGames + "\n");
+            outputPlaceholder.append("  Division # of games: TBD\n");
+            outputPlaceholder.append("  Interdivision # of games: TB\n");
+            outputPlaceholder.append("  Interleague # of games: TBD\n");
+            numGames = testmapper.countHomeGamesForTeam(reportTeam);
+            outputPlaceholder.append("  Total home games: " + numGames + "\n");
+        }
+
     }
 
     private void updateCurrentParameters() {
@@ -196,27 +214,6 @@ public class MLBUI extends JFrame {
     }
 
     private void saveSubScheduleToSchedule() {
-        // TODO: refactor this to instead of doing repeats for each
-        // division of the same subschedule, allow user to select
-        // the mappings of the teams to the saved scheduleGenerate a game
-        /*
-        TODO: Generate a game - will need to add a second team name input
-        Generate a team schedule of 5 - five teams
-            - select a division - take first solution
-            - select a league - iterate through three solutions
-            - select all leagues iterate through six solutions
-            - select a name is invalid
-        Generate interdiv schedule - 15 teams
-            - select a division is not valid
-            - select a league - take first solution
-            - select all leagues - iterate through two solutions
-            - select a name is invalid
-        Generate a league schedule - 30 teams
-            - select a division is not valid
-            - select a league is not valid
-            - select all leagues take first solution
-            - select a name is invalid
-            */
         if(parser != null) {
             parser.getStartDay();
             parser.getEndDay();
@@ -228,14 +225,9 @@ public class MLBUI extends JFrame {
                     daysSaved[i] = true;
                 }
             }
-
-            // This is the part that would have to be refactored
-            // Maybe we present a dropdown with the different team
-            // catagories...Need to think on it more...
-            // Send mapper solution + list of team names
             if(parser.getAllTeams().size()==5) {
                 debug("Calling create div schedule");
-                testmapper.loadTeams();
+                //testmapper.loadTeams();
                 //testmapper.createDivisionSchedule(parser);
                 debug("Got team name selection: " + (String.valueOf(teamNameComboBox.getSelectedItem()).trim()));
                 ArrayList<String> currentTeamList = getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem()).trim());
@@ -247,11 +239,27 @@ public class MLBUI extends JFrame {
                 }
             } else if (parser.getAllTeams().size() == 15) {
                 debug("Calling create interdivision div schedule");
-                testmapper.loadTeams();
-                testmapper.createInterDivisionSchedule(parser);
+                //testmapper.loadTeams();
+                //testmapper.createInterDivisionSchedule(parser);
+                debug("Got team name selection: " + (String.valueOf(teamNameComboBox.getSelectedItem()).trim()));
+                ArrayList<String> currentTeamList = getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem()).trim());
+                if(currentTeamList.size() == 15) {
+                    testmapper.createSingleDivisionSchedule(parser, currentTeamList);
+                } else {
+                    outputPlaceholder.setText("");
+                    outputPlaceholder.setText("Not a valid team # and name combination.");  
+                }
             } else if (parser.getAllTeams().size() == 30) {
-                testmapper.loadTeams();
-                testmapper.createInterLeagueSchedule(parser);
+                //testmapper.loadTeams();
+                //testmapper.createInterLeagueSchedule(parser);
+                debug("Got team name selection: " + (String.valueOf(teamNameComboBox.getSelectedItem()).trim()));
+                ArrayList<String> currentTeamList = getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem()).trim());
+                if(currentTeamList.size() == 30) {
+                    testmapper.createSingleDivisionSchedule(parser, currentTeamList);
+                } else {
+                    outputPlaceholder.setText("");
+                    outputPlaceholder.setText("Not a valid team # and name combination.");  
+                }
             } else {
                 outputPlaceholder.setText("");
                 outputPlaceholder.append("Not a valid team # combination.");
@@ -261,9 +269,6 @@ public class MLBUI extends JFrame {
 
     public ArrayList<String> getTeamNamesSelected(String teamName) {
         // Get values from team name list dropdown
-        // if division return 5 names within this division
-        // if league return 15 team names from within this division
-        // iff full league, return 30 names in league
         ArrayList<String> thisTeamList = new ArrayList<String>();
         debug("Switch on team name: " + teamName);
          switch (teamName) {
@@ -531,6 +536,7 @@ public class MLBUI extends JFrame {
                 if(!cachedOutput.isEmpty()) {
                     currentSolution++;
                     debug("Current solution is now: " + currentSolution);
+                    debug("Cached output size is: " + cachedOutput.size());
                     if(currentSolution >= cachedOutput.size()) {
                         currentSolution = 0;
                         debug("Reached end of solutions, loop to beginning.");
@@ -559,6 +565,19 @@ public class MLBUI extends JFrame {
                     outputPlaceholder.setText("");
                     outputPlaceholder.setText("First run analyzer for solution.");  
                 }
+            }
+        });
+        showCurrentTeamStatisticsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                showCurrentTeamStatistics();
+            }
+        });
+        loadLastScheduleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                debug("Loading last schedule saved.");
+                testmapper.loadLastSchedule();
             }
         });
 
@@ -663,14 +682,17 @@ public class MLBUI extends JFrame {
         gl.setAutoCreateContainerGaps(true);
         gl.setAutoCreateGaps(true);
 //appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
-//            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolution, previousScheduleSolution
+//            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolution, previousScheduleSolution,
+//            showCurrentTeamStatisticsButton, loadLastScheduleButton
         gl.setHorizontalGroup(gl.createSequentialGroup()
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[0])
                 .addComponent(arg[3])
                 .addComponent(arg[8])
                 .addComponent(arg[9])
-                .addComponent(arg[6]))
+                .addComponent(arg[6])
+                .addComponent(arg[14])
+                .addComponent(arg[15]))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[1])
                 .addComponent(arg[2])
@@ -703,7 +725,10 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[7])
                 .addComponent(arg[12]))
             .addGroup(gl.createParallelGroup()
+                .addComponent(arg[14])
                 .addComponent(arg[13]))
+            .addGroup(gl.createParallelGroup()
+                .addComponent(arg[15]))
         );
     }
 

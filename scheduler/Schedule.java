@@ -3,6 +3,8 @@ package scheduler;
 import java.util.*;
 import java.io.PrintWriter;
 import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import scheduler.Day;
 import scheduler.SchedulerConstants;
@@ -125,4 +127,43 @@ public class Schedule {
             System.out.println(scheduler.SchedulerConstants.CREATE_FILE_ERROR);
         }
     } 
+
+    public void loadScheduleFromFile() {
+    	//Read a line, if its a new day, increment day
+    	//if its a new game increment game
+    	//read in teams, time, location
+    	//save game 
+/*        try (BufferedReader br = new BufferedReader(new FileReader(scheduler.SchedulerConstants.SAVE_SCHEDULE_LOCATION))) {
+            String line;
+            String homeTeam;
+            String awayTeam;
+            String time;
+            String location;
+            while ((line = br.readLine()) != null) {
+            	//debug(line);
+            	if(line.contains("Day")) {
+            		line = br.readLine();
+            		while((line = br.readLine()) != null) {
+	            		if(line.contains("Game")) {
+	            			line = br.readLine();
+	            			debug(line);
+	            			if(line.contains("Home")) {
+	            				StringTokenizer st = new StringTokenizer
+	            			}
+	            		} else {
+	            			debug("Incorrect Schedule.out format. Expecting next game.");
+	            			continue;
+	            		}
+	            	}
+
+            	} else {
+            		debug("Incorrect Schedule.out format. Expecting next day.");
+            		continue;
+            	}
+            }
+        } catch (Exception e) {
+            debug("Exception occurred loading schedule from file.");
+        }*/
+
+    }
 }
