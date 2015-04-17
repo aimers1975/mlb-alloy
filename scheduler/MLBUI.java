@@ -236,9 +236,15 @@ public class MLBUI extends JFrame {
             if(parser.getAllTeams().size()==5) {
                 debug("Calling create div schedule");
                 testmapper.loadTeams();
-                testmapper.createDivisionSchedule(parser);
+                //testmapper.createDivisionSchedule(parser);
                 debug("Got team name selection: " + (String.valueOf(teamNameComboBox.getSelectedItem()).trim()));
-                //testmapper.createSingleDivisionSchedule(parser, getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem());));
+                ArrayList<String> currentTeamList = getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem()).trim());
+                if(currentTeamList.size() == 5) {
+                    testmapper.createSingleDivisionSchedule(parser, currentTeamList);
+                } else {
+                    outputPlaceholder.setText("");
+                    outputPlaceholder.setText("Not a valid team # and name combination.");  
+                }
             } else if (parser.getAllTeams().size() == 15) {
                 debug("Calling create interdivision div schedule");
                 testmapper.loadTeams();
@@ -247,6 +253,7 @@ public class MLBUI extends JFrame {
                 testmapper.loadTeams();
                 testmapper.createInterLeagueSchedule(parser);
             } else {
+                outputPlaceholder.setText("");
                 outputPlaceholder.append("Not a valid team # combination.");
             }
         }
@@ -258,6 +265,7 @@ public class MLBUI extends JFrame {
         // if league return 15 team names from within this division
         // iff full league, return 30 names in league
         ArrayList<String> thisTeamList = new ArrayList<String>();
+        debug("Switch on team name: " + teamName);
          switch (teamName) {
             case "Full Leagues":
                 thisTeamList = new ArrayList<String>(Arrays.asList(scheduler.SchedulerConstants.FULL_LEAGUE_LIST));
@@ -275,12 +283,16 @@ public class MLBUI extends JFrame {
                 thisTeamList = new ArrayList<String>(Arrays.asList(scheduler.SchedulerConstants.AL_CENTRAL_LIST));
                 break;
             case "Full National League":
+                thisTeamList = new ArrayList<String>(Arrays.asList(scheduler.SchedulerConstants.NATIONAL_LEAGUE_LIST));
                 break;
             case "National League East":
+                thisTeamList = new ArrayList<String>(Arrays.asList(scheduler.SchedulerConstants.NL_EAST_LIST));
                 break;
             case "National League West":
+                thisTeamList = new ArrayList<String>(Arrays.asList(scheduler.SchedulerConstants.NL_WEST_LIST));
                 break;
             case "National League Central":
+                thisTeamList = new ArrayList<String>(Arrays.asList(scheduler.SchedulerConstants.NL_CENTRAL_LIST));
                 break;
             default:
                 debug("Found no team list for this selection.");

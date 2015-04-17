@@ -55,6 +55,16 @@ public class SchedulerConstants {
                                                     "  National League West", "   Arizona Diamondbacks", "   Colorado Rockies", "   Los Angeles Dodgers",
                                                     "   San Diego Padres", "   San Francisco Giants", "  National League Central", "   Chicago Cubs", 
                                                     "   Cincinnati Reds", "   Milwaukee Brewers", "   Pittsburgh Pirates", "   St. Louis Cardinals"};
+//    public static final String[] TEAM_NAME_MENU2 = {"Full Leagues", " Full American League", "  American League East", "   Baltimore Orioles",
+//                                                    "   Boston Red Sox", "   New York Yankees", "   Tampa Bay Rays", "   Toronto Blue Jays", 
+//                                                    "  American League West", "   Houston Astros", "   Los Angeles Angels of Anaheim", 
+//                                                    "   Oakland Athletics", "   Seattle Mariners", "   Texas Rangers", "  American League Central",
+//                                                    "   Chicago White Sox", "   Cleveland Indians", "   Detroit Tigers", "   Kansas City Royals", 
+//                                                    "   Minnesota Twins", " Full National League", "  National League East", "   Atlanta Braves",
+//                                                    "   Miami Marlins", "   New York Mets", "   Philadelphia Phillies", "   Washington Nationals", 
+//                                                    "  National League West", "   Arizona Diamondbacks", "   Colorado Rockies", "   Los Angeles Dodgers",
+//                                                   "   San Diego Padres", "   San Francisco Giants", "  National League Central", "   Chicago Cubs", 
+//                                                    "   Cincinnati Reds", "   Milwaukee Brewers", "   Pittsburgh Pirates", "   St. Louis Cardinals"};
     public static final String[] FULL_LEAGUE_LIST = {"Baltimore Orioles", "Boston Red Sox", "New York Yankees", "Tampa Bay Rays", "Toronto Blue Jays", 
                                                     "Houston Astros", "Los Angeles Angels of Anaheim", "Oakland Athletics", "Seattle Mariners", "Texas Rangers", 
                                                     "Chicago White Sox", "Cleveland Indians", "Detroit Tigers", "Kansas City Royals", "Minnesota Twins", 

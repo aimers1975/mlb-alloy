@@ -1,0 +1,37 @@
+Solve time:: 42641 :: seconds
+---INSTANCE---
+integers={}
+univ={D16$0, D17$0, D18$0, D19$0, D20$0, D21$0, D22$0, D23$0, D24$0, D25$0, D26$0, D27$0, D28$0, D29$0, D30$0, schedule$0, team$0, team$1, team$2, team$3, team$4, Ordering$0, series$0, series$1, series$2, series$3, series$4, series$5, series$6, series$7, series$8, series$9}
+Int={}
+seq/Int={}
+String={}
+none={}
+this/D16={D16$0}
+this/D17={D17$0}
+this/D18={D18$0}
+this/D19={D19$0}
+this/D20={D20$0}
+this/D21={D21$0}
+this/D22={D22$0}
+this/D23={D23$0}
+this/D24={D24$0}
+this/D25={D25$0}
+this/D26={D26$0}
+this/D27={D27$0}
+this/D28={D28$0}
+this/D29={D29$0}
+this/D30={D30$0}
+this/day={D16$0, D17$0, D18$0, D19$0, D20$0, D21$0, D22$0, D23$0, D24$0, D25$0, D26$0, D27$0, D28$0, D29$0, D30$0}
+this/schedule={schedule$0}
+this/schedule<:allSeries={schedule$0->series$0, schedule$0->series$1, schedule$0->series$2, schedule$0->series$3, schedule$0->series$4, schedule$0->series$5, schedule$0->series$6, schedule$0->series$7, schedule$0->series$8, schedule$0->series$9}
+this/team={team$0, team$1, team$2, team$3, team$4}
+this/Ordering={Ordering$0}
+this/Ordering<:order={Ordering$0->D16$0->D17$0, Ordering$0->D17$0->D18$0, Ordering$0->D18$0->D19$0, Ordering$0->D19$0->D20$0, Ordering$0->D20$0->D21$0, Ordering$0->D21$0->D22$0, Ordering$0->D22$0->D23$0, Ordering$0->D23$0->D24$0, Ordering$0->D24$0->D25$0, Ordering$0->D25$0->D26$0, Ordering$0->D26$0->D27$0, Ordering$0->D27$0->D28$0, Ordering$0->D28$0->D29$0, Ordering$0->D29$0->D30$0}
+this/series={series$0, series$1, series$2, series$3, series$4, series$5, series$6, series$7, series$8, series$9}
+this/series<:ateam={series$0->team$4, series$1->team$4, series$2->team$3, series$3->team$3, series$4->team$2, series$5->team$2, series$6->team$1, series$7->team$1, series$8->team$0, series$9->team$0}
+this/series<:hteam={series$0->team$1, series$1->team$0, series$2->team$4, series$3->team$1, series$4->team$4, series$5->team$3, series$6->team$2, series$7->team$0, series$8->team$2, series$9->team$3}
+this/series<:g1={series$0->D16$0, series$1->D22$0, series$2->D19$0, series$3->D28$0, series$4->D25$0, series$5->D22$0, series$6->D19$0, series$7->D25$0, series$8->D28$0, series$9->D16$0}
+this/series<:g2={series$0->D17$0, series$1->D23$0, series$2->D20$0, series$3->D29$0, series$4->D26$0, series$5->D23$0, series$6->D20$0, series$7->D26$0, series$8->D29$0, series$9->D17$0}
+this/series<:g3={series$0->D18$0, series$1->D24$0, series$2->D21$0, series$3->D30$0, series$4->D27$0, series$5->D24$0, series$6->D21$0, series$7->D27$0, series$8->D30$0, series$9->D18$0}
+this/series<:g4={}
+skolem $show_This={schedule$0}
