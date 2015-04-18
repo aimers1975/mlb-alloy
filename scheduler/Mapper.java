@@ -26,6 +26,14 @@ public class Mapper {
         return leagueNameList;
     }
 
+    public void removeGame(int gameNumber, int day){
+        fullSchedule.removeGame(gameNumber, day);
+        saveScheduleOutput(fullSchedule.toString());
+    }
+
+    public Boolean[] showNoGameDays() {
+        return fullSchedule.showNoGameDays();
+    }
     public int countGamesForTeam(String team) {
         return fullSchedule.countGamesForTeam(team);
     }

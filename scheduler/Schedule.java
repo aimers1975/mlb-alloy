@@ -30,13 +30,27 @@ public class Schedule {
 		addGame(addingGame,day);
 	}
 
+	public Boolean[] showNoGameDays() {
+		Boolean[] returnArray = new Boolean[181];
+		int dayCount = 0;
+		for(Day thisDay : seasonSchedule){
+			if(thisDay.games.isEmpty()) {
+				returnArray[dayCount] = true;
+			} else {
+				returnArray[dayCount] = false;
+			}
+			dayCount++;
+		}
+		return returnArray;
+	}
+
 	private void addGame(Game addGame, int day) {		
 		Day checkDay = seasonSchedule[day];
 		checkDay.games.add(addGame);
 		seasonSchedule[day] = checkDay;
 	}
 
-	private void removeGame(int gameNum, int day) {
+	public void removeGame(int gameNum, int day) {
 		Day removeGameDay = seasonSchedule[day];
 		if(removeGameDay.games.get(gameNum) != null) {
 			removeGameDay.games.remove(gameNum);
@@ -59,7 +73,7 @@ public class Schedule {
 		int count = 0;
         for(Day thisDay : seasonSchedule) {
             for(Game thisGame : thisDay.games) {
-                if((thisGame.hometeam).equals(team) || (thisGame.awayteam).equals(team)) {
+                if((thisGame.hometeam).contains(team) || (thisGame.awayteam).contains(team)) {
                     count++;
                 }
             }
@@ -69,10 +83,10 @@ public class Schedule {
 	}
 
 
-	public boolean eachTeamHas176Games(String[] teams) {
+	public boolean eachTeamHas162Games(String[] teams) {
 		boolean result = true;
 		for(String thisTeam : teams) {
-			if(countGamesForTeam(thisTeam) != 176) {
+			if(countGamesForTeam(thisTeam) != 162) {
 				debugToFile("Team: " + thisTeam + " has only: " + countGamesForTeam(thisTeam) + " games! Not yet a full schedule!");
 				result = false;
 			} 
@@ -107,7 +121,7 @@ public class Schedule {
 	public boolean repOk() {
 		boolean checkAll = false;
 		String[] a = new String[allTeams.size()];
-		checkAll = eachTeamHas176Games(allTeams.toArray(a)) && checkAll;
+		checkAll = eachTeamHas162Games(allTeams.toArray(a)) && checkAll;
 		checkAll = eachTeamHasHalfHomeGames(allTeams.toArray(a)) && checkAll;
 		return true;
 	}

@@ -1,0 +1,1231 @@
+MLBUI: Loading last schedule saved.
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Oakland Athletics
+
+Schedule: Away:  Los Angeles Angels of Anaheim
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Oakland Athletics Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Texas Rangers
+
+Schedule: Away:  Seattle Mariners
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Texas Rangers Field
+
+Schedule: Getting next line: Day: 2
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Oakland Athletics
+
+Schedule: Away:  Los Angeles Angels of Anaheim
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Oakland Athletics Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Texas Rangers
+
+Schedule: Away:  Seattle Mariners
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Texas Rangers Field
+
+Schedule: Getting next line: Day: 3
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Oakland Athletics
+
+Schedule: Away:  Los Angeles Angels of Anaheim
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Oakland Athletics Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Texas Rangers
+
+Schedule: Away:  Seattle Mariners
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Texas Rangers Field
+
+Schedule: Getting next line: Day: 4
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Seattle Mariners
+
+Schedule: Away:  Houston Astros
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Seattle Mariners Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Los Angeles Angels of Anaheim
+
+Schedule: Away:  Texas Rangers
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Los Angeles Angels of Anaheim Field
+
+Schedule: Getting next line: Day: 5
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Seattle Mariners
+
+Schedule: Away:  Houston Astros
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Seattle Mariners Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Los Angeles Angels of Anaheim
+
+Schedule: Away:  Texas Rangers
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Los Angeles Angels of Anaheim Field
+
+Schedule: Getting next line: Day: 6
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Seattle Mariners
+
+Schedule: Away:  Houston Astros
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Seattle Mariners Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Los Angeles Angels of Anaheim
+
+Schedule: Away:  Texas Rangers
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Los Angeles Angels of Anaheim Field
+
+Schedule: Getting next line: Day: 7
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Houston Astros
+
+Schedule: Away:  Los Angeles Angels of Anaheim
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Houston Astros Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Texas Rangers
+
+Schedule: Away:  Oakland Athletics
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Texas Rangers Field
+
+Schedule: Getting next line: Day: 8
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Houston Astros
+
+Schedule: Away:  Los Angeles Angels of Anaheim
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Houston Astros Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Texas Rangers
+
+Schedule: Away:  Oakland Athletics
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Texas Rangers Field
+
+Schedule: Getting next line: Day: 9
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Houston Astros
+
+Schedule: Away:  Los Angeles Angels of Anaheim
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Houston Astros Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Texas Rangers
+
+Schedule: Away:  Oakland Athletics
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Texas Rangers Field
+
+Schedule: Getting next line: Day: 10
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Oakland Athletics
+
+Schedule: Away:  Houston Astros
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Oakland Athletics Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Los Angeles Angels of Anaheim
+
+Schedule: Away:  Seattle Mariners
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Los Angeles Angels of Anaheim Field
+
+Schedule: Getting next line: Day: 11
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Oakland Athletics
+
+Schedule: Away:  Houston Astros
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Oakland Athletics Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Los Angeles Angels of Anaheim
+
+Schedule: Away:  Seattle Mariners
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Los Angeles Angels of Anaheim Field
+
+Schedule: Getting next line: Day: 12
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Oakland Athletics
+
+Schedule: Away:  Houston Astros
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Oakland Athletics Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Los Angeles Angels of Anaheim
+
+Schedule: Away:  Seattle Mariners
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Los Angeles Angels of Anaheim Field
+
+Schedule: Getting next line: Day: 13
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Houston Astros
+
+Schedule: Away:  Texas Rangers
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Houston Astros Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Seattle Mariners
+
+Schedule: Away:  Oakland Athletics
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Seattle Mariners Field
+
+Schedule: Getting next line: Day: 14
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Houston Astros
+
+Schedule: Away:  Texas Rangers
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Houston Astros Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Seattle Mariners
+
+Schedule: Away:  Oakland Athletics
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Seattle Mariners Field
+
+Schedule: Getting next line: Day: 15
+Schedule: FOUND A GAME: 
+0
+Schedule: Home:  Houston Astros
+
+Schedule: Away:  Texas Rangers
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Houston Astros Field
+
+Schedule: Getting next line:   Game: 1
+Schedule: FOUND A GAME: 
+1
+Schedule: Home:  Seattle Mariners
+
+Schedule: Away:  Oakland Athletics
+
+Schedule: Time:  12pm CST
+
+Schedule: Location Seattle Mariners Field
+
+Schedule: Getting next line: Day: 16
+Schedule: Baltimore Orioles  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Baltimore Orioles  Texas Rangers  Seattle Mariners
+Schedule: Baltimore Orioles  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Baltimore Orioles  Texas Rangers  Seattle Mariners
+Schedule: Baltimore Orioles  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Baltimore Orioles  Texas Rangers  Seattle Mariners
+Schedule: Baltimore Orioles  Seattle Mariners  Houston Astros
+Schedule: Baltimore Orioles  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Baltimore Orioles  Seattle Mariners  Houston Astros
+Schedule: Baltimore Orioles  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Baltimore Orioles  Seattle Mariners  Houston Astros
+Schedule: Baltimore Orioles  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Baltimore Orioles  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Baltimore Orioles  Texas Rangers  Oakland Athletics
+Schedule: Baltimore Orioles  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Baltimore Orioles  Texas Rangers  Oakland Athletics
+Schedule: Baltimore Orioles  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Baltimore Orioles  Texas Rangers  Oakland Athletics
+Schedule: Baltimore Orioles  Oakland Athletics  Houston Astros
+Schedule: Baltimore Orioles  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Baltimore Orioles  Oakland Athletics  Houston Astros
+Schedule: Baltimore Orioles  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Baltimore Orioles  Oakland Athletics  Houston Astros
+Schedule: Baltimore Orioles  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Baltimore Orioles  Houston Astros  Texas Rangers
+Schedule: Baltimore Orioles  Seattle Mariners  Oakland Athletics
+Schedule: Baltimore Orioles  Houston Astros  Texas Rangers
+Schedule: Baltimore Orioles  Seattle Mariners  Oakland Athletics
+Schedule: Baltimore Orioles  Houston Astros  Texas Rangers
+Schedule: Baltimore Orioles  Seattle Mariners  Oakland Athletics
+Schedule: Boston Red Sox  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Boston Red Sox  Texas Rangers  Seattle Mariners
+Schedule: Boston Red Sox  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Boston Red Sox  Texas Rangers  Seattle Mariners
+Schedule: Boston Red Sox  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Boston Red Sox  Texas Rangers  Seattle Mariners
+Schedule: Boston Red Sox  Seattle Mariners  Houston Astros
+Schedule: Boston Red Sox  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Boston Red Sox  Seattle Mariners  Houston Astros
+Schedule: Boston Red Sox  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Boston Red Sox  Seattle Mariners  Houston Astros
+Schedule: Boston Red Sox  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Boston Red Sox  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Boston Red Sox  Texas Rangers  Oakland Athletics
+Schedule: Boston Red Sox  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Boston Red Sox  Texas Rangers  Oakland Athletics
+Schedule: Boston Red Sox  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Boston Red Sox  Texas Rangers  Oakland Athletics
+Schedule: Boston Red Sox  Oakland Athletics  Houston Astros
+Schedule: Boston Red Sox  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Boston Red Sox  Oakland Athletics  Houston Astros
+Schedule: Boston Red Sox  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Boston Red Sox  Oakland Athletics  Houston Astros
+Schedule: Boston Red Sox  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Boston Red Sox  Houston Astros  Texas Rangers
+Schedule: Boston Red Sox  Seattle Mariners  Oakland Athletics
+Schedule: Boston Red Sox  Houston Astros  Texas Rangers
+Schedule: Boston Red Sox  Seattle Mariners  Oakland Athletics
+Schedule: Boston Red Sox  Houston Astros  Texas Rangers
+Schedule: Boston Red Sox  Seattle Mariners  Oakland Athletics
+Schedule: New York Yankees  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: New York Yankees  Texas Rangers  Seattle Mariners
+Schedule: New York Yankees  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: New York Yankees  Texas Rangers  Seattle Mariners
+Schedule: New York Yankees  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: New York Yankees  Texas Rangers  Seattle Mariners
+Schedule: New York Yankees  Seattle Mariners  Houston Astros
+Schedule: New York Yankees  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: New York Yankees  Seattle Mariners  Houston Astros
+Schedule: New York Yankees  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: New York Yankees  Seattle Mariners  Houston Astros
+Schedule: New York Yankees  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: New York Yankees  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: New York Yankees  Texas Rangers  Oakland Athletics
+Schedule: New York Yankees  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: New York Yankees  Texas Rangers  Oakland Athletics
+Schedule: New York Yankees  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: New York Yankees  Texas Rangers  Oakland Athletics
+Schedule: New York Yankees  Oakland Athletics  Houston Astros
+Schedule: New York Yankees  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: New York Yankees  Oakland Athletics  Houston Astros
+Schedule: New York Yankees  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: New York Yankees  Oakland Athletics  Houston Astros
+Schedule: New York Yankees  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: New York Yankees  Houston Astros  Texas Rangers
+Schedule: New York Yankees  Seattle Mariners  Oakland Athletics
+Schedule: New York Yankees  Houston Astros  Texas Rangers
+Schedule: New York Yankees  Seattle Mariners  Oakland Athletics
+Schedule: New York Yankees  Houston Astros  Texas Rangers
+Schedule: New York Yankees  Seattle Mariners  Oakland Athletics
+Schedule: Tampa Bay Rays  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Tampa Bay Rays  Texas Rangers  Seattle Mariners
+Schedule: Tampa Bay Rays  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Tampa Bay Rays  Texas Rangers  Seattle Mariners
+Schedule: Tampa Bay Rays  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Tampa Bay Rays  Texas Rangers  Seattle Mariners
+Schedule: Tampa Bay Rays  Seattle Mariners  Houston Astros
+Schedule: Tampa Bay Rays  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Tampa Bay Rays  Seattle Mariners  Houston Astros
+Schedule: Tampa Bay Rays  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Tampa Bay Rays  Seattle Mariners  Houston Astros
+Schedule: Tampa Bay Rays  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Tampa Bay Rays  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Tampa Bay Rays  Texas Rangers  Oakland Athletics
+Schedule: Tampa Bay Rays  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Tampa Bay Rays  Texas Rangers  Oakland Athletics
+Schedule: Tampa Bay Rays  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Tampa Bay Rays  Texas Rangers  Oakland Athletics
+Schedule: Tampa Bay Rays  Oakland Athletics  Houston Astros
+Schedule: Tampa Bay Rays  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Tampa Bay Rays  Oakland Athletics  Houston Astros
+Schedule: Tampa Bay Rays  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Tampa Bay Rays  Oakland Athletics  Houston Astros
+Schedule: Tampa Bay Rays  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Tampa Bay Rays  Houston Astros  Texas Rangers
+Schedule: Tampa Bay Rays  Seattle Mariners  Oakland Athletics
+Schedule: Tampa Bay Rays  Houston Astros  Texas Rangers
+Schedule: Tampa Bay Rays  Seattle Mariners  Oakland Athletics
+Schedule: Tampa Bay Rays  Houston Astros  Texas Rangers
+Schedule: Tampa Bay Rays  Seattle Mariners  Oakland Athletics
+Schedule: Toronto Blue Jays  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Toronto Blue Jays  Texas Rangers  Seattle Mariners
+Schedule: Toronto Blue Jays  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Toronto Blue Jays  Texas Rangers  Seattle Mariners
+Schedule: Toronto Blue Jays  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Toronto Blue Jays  Texas Rangers  Seattle Mariners
+Schedule: Toronto Blue Jays  Seattle Mariners  Houston Astros
+Schedule: Toronto Blue Jays  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Toronto Blue Jays  Seattle Mariners  Houston Astros
+Schedule: Toronto Blue Jays  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Toronto Blue Jays  Seattle Mariners  Houston Astros
+Schedule: Toronto Blue Jays  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Toronto Blue Jays  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Toronto Blue Jays  Texas Rangers  Oakland Athletics
+Schedule: Toronto Blue Jays  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Toronto Blue Jays  Texas Rangers  Oakland Athletics
+Schedule: Toronto Blue Jays  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Toronto Blue Jays  Texas Rangers  Oakland Athletics
+Schedule: Toronto Blue Jays  Oakland Athletics  Houston Astros
+Schedule: Toronto Blue Jays  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Toronto Blue Jays  Oakland Athletics  Houston Astros
+Schedule: Toronto Blue Jays  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Toronto Blue Jays  Oakland Athletics  Houston Astros
+Schedule: Toronto Blue Jays  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Toronto Blue Jays  Houston Astros  Texas Rangers
+Schedule: Toronto Blue Jays  Seattle Mariners  Oakland Athletics
+Schedule: Toronto Blue Jays  Houston Astros  Texas Rangers
+Schedule: Toronto Blue Jays  Seattle Mariners  Oakland Athletics
+Schedule: Toronto Blue Jays  Houston Astros  Texas Rangers
+Schedule: Toronto Blue Jays  Seattle Mariners  Oakland Athletics
+Schedule: Houston Astros  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Houston Astros  Texas Rangers  Seattle Mariners
+Schedule: Houston Astros  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Houston Astros  Texas Rangers  Seattle Mariners
+Schedule: Houston Astros  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Houston Astros  Texas Rangers  Seattle Mariners
+Schedule: Houston Astros  Seattle Mariners  Houston Astros
+Schedule: Houston Astros  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Houston Astros  Seattle Mariners  Houston Astros
+Schedule: Houston Astros  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Houston Astros  Seattle Mariners  Houston Astros
+Schedule: Houston Astros  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Houston Astros  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Houston Astros  Texas Rangers  Oakland Athletics
+Schedule: Houston Astros  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Houston Astros  Texas Rangers  Oakland Athletics
+Schedule: Houston Astros  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Houston Astros  Texas Rangers  Oakland Athletics
+Schedule: Houston Astros  Oakland Athletics  Houston Astros
+Schedule: Houston Astros  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Houston Astros  Oakland Athletics  Houston Astros
+Schedule: Houston Astros  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Houston Astros  Oakland Athletics  Houston Astros
+Schedule: Houston Astros  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Houston Astros  Houston Astros  Texas Rangers
+Schedule: Houston Astros  Seattle Mariners  Oakland Athletics
+Schedule: Houston Astros  Houston Astros  Texas Rangers
+Schedule: Houston Astros  Seattle Mariners  Oakland Athletics
+Schedule: Houston Astros  Houston Astros  Texas Rangers
+Schedule: Houston Astros  Seattle Mariners  Oakland Athletics
+Schedule: Los Angeles Angels of Anaheim  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Los Angeles Angels of Anaheim  Texas Rangers  Seattle Mariners
+Schedule: Los Angeles Angels of Anaheim  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Los Angeles Angels of Anaheim  Texas Rangers  Seattle Mariners
+Schedule: Los Angeles Angels of Anaheim  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Los Angeles Angels of Anaheim  Texas Rangers  Seattle Mariners
+Schedule: Los Angeles Angels of Anaheim  Seattle Mariners  Houston Astros
+Schedule: Los Angeles Angels of Anaheim  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Los Angeles Angels of Anaheim  Seattle Mariners  Houston Astros
+Schedule: Los Angeles Angels of Anaheim  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Los Angeles Angels of Anaheim  Seattle Mariners  Houston Astros
+Schedule: Los Angeles Angels of Anaheim  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Los Angeles Angels of Anaheim  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Los Angeles Angels of Anaheim  Texas Rangers  Oakland Athletics
+Schedule: Los Angeles Angels of Anaheim  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Los Angeles Angels of Anaheim  Texas Rangers  Oakland Athletics
+Schedule: Los Angeles Angels of Anaheim  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Los Angeles Angels of Anaheim  Texas Rangers  Oakland Athletics
+Schedule: Los Angeles Angels of Anaheim  Oakland Athletics  Houston Astros
+Schedule: Los Angeles Angels of Anaheim  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Los Angeles Angels of Anaheim  Oakland Athletics  Houston Astros
+Schedule: Los Angeles Angels of Anaheim  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Los Angeles Angels of Anaheim  Oakland Athletics  Houston Astros
+Schedule: Los Angeles Angels of Anaheim  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Los Angeles Angels of Anaheim  Houston Astros  Texas Rangers
+Schedule: Los Angeles Angels of Anaheim  Seattle Mariners  Oakland Athletics
+Schedule: Los Angeles Angels of Anaheim  Houston Astros  Texas Rangers
+Schedule: Los Angeles Angels of Anaheim  Seattle Mariners  Oakland Athletics
+Schedule: Los Angeles Angels of Anaheim  Houston Astros  Texas Rangers
+Schedule: Los Angeles Angels of Anaheim  Seattle Mariners  Oakland Athletics
+Schedule: Oakland Athletics  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Oakland Athletics  Texas Rangers  Seattle Mariners
+Schedule: Oakland Athletics  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Oakland Athletics  Texas Rangers  Seattle Mariners
+Schedule: Oakland Athletics  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Oakland Athletics  Texas Rangers  Seattle Mariners
+Schedule: Oakland Athletics  Seattle Mariners  Houston Astros
+Schedule: Oakland Athletics  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Oakland Athletics  Seattle Mariners  Houston Astros
+Schedule: Oakland Athletics  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Oakland Athletics  Seattle Mariners  Houston Astros
+Schedule: Oakland Athletics  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Oakland Athletics  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Oakland Athletics  Texas Rangers  Oakland Athletics
+Schedule: Oakland Athletics  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Oakland Athletics  Texas Rangers  Oakland Athletics
+Schedule: Oakland Athletics  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Oakland Athletics  Texas Rangers  Oakland Athletics
+Schedule: Oakland Athletics  Oakland Athletics  Houston Astros
+Schedule: Oakland Athletics  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Oakland Athletics  Oakland Athletics  Houston Astros
+Schedule: Oakland Athletics  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Oakland Athletics  Oakland Athletics  Houston Astros
+Schedule: Oakland Athletics  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Oakland Athletics  Houston Astros  Texas Rangers
+Schedule: Oakland Athletics  Seattle Mariners  Oakland Athletics
+Schedule: Oakland Athletics  Houston Astros  Texas Rangers
+Schedule: Oakland Athletics  Seattle Mariners  Oakland Athletics
+Schedule: Oakland Athletics  Houston Astros  Texas Rangers
+Schedule: Oakland Athletics  Seattle Mariners  Oakland Athletics
+Schedule: Seattle Mariners  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Seattle Mariners  Texas Rangers  Seattle Mariners
+Schedule: Seattle Mariners  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Seattle Mariners  Texas Rangers  Seattle Mariners
+Schedule: Seattle Mariners  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Seattle Mariners  Texas Rangers  Seattle Mariners
+Schedule: Seattle Mariners  Seattle Mariners  Houston Astros
+Schedule: Seattle Mariners  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Seattle Mariners  Seattle Mariners  Houston Astros
+Schedule: Seattle Mariners  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Seattle Mariners  Seattle Mariners  Houston Astros
+Schedule: Seattle Mariners  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Seattle Mariners  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Seattle Mariners  Texas Rangers  Oakland Athletics
+Schedule: Seattle Mariners  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Seattle Mariners  Texas Rangers  Oakland Athletics
+Schedule: Seattle Mariners  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Seattle Mariners  Texas Rangers  Oakland Athletics
+Schedule: Seattle Mariners  Oakland Athletics  Houston Astros
+Schedule: Seattle Mariners  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Seattle Mariners  Oakland Athletics  Houston Astros
+Schedule: Seattle Mariners  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Seattle Mariners  Oakland Athletics  Houston Astros
+Schedule: Seattle Mariners  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Seattle Mariners  Houston Astros  Texas Rangers
+Schedule: Seattle Mariners  Seattle Mariners  Oakland Athletics
+Schedule: Seattle Mariners  Houston Astros  Texas Rangers
+Schedule: Seattle Mariners  Seattle Mariners  Oakland Athletics
+Schedule: Seattle Mariners  Houston Astros  Texas Rangers
+Schedule: Seattle Mariners  Seattle Mariners  Oakland Athletics
+Schedule: Texas Rangers  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Texas Rangers  Texas Rangers  Seattle Mariners
+Schedule: Texas Rangers  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Texas Rangers  Texas Rangers  Seattle Mariners
+Schedule: Texas Rangers  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Texas Rangers  Texas Rangers  Seattle Mariners
+Schedule: Texas Rangers  Seattle Mariners  Houston Astros
+Schedule: Texas Rangers  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Texas Rangers  Seattle Mariners  Houston Astros
+Schedule: Texas Rangers  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Texas Rangers  Seattle Mariners  Houston Astros
+Schedule: Texas Rangers  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Texas Rangers  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Texas Rangers  Texas Rangers  Oakland Athletics
+Schedule: Texas Rangers  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Texas Rangers  Texas Rangers  Oakland Athletics
+Schedule: Texas Rangers  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Texas Rangers  Texas Rangers  Oakland Athletics
+Schedule: Texas Rangers  Oakland Athletics  Houston Astros
+Schedule: Texas Rangers  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Texas Rangers  Oakland Athletics  Houston Astros
+Schedule: Texas Rangers  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Texas Rangers  Oakland Athletics  Houston Astros
+Schedule: Texas Rangers  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Texas Rangers  Houston Astros  Texas Rangers
+Schedule: Texas Rangers  Seattle Mariners  Oakland Athletics
+Schedule: Texas Rangers  Houston Astros  Texas Rangers
+Schedule: Texas Rangers  Seattle Mariners  Oakland Athletics
+Schedule: Texas Rangers  Houston Astros  Texas Rangers
+Schedule: Texas Rangers  Seattle Mariners  Oakland Athletics
+Schedule: Chicago White Sox  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Chicago White Sox  Texas Rangers  Seattle Mariners
+Schedule: Chicago White Sox  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Chicago White Sox  Texas Rangers  Seattle Mariners
+Schedule: Chicago White Sox  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Chicago White Sox  Texas Rangers  Seattle Mariners
+Schedule: Chicago White Sox  Seattle Mariners  Houston Astros
+Schedule: Chicago White Sox  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Chicago White Sox  Seattle Mariners  Houston Astros
+Schedule: Chicago White Sox  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Chicago White Sox  Seattle Mariners  Houston Astros
+Schedule: Chicago White Sox  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Chicago White Sox  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Chicago White Sox  Texas Rangers  Oakland Athletics
+Schedule: Chicago White Sox  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Chicago White Sox  Texas Rangers  Oakland Athletics
+Schedule: Chicago White Sox  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Chicago White Sox  Texas Rangers  Oakland Athletics
+Schedule: Chicago White Sox  Oakland Athletics  Houston Astros
+Schedule: Chicago White Sox  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Chicago White Sox  Oakland Athletics  Houston Astros
+Schedule: Chicago White Sox  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Chicago White Sox  Oakland Athletics  Houston Astros
+Schedule: Chicago White Sox  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Chicago White Sox  Houston Astros  Texas Rangers
+Schedule: Chicago White Sox  Seattle Mariners  Oakland Athletics
+Schedule: Chicago White Sox  Houston Astros  Texas Rangers
+Schedule: Chicago White Sox  Seattle Mariners  Oakland Athletics
+Schedule: Chicago White Sox  Houston Astros  Texas Rangers
+Schedule: Chicago White Sox  Seattle Mariners  Oakland Athletics
+Schedule: Cleveland Indians  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Cleveland Indians  Texas Rangers  Seattle Mariners
+Schedule: Cleveland Indians  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Cleveland Indians  Texas Rangers  Seattle Mariners
+Schedule: Cleveland Indians  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Cleveland Indians  Texas Rangers  Seattle Mariners
+Schedule: Cleveland Indians  Seattle Mariners  Houston Astros
+Schedule: Cleveland Indians  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Cleveland Indians  Seattle Mariners  Houston Astros
+Schedule: Cleveland Indians  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Cleveland Indians  Seattle Mariners  Houston Astros
+Schedule: Cleveland Indians  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Cleveland Indians  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Cleveland Indians  Texas Rangers  Oakland Athletics
+Schedule: Cleveland Indians  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Cleveland Indians  Texas Rangers  Oakland Athletics
+Schedule: Cleveland Indians  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Cleveland Indians  Texas Rangers  Oakland Athletics
+Schedule: Cleveland Indians  Oakland Athletics  Houston Astros
+Schedule: Cleveland Indians  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Cleveland Indians  Oakland Athletics  Houston Astros
+Schedule: Cleveland Indians  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Cleveland Indians  Oakland Athletics  Houston Astros
+Schedule: Cleveland Indians  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Cleveland Indians  Houston Astros  Texas Rangers
+Schedule: Cleveland Indians  Seattle Mariners  Oakland Athletics
+Schedule: Cleveland Indians  Houston Astros  Texas Rangers
+Schedule: Cleveland Indians  Seattle Mariners  Oakland Athletics
+Schedule: Cleveland Indians  Houston Astros  Texas Rangers
+Schedule: Cleveland Indians  Seattle Mariners  Oakland Athletics
+Schedule: Detroit Tigers  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Detroit Tigers  Texas Rangers  Seattle Mariners
+Schedule: Detroit Tigers  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Detroit Tigers  Texas Rangers  Seattle Mariners
+Schedule: Detroit Tigers  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Detroit Tigers  Texas Rangers  Seattle Mariners
+Schedule: Detroit Tigers  Seattle Mariners  Houston Astros
+Schedule: Detroit Tigers  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Detroit Tigers  Seattle Mariners  Houston Astros
+Schedule: Detroit Tigers  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Detroit Tigers  Seattle Mariners  Houston Astros
+Schedule: Detroit Tigers  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Detroit Tigers  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Detroit Tigers  Texas Rangers  Oakland Athletics
+Schedule: Detroit Tigers  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Detroit Tigers  Texas Rangers  Oakland Athletics
+Schedule: Detroit Tigers  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Detroit Tigers  Texas Rangers  Oakland Athletics
+Schedule: Detroit Tigers  Oakland Athletics  Houston Astros
+Schedule: Detroit Tigers  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Detroit Tigers  Oakland Athletics  Houston Astros
+Schedule: Detroit Tigers  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Detroit Tigers  Oakland Athletics  Houston Astros
+Schedule: Detroit Tigers  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Detroit Tigers  Houston Astros  Texas Rangers
+Schedule: Detroit Tigers  Seattle Mariners  Oakland Athletics
+Schedule: Detroit Tigers  Houston Astros  Texas Rangers
+Schedule: Detroit Tigers  Seattle Mariners  Oakland Athletics
+Schedule: Detroit Tigers  Houston Astros  Texas Rangers
+Schedule: Detroit Tigers  Seattle Mariners  Oakland Athletics
+Schedule: Kansas City Royals  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Kansas City Royals  Texas Rangers  Seattle Mariners
+Schedule: Kansas City Royals  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Kansas City Royals  Texas Rangers  Seattle Mariners
+Schedule: Kansas City Royals  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Kansas City Royals  Texas Rangers  Seattle Mariners
+Schedule: Kansas City Royals  Seattle Mariners  Houston Astros
+Schedule: Kansas City Royals  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Kansas City Royals  Seattle Mariners  Houston Astros
+Schedule: Kansas City Royals  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Kansas City Royals  Seattle Mariners  Houston Astros
+Schedule: Kansas City Royals  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Kansas City Royals  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Kansas City Royals  Texas Rangers  Oakland Athletics
+Schedule: Kansas City Royals  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Kansas City Royals  Texas Rangers  Oakland Athletics
+Schedule: Kansas City Royals  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Kansas City Royals  Texas Rangers  Oakland Athletics
+Schedule: Kansas City Royals  Oakland Athletics  Houston Astros
+Schedule: Kansas City Royals  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Kansas City Royals  Oakland Athletics  Houston Astros
+Schedule: Kansas City Royals  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Kansas City Royals  Oakland Athletics  Houston Astros
+Schedule: Kansas City Royals  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Kansas City Royals  Houston Astros  Texas Rangers
+Schedule: Kansas City Royals  Seattle Mariners  Oakland Athletics
+Schedule: Kansas City Royals  Houston Astros  Texas Rangers
+Schedule: Kansas City Royals  Seattle Mariners  Oakland Athletics
+Schedule: Kansas City Royals  Houston Astros  Texas Rangers
+Schedule: Kansas City Royals  Seattle Mariners  Oakland Athletics
+Schedule: Minnesota Twins  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Minnesota Twins  Texas Rangers  Seattle Mariners
+Schedule: Minnesota Twins  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Minnesota Twins  Texas Rangers  Seattle Mariners
+Schedule: Minnesota Twins  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Minnesota Twins  Texas Rangers  Seattle Mariners
+Schedule: Minnesota Twins  Seattle Mariners  Houston Astros
+Schedule: Minnesota Twins  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Minnesota Twins  Seattle Mariners  Houston Astros
+Schedule: Minnesota Twins  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Minnesota Twins  Seattle Mariners  Houston Astros
+Schedule: Minnesota Twins  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Minnesota Twins  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Minnesota Twins  Texas Rangers  Oakland Athletics
+Schedule: Minnesota Twins  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Minnesota Twins  Texas Rangers  Oakland Athletics
+Schedule: Minnesota Twins  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Minnesota Twins  Texas Rangers  Oakland Athletics
+Schedule: Minnesota Twins  Oakland Athletics  Houston Astros
+Schedule: Minnesota Twins  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Minnesota Twins  Oakland Athletics  Houston Astros
+Schedule: Minnesota Twins  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Minnesota Twins  Oakland Athletics  Houston Astros
+Schedule: Minnesota Twins  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Minnesota Twins  Houston Astros  Texas Rangers
+Schedule: Minnesota Twins  Seattle Mariners  Oakland Athletics
+Schedule: Minnesota Twins  Houston Astros  Texas Rangers
+Schedule: Minnesota Twins  Seattle Mariners  Oakland Athletics
+Schedule: Minnesota Twins  Houston Astros  Texas Rangers
+Schedule: Minnesota Twins  Seattle Mariners  Oakland Athletics
+Schedule: Atlanta Braves  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Atlanta Braves  Texas Rangers  Seattle Mariners
+Schedule: Atlanta Braves  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Atlanta Braves  Texas Rangers  Seattle Mariners
+Schedule: Atlanta Braves  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Atlanta Braves  Texas Rangers  Seattle Mariners
+Schedule: Atlanta Braves  Seattle Mariners  Houston Astros
+Schedule: Atlanta Braves  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Atlanta Braves  Seattle Mariners  Houston Astros
+Schedule: Atlanta Braves  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Atlanta Braves  Seattle Mariners  Houston Astros
+Schedule: Atlanta Braves  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Atlanta Braves  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Atlanta Braves  Texas Rangers  Oakland Athletics
+Schedule: Atlanta Braves  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Atlanta Braves  Texas Rangers  Oakland Athletics
+Schedule: Atlanta Braves  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Atlanta Braves  Texas Rangers  Oakland Athletics
+Schedule: Atlanta Braves  Oakland Athletics  Houston Astros
+Schedule: Atlanta Braves  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Atlanta Braves  Oakland Athletics  Houston Astros
+Schedule: Atlanta Braves  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Atlanta Braves  Oakland Athletics  Houston Astros
+Schedule: Atlanta Braves  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Atlanta Braves  Houston Astros  Texas Rangers
+Schedule: Atlanta Braves  Seattle Mariners  Oakland Athletics
+Schedule: Atlanta Braves  Houston Astros  Texas Rangers
+Schedule: Atlanta Braves  Seattle Mariners  Oakland Athletics
+Schedule: Atlanta Braves  Houston Astros  Texas Rangers
+Schedule: Atlanta Braves  Seattle Mariners  Oakland Athletics
+Schedule: Miami Marlins  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Miami Marlins  Texas Rangers  Seattle Mariners
+Schedule: Miami Marlins  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Miami Marlins  Texas Rangers  Seattle Mariners
+Schedule: Miami Marlins  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Miami Marlins  Texas Rangers  Seattle Mariners
+Schedule: Miami Marlins  Seattle Mariners  Houston Astros
+Schedule: Miami Marlins  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Miami Marlins  Seattle Mariners  Houston Astros
+Schedule: Miami Marlins  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Miami Marlins  Seattle Mariners  Houston Astros
+Schedule: Miami Marlins  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Miami Marlins  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Miami Marlins  Texas Rangers  Oakland Athletics
+Schedule: Miami Marlins  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Miami Marlins  Texas Rangers  Oakland Athletics
+Schedule: Miami Marlins  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Miami Marlins  Texas Rangers  Oakland Athletics
+Schedule: Miami Marlins  Oakland Athletics  Houston Astros
+Schedule: Miami Marlins  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Miami Marlins  Oakland Athletics  Houston Astros
+Schedule: Miami Marlins  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Miami Marlins  Oakland Athletics  Houston Astros
+Schedule: Miami Marlins  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Miami Marlins  Houston Astros  Texas Rangers
+Schedule: Miami Marlins  Seattle Mariners  Oakland Athletics
+Schedule: Miami Marlins  Houston Astros  Texas Rangers
+Schedule: Miami Marlins  Seattle Mariners  Oakland Athletics
+Schedule: Miami Marlins  Houston Astros  Texas Rangers
+Schedule: Miami Marlins  Seattle Mariners  Oakland Athletics
+Schedule: New York Mets  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: New York Mets  Texas Rangers  Seattle Mariners
+Schedule: New York Mets  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: New York Mets  Texas Rangers  Seattle Mariners
+Schedule: New York Mets  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: New York Mets  Texas Rangers  Seattle Mariners
+Schedule: New York Mets  Seattle Mariners  Houston Astros
+Schedule: New York Mets  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: New York Mets  Seattle Mariners  Houston Astros
+Schedule: New York Mets  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: New York Mets  Seattle Mariners  Houston Astros
+Schedule: New York Mets  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: New York Mets  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: New York Mets  Texas Rangers  Oakland Athletics
+Schedule: New York Mets  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: New York Mets  Texas Rangers  Oakland Athletics
+Schedule: New York Mets  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: New York Mets  Texas Rangers  Oakland Athletics
+Schedule: New York Mets  Oakland Athletics  Houston Astros
+Schedule: New York Mets  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: New York Mets  Oakland Athletics  Houston Astros
+Schedule: New York Mets  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: New York Mets  Oakland Athletics  Houston Astros
+Schedule: New York Mets  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: New York Mets  Houston Astros  Texas Rangers
+Schedule: New York Mets  Seattle Mariners  Oakland Athletics
+Schedule: New York Mets  Houston Astros  Texas Rangers
+Schedule: New York Mets  Seattle Mariners  Oakland Athletics
+Schedule: New York Mets  Houston Astros  Texas Rangers
+Schedule: New York Mets  Seattle Mariners  Oakland Athletics
+Schedule: Philadelphia Phillies  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Philadelphia Phillies  Texas Rangers  Seattle Mariners
+Schedule: Philadelphia Phillies  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Philadelphia Phillies  Texas Rangers  Seattle Mariners
+Schedule: Philadelphia Phillies  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Philadelphia Phillies  Texas Rangers  Seattle Mariners
+Schedule: Philadelphia Phillies  Seattle Mariners  Houston Astros
+Schedule: Philadelphia Phillies  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Philadelphia Phillies  Seattle Mariners  Houston Astros
+Schedule: Philadelphia Phillies  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Philadelphia Phillies  Seattle Mariners  Houston Astros
+Schedule: Philadelphia Phillies  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Philadelphia Phillies  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Philadelphia Phillies  Texas Rangers  Oakland Athletics
+Schedule: Philadelphia Phillies  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Philadelphia Phillies  Texas Rangers  Oakland Athletics
+Schedule: Philadelphia Phillies  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Philadelphia Phillies  Texas Rangers  Oakland Athletics
+Schedule: Philadelphia Phillies  Oakland Athletics  Houston Astros
+Schedule: Philadelphia Phillies  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Philadelphia Phillies  Oakland Athletics  Houston Astros
+Schedule: Philadelphia Phillies  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Philadelphia Phillies  Oakland Athletics  Houston Astros
+Schedule: Philadelphia Phillies  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Philadelphia Phillies  Houston Astros  Texas Rangers
+Schedule: Philadelphia Phillies  Seattle Mariners  Oakland Athletics
+Schedule: Philadelphia Phillies  Houston Astros  Texas Rangers
+Schedule: Philadelphia Phillies  Seattle Mariners  Oakland Athletics
+Schedule: Philadelphia Phillies  Houston Astros  Texas Rangers
+Schedule: Philadelphia Phillies  Seattle Mariners  Oakland Athletics
+Schedule: Washington Nationals  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Washington Nationals  Texas Rangers  Seattle Mariners
+Schedule: Washington Nationals  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Washington Nationals  Texas Rangers  Seattle Mariners
+Schedule: Washington Nationals  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Washington Nationals  Texas Rangers  Seattle Mariners
+Schedule: Washington Nationals  Seattle Mariners  Houston Astros
+Schedule: Washington Nationals  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Washington Nationals  Seattle Mariners  Houston Astros
+Schedule: Washington Nationals  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Washington Nationals  Seattle Mariners  Houston Astros
+Schedule: Washington Nationals  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Washington Nationals  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Washington Nationals  Texas Rangers  Oakland Athletics
+Schedule: Washington Nationals  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Washington Nationals  Texas Rangers  Oakland Athletics
+Schedule: Washington Nationals  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Washington Nationals  Texas Rangers  Oakland Athletics
+Schedule: Washington Nationals  Oakland Athletics  Houston Astros
+Schedule: Washington Nationals  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Washington Nationals  Oakland Athletics  Houston Astros
+Schedule: Washington Nationals  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Washington Nationals  Oakland Athletics  Houston Astros
+Schedule: Washington Nationals  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Washington Nationals  Houston Astros  Texas Rangers
+Schedule: Washington Nationals  Seattle Mariners  Oakland Athletics
+Schedule: Washington Nationals  Houston Astros  Texas Rangers
+Schedule: Washington Nationals  Seattle Mariners  Oakland Athletics
+Schedule: Washington Nationals  Houston Astros  Texas Rangers
+Schedule: Washington Nationals  Seattle Mariners  Oakland Athletics
+Schedule: Arizona Diamondbacks  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Arizona Diamondbacks  Texas Rangers  Seattle Mariners
+Schedule: Arizona Diamondbacks  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Arizona Diamondbacks  Texas Rangers  Seattle Mariners
+Schedule: Arizona Diamondbacks  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Arizona Diamondbacks  Texas Rangers  Seattle Mariners
+Schedule: Arizona Diamondbacks  Seattle Mariners  Houston Astros
+Schedule: Arizona Diamondbacks  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Arizona Diamondbacks  Seattle Mariners  Houston Astros
+Schedule: Arizona Diamondbacks  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Arizona Diamondbacks  Seattle Mariners  Houston Astros
+Schedule: Arizona Diamondbacks  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Arizona Diamondbacks  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Arizona Diamondbacks  Texas Rangers  Oakland Athletics
+Schedule: Arizona Diamondbacks  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Arizona Diamondbacks  Texas Rangers  Oakland Athletics
+Schedule: Arizona Diamondbacks  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Arizona Diamondbacks  Texas Rangers  Oakland Athletics
+Schedule: Arizona Diamondbacks  Oakland Athletics  Houston Astros
+Schedule: Arizona Diamondbacks  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Arizona Diamondbacks  Oakland Athletics  Houston Astros
+Schedule: Arizona Diamondbacks  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Arizona Diamondbacks  Oakland Athletics  Houston Astros
+Schedule: Arizona Diamondbacks  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Arizona Diamondbacks  Houston Astros  Texas Rangers
+Schedule: Arizona Diamondbacks  Seattle Mariners  Oakland Athletics
+Schedule: Arizona Diamondbacks  Houston Astros  Texas Rangers
+Schedule: Arizona Diamondbacks  Seattle Mariners  Oakland Athletics
+Schedule: Arizona Diamondbacks  Houston Astros  Texas Rangers
+Schedule: Arizona Diamondbacks  Seattle Mariners  Oakland Athletics
+Schedule: Colorado Rockies  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Colorado Rockies  Texas Rangers  Seattle Mariners
+Schedule: Colorado Rockies  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Colorado Rockies  Texas Rangers  Seattle Mariners
+Schedule: Colorado Rockies  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Colorado Rockies  Texas Rangers  Seattle Mariners
+Schedule: Colorado Rockies  Seattle Mariners  Houston Astros
+Schedule: Colorado Rockies  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Colorado Rockies  Seattle Mariners  Houston Astros
+Schedule: Colorado Rockies  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Colorado Rockies  Seattle Mariners  Houston Astros
+Schedule: Colorado Rockies  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Colorado Rockies  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Colorado Rockies  Texas Rangers  Oakland Athletics
+Schedule: Colorado Rockies  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Colorado Rockies  Texas Rangers  Oakland Athletics
+Schedule: Colorado Rockies  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Colorado Rockies  Texas Rangers  Oakland Athletics
+Schedule: Colorado Rockies  Oakland Athletics  Houston Astros
+Schedule: Colorado Rockies  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Colorado Rockies  Oakland Athletics  Houston Astros
+Schedule: Colorado Rockies  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Colorado Rockies  Oakland Athletics  Houston Astros
+Schedule: Colorado Rockies  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Colorado Rockies  Houston Astros  Texas Rangers
+Schedule: Colorado Rockies  Seattle Mariners  Oakland Athletics
+Schedule: Colorado Rockies  Houston Astros  Texas Rangers
+Schedule: Colorado Rockies  Seattle Mariners  Oakland Athletics
+Schedule: Colorado Rockies  Houston Astros  Texas Rangers
+Schedule: Colorado Rockies  Seattle Mariners  Oakland Athletics
+Schedule: Los Angeles Dodgers  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Los Angeles Dodgers  Texas Rangers  Seattle Mariners
+Schedule: Los Angeles Dodgers  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Los Angeles Dodgers  Texas Rangers  Seattle Mariners
+Schedule: Los Angeles Dodgers  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Los Angeles Dodgers  Texas Rangers  Seattle Mariners
+Schedule: Los Angeles Dodgers  Seattle Mariners  Houston Astros
+Schedule: Los Angeles Dodgers  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Los Angeles Dodgers  Seattle Mariners  Houston Astros
+Schedule: Los Angeles Dodgers  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Los Angeles Dodgers  Seattle Mariners  Houston Astros
+Schedule: Los Angeles Dodgers  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Los Angeles Dodgers  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Los Angeles Dodgers  Texas Rangers  Oakland Athletics
+Schedule: Los Angeles Dodgers  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Los Angeles Dodgers  Texas Rangers  Oakland Athletics
+Schedule: Los Angeles Dodgers  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Los Angeles Dodgers  Texas Rangers  Oakland Athletics
+Schedule: Los Angeles Dodgers  Oakland Athletics  Houston Astros
+Schedule: Los Angeles Dodgers  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Los Angeles Dodgers  Oakland Athletics  Houston Astros
+Schedule: Los Angeles Dodgers  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Los Angeles Dodgers  Oakland Athletics  Houston Astros
+Schedule: Los Angeles Dodgers  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Los Angeles Dodgers  Houston Astros  Texas Rangers
+Schedule: Los Angeles Dodgers  Seattle Mariners  Oakland Athletics
+Schedule: Los Angeles Dodgers  Houston Astros  Texas Rangers
+Schedule: Los Angeles Dodgers  Seattle Mariners  Oakland Athletics
+Schedule: Los Angeles Dodgers  Houston Astros  Texas Rangers
+Schedule: Los Angeles Dodgers  Seattle Mariners  Oakland Athletics
+Schedule: San Diego Padres  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: San Diego Padres  Texas Rangers  Seattle Mariners
+Schedule: San Diego Padres  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: San Diego Padres  Texas Rangers  Seattle Mariners
+Schedule: San Diego Padres  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: San Diego Padres  Texas Rangers  Seattle Mariners
+Schedule: San Diego Padres  Seattle Mariners  Houston Astros
+Schedule: San Diego Padres  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: San Diego Padres  Seattle Mariners  Houston Astros
+Schedule: San Diego Padres  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: San Diego Padres  Seattle Mariners  Houston Astros
+Schedule: San Diego Padres  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: San Diego Padres  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: San Diego Padres  Texas Rangers  Oakland Athletics
+Schedule: San Diego Padres  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: San Diego Padres  Texas Rangers  Oakland Athletics
+Schedule: San Diego Padres  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: San Diego Padres  Texas Rangers  Oakland Athletics
+Schedule: San Diego Padres  Oakland Athletics  Houston Astros
+Schedule: San Diego Padres  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: San Diego Padres  Oakland Athletics  Houston Astros
+Schedule: San Diego Padres  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: San Diego Padres  Oakland Athletics  Houston Astros
+Schedule: San Diego Padres  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: San Diego Padres  Houston Astros  Texas Rangers
+Schedule: San Diego Padres  Seattle Mariners  Oakland Athletics
+Schedule: San Diego Padres  Houston Astros  Texas Rangers
+Schedule: San Diego Padres  Seattle Mariners  Oakland Athletics
+Schedule: San Diego Padres  Houston Astros  Texas Rangers
+Schedule: San Diego Padres  Seattle Mariners  Oakland Athletics
+Schedule: San Francisco Giants  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: San Francisco Giants  Texas Rangers  Seattle Mariners
+Schedule: San Francisco Giants  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: San Francisco Giants  Texas Rangers  Seattle Mariners
+Schedule: San Francisco Giants  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: San Francisco Giants  Texas Rangers  Seattle Mariners
+Schedule: San Francisco Giants  Seattle Mariners  Houston Astros
+Schedule: San Francisco Giants  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: San Francisco Giants  Seattle Mariners  Houston Astros
+Schedule: San Francisco Giants  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: San Francisco Giants  Seattle Mariners  Houston Astros
+Schedule: San Francisco Giants  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: San Francisco Giants  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: San Francisco Giants  Texas Rangers  Oakland Athletics
+Schedule: San Francisco Giants  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: San Francisco Giants  Texas Rangers  Oakland Athletics
+Schedule: San Francisco Giants  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: San Francisco Giants  Texas Rangers  Oakland Athletics
+Schedule: San Francisco Giants  Oakland Athletics  Houston Astros
+Schedule: San Francisco Giants  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: San Francisco Giants  Oakland Athletics  Houston Astros
+Schedule: San Francisco Giants  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: San Francisco Giants  Oakland Athletics  Houston Astros
+Schedule: San Francisco Giants  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: San Francisco Giants  Houston Astros  Texas Rangers
+Schedule: San Francisco Giants  Seattle Mariners  Oakland Athletics
+Schedule: San Francisco Giants  Houston Astros  Texas Rangers
+Schedule: San Francisco Giants  Seattle Mariners  Oakland Athletics
+Schedule: San Francisco Giants  Houston Astros  Texas Rangers
+Schedule: San Francisco Giants  Seattle Mariners  Oakland Athletics
+Schedule: Chicago Cubs  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Chicago Cubs  Texas Rangers  Seattle Mariners
+Schedule: Chicago Cubs  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Chicago Cubs  Texas Rangers  Seattle Mariners
+Schedule: Chicago Cubs  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Chicago Cubs  Texas Rangers  Seattle Mariners
+Schedule: Chicago Cubs  Seattle Mariners  Houston Astros
+Schedule: Chicago Cubs  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Chicago Cubs  Seattle Mariners  Houston Astros
+Schedule: Chicago Cubs  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Chicago Cubs  Seattle Mariners  Houston Astros
+Schedule: Chicago Cubs  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Chicago Cubs  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Chicago Cubs  Texas Rangers  Oakland Athletics
+Schedule: Chicago Cubs  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Chicago Cubs  Texas Rangers  Oakland Athletics
+Schedule: Chicago Cubs  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Chicago Cubs  Texas Rangers  Oakland Athletics
+Schedule: Chicago Cubs  Oakland Athletics  Houston Astros
+Schedule: Chicago Cubs  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Chicago Cubs  Oakland Athletics  Houston Astros
+Schedule: Chicago Cubs  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Chicago Cubs  Oakland Athletics  Houston Astros
+Schedule: Chicago Cubs  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Chicago Cubs  Houston Astros  Texas Rangers
+Schedule: Chicago Cubs  Seattle Mariners  Oakland Athletics
+Schedule: Chicago Cubs  Houston Astros  Texas Rangers
+Schedule: Chicago Cubs  Seattle Mariners  Oakland Athletics
+Schedule: Chicago Cubs  Houston Astros  Texas Rangers
+Schedule: Chicago Cubs  Seattle Mariners  Oakland Athletics
+Schedule: Cincinnati Reds  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Cincinnati Reds  Texas Rangers  Seattle Mariners
+Schedule: Cincinnati Reds  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Cincinnati Reds  Texas Rangers  Seattle Mariners
+Schedule: Cincinnati Reds  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Cincinnati Reds  Texas Rangers  Seattle Mariners
+Schedule: Cincinnati Reds  Seattle Mariners  Houston Astros
+Schedule: Cincinnati Reds  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Cincinnati Reds  Seattle Mariners  Houston Astros
+Schedule: Cincinnati Reds  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Cincinnati Reds  Seattle Mariners  Houston Astros
+Schedule: Cincinnati Reds  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Cincinnati Reds  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Cincinnati Reds  Texas Rangers  Oakland Athletics
+Schedule: Cincinnati Reds  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Cincinnati Reds  Texas Rangers  Oakland Athletics
+Schedule: Cincinnati Reds  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Cincinnati Reds  Texas Rangers  Oakland Athletics
+Schedule: Cincinnati Reds  Oakland Athletics  Houston Astros
+Schedule: Cincinnati Reds  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Cincinnati Reds  Oakland Athletics  Houston Astros
+Schedule: Cincinnati Reds  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Cincinnati Reds  Oakland Athletics  Houston Astros
+Schedule: Cincinnati Reds  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Cincinnati Reds  Houston Astros  Texas Rangers
+Schedule: Cincinnati Reds  Seattle Mariners  Oakland Athletics
+Schedule: Cincinnati Reds  Houston Astros  Texas Rangers
+Schedule: Cincinnati Reds  Seattle Mariners  Oakland Athletics
+Schedule: Cincinnati Reds  Houston Astros  Texas Rangers
+Schedule: Cincinnati Reds  Seattle Mariners  Oakland Athletics
+Schedule: Milwaukee Brewers  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Milwaukee Brewers  Texas Rangers  Seattle Mariners
+Schedule: Milwaukee Brewers  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Milwaukee Brewers  Texas Rangers  Seattle Mariners
+Schedule: Milwaukee Brewers  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Milwaukee Brewers  Texas Rangers  Seattle Mariners
+Schedule: Milwaukee Brewers  Seattle Mariners  Houston Astros
+Schedule: Milwaukee Brewers  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Milwaukee Brewers  Seattle Mariners  Houston Astros
+Schedule: Milwaukee Brewers  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Milwaukee Brewers  Seattle Mariners  Houston Astros
+Schedule: Milwaukee Brewers  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Milwaukee Brewers  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Milwaukee Brewers  Texas Rangers  Oakland Athletics
+Schedule: Milwaukee Brewers  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Milwaukee Brewers  Texas Rangers  Oakland Athletics
+Schedule: Milwaukee Brewers  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Milwaukee Brewers  Texas Rangers  Oakland Athletics
+Schedule: Milwaukee Brewers  Oakland Athletics  Houston Astros
+Schedule: Milwaukee Brewers  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Milwaukee Brewers  Oakland Athletics  Houston Astros
+Schedule: Milwaukee Brewers  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Milwaukee Brewers  Oakland Athletics  Houston Astros
+Schedule: Milwaukee Brewers  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Milwaukee Brewers  Houston Astros  Texas Rangers
+Schedule: Milwaukee Brewers  Seattle Mariners  Oakland Athletics
+Schedule: Milwaukee Brewers  Houston Astros  Texas Rangers
+Schedule: Milwaukee Brewers  Seattle Mariners  Oakland Athletics
+Schedule: Milwaukee Brewers  Houston Astros  Texas Rangers
+Schedule: Milwaukee Brewers  Seattle Mariners  Oakland Athletics
+Schedule: Pittsburgh Pirates  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Pittsburgh Pirates  Texas Rangers  Seattle Mariners
+Schedule: Pittsburgh Pirates  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Pittsburgh Pirates  Texas Rangers  Seattle Mariners
+Schedule: Pittsburgh Pirates  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: Pittsburgh Pirates  Texas Rangers  Seattle Mariners
+Schedule: Pittsburgh Pirates  Seattle Mariners  Houston Astros
+Schedule: Pittsburgh Pirates  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Pittsburgh Pirates  Seattle Mariners  Houston Astros
+Schedule: Pittsburgh Pirates  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Pittsburgh Pirates  Seattle Mariners  Houston Astros
+Schedule: Pittsburgh Pirates  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: Pittsburgh Pirates  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Pittsburgh Pirates  Texas Rangers  Oakland Athletics
+Schedule: Pittsburgh Pirates  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Pittsburgh Pirates  Texas Rangers  Oakland Athletics
+Schedule: Pittsburgh Pirates  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: Pittsburgh Pirates  Texas Rangers  Oakland Athletics
+Schedule: Pittsburgh Pirates  Oakland Athletics  Houston Astros
+Schedule: Pittsburgh Pirates  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Pittsburgh Pirates  Oakland Athletics  Houston Astros
+Schedule: Pittsburgh Pirates  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Pittsburgh Pirates  Oakland Athletics  Houston Astros
+Schedule: Pittsburgh Pirates  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: Pittsburgh Pirates  Houston Astros  Texas Rangers
+Schedule: Pittsburgh Pirates  Seattle Mariners  Oakland Athletics
+Schedule: Pittsburgh Pirates  Houston Astros  Texas Rangers
+Schedule: Pittsburgh Pirates  Seattle Mariners  Oakland Athletics
+Schedule: Pittsburgh Pirates  Houston Astros  Texas Rangers
+Schedule: Pittsburgh Pirates  Seattle Mariners  Oakland Athletics
+Schedule: St. Louis Cardinals  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: St. Louis Cardinals  Texas Rangers  Seattle Mariners
+Schedule: St. Louis Cardinals  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: St. Louis Cardinals  Texas Rangers  Seattle Mariners
+Schedule: St. Louis Cardinals  Oakland Athletics  Los Angeles Angels of Anaheim
+Schedule: St. Louis Cardinals  Texas Rangers  Seattle Mariners
+Schedule: St. Louis Cardinals  Seattle Mariners  Houston Astros
+Schedule: St. Louis Cardinals  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: St. Louis Cardinals  Seattle Mariners  Houston Astros
+Schedule: St. Louis Cardinals  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: St. Louis Cardinals  Seattle Mariners  Houston Astros
+Schedule: St. Louis Cardinals  Los Angeles Angels of Anaheim  Texas Rangers
+Schedule: St. Louis Cardinals  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: St. Louis Cardinals  Texas Rangers  Oakland Athletics
+Schedule: St. Louis Cardinals  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: St. Louis Cardinals  Texas Rangers  Oakland Athletics
+Schedule: St. Louis Cardinals  Houston Astros  Los Angeles Angels of Anaheim
+Schedule: St. Louis Cardinals  Texas Rangers  Oakland Athletics
+Schedule: St. Louis Cardinals  Oakland Athletics  Houston Astros
+Schedule: St. Louis Cardinals  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: St. Louis Cardinals  Oakland Athletics  Houston Astros
+Schedule: St. Louis Cardinals  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: St. Louis Cardinals  Oakland Athletics  Houston Astros
+Schedule: St. Louis Cardinals  Los Angeles Angels of Anaheim  Seattle Mariners
+Schedule: St. Louis Cardinals  Houston Astros  Texas Rangers
+Schedule: St. Louis Cardinals  Seattle Mariners  Oakland Athletics
+Schedule: St. Louis Cardinals  Houston Astros  Texas Rangers
+Schedule: St. Louis Cardinals  Seattle Mariners  Oakland Athletics
+Schedule: St. Louis Cardinals  Houston Astros  Texas Rangers
+Schedule: St. Louis Cardinals  Seattle Mariners  Oakland Athletics

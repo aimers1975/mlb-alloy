@@ -55,6 +55,8 @@ public class MLBUI extends JFrame {
     JButton previousScheduleSolutionButton = new JButton(scheduler.SchedulerConstants.PREVIOUS_SOLUTION_BUTTON);
     JButton showCurrentTeamStatisticsButton = new JButton(scheduler.SchedulerConstants.SHOW_TEAM_STATISTICS_BUTTON);
     JButton loadLastScheduleButton = new JButton(scheduler.SchedulerConstants.LOAD_LAST_SCHEDULE_BUTTON);
+    JButton removeGameButton = new JButton(scheduler.SchedulerConstants.REMOVE_GAME_BUTTON);
+    JTextField removeGameTextField = new JTextField();
     JPanel scrollPanel = new JPanel();
     JTextArea inputALS = new JTextArea(200,200);
     JScrollPane scroll = new JScrollPane(inputALS);
@@ -137,14 +139,15 @@ public class MLBUI extends JFrame {
         createInputScroll ();
         createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
             showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolutionButton, previousScheduleSolutionButton,
-            showCurrentTeamStatisticsButton, loadLastScheduleButton);
+            showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
     private void showNoGameDays() {
         outputPlaceholder.setText("Days still available with no games:\n");
+        daysSaved = testmapper.showNoGameDays();
         for(int i=0; i<daysSaved.length; i++) {
-            if(daysSaved[i]==false) {
+            if(daysSaved[i]==true) {
                 outputPlaceholder.append("    Day " + i + "\n");
             }
         }
@@ -158,7 +161,7 @@ public class MLBUI extends JFrame {
         String[] allTeams = scheduler.SchedulerConstants.FULL_LEAGUE_LIST;
         outputPlaceholder.setText("");
         for(String reportTeam : allTeams) {
-            int numGames = testmapper.countGamesForTeam(reportTeam);
+            int numGames = testmapper.countGamesForTeam(reportTeam.trim());
             outputPlaceholder.append(reportTeam + "  " + numGames + "\n");
             outputPlaceholder.append("  Division # of games: TBD\n");
             outputPlaceholder.append("  Interdivision # of games: TB\n");
@@ -577,10 +580,62 @@ public class MLBUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                 debug("Loading last schedule saved.");
+
                 testmapper.loadLastSchedule();
+                daysSaved = testmapper.showNoGameDays();
+            }
+        });
+        removeGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                debug("Removing game.");
+                String removeGameInput = removeGameTextField.getText();
+                removeGame(removeGameInput);
+
             }
         });
 
+    }
+
+    private void removeGame(String removeGameInput) {
+        // (Enter <Day#>, <Game#>-<Game#>)
+        // abc - invalid
+        // 0,1 - remove day 0 game 1
+        // 0,1 - 4
+        int day = 0;
+        int gameStart = 0;
+        int gameEnd = 0;
+        StringTokenizer st = new StringTokenizer(removeGameInput, ",-");
+        try {
+            if(st.hasMoreTokens()) 
+                day = Integer.parseInt(st.nextToken().trim());
+            if(st.hasMoreTokens()) 
+                gameStart = Integer.parseInt(st.nextToken().trim());
+            if(st.hasMoreTokens()) {
+                gameEnd = Integer.parseInt(st.nextToken().trim());
+            } else {
+                gameEnd = gameStart;
+            }
+            debug("Day: " + day + " Gamestart: " + gameStart + " Gameend: " + gameEnd);
+            if(gameStart <= gameEnd && day < 181) {
+                outputPlaceholder.setText("");
+                outputPlaceholder.setText("Remove game: " + day + ", " + gameStart + " - " + gameEnd);
+                for(int i=gameEnd; i>=gameStart; i--) {
+                    try {
+                        testmapper.removeGame(i,day);
+                    } catch (Exception e) {
+                        outputPlaceholder.append("  Day: " + day + " Game: " + i + " out of range.\n");                        
+                    }
+                }
+            } else {
+                outputPlaceholder.setText("");
+                outputPlaceholder.setText("To remove game, start must be less\n than end and day must be less than 181.");
+            }
+        } catch (Exception e) {
+            outputPlaceholder.setText("");
+            outputPlaceholder.setText("Invalid remove day format, Ex. use: 5, 6-7 or 5,6");
+            e.printStackTrace();
+        }
     }
 
     private void saveAnalyzerOutput(ArrayList<String> saveOutput, String parametersUsed) {
@@ -683,7 +738,7 @@ public class MLBUI extends JFrame {
         gl.setAutoCreateGaps(true);
 //appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
 //            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolution, previousScheduleSolution,
-//            showCurrentTeamStatisticsButton, loadLastScheduleButton
+//            showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField
         gl.setHorizontalGroup(gl.createSequentialGroup()
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[0])
@@ -697,7 +752,10 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[1])
                 .addComponent(arg[2])
                 .addComponent(arg[5])
-                .addComponent(arg[7]))
+                .addComponent(arg[7])
+                .addGroup(gl.createSequentialGroup()
+                    .addComponent(arg[16])
+                    .addComponent(arg[17])))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[4])
                 .addComponent(arg[10])
@@ -726,7 +784,9 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[12]))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[14])
-                .addComponent(arg[13]))
+                .addComponent(arg[13])
+                .addComponent(arg[16])
+                .addComponent(arg[17]))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[15]))
         );

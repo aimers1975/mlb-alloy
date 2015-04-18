@@ -45,6 +45,7 @@ public class SchedulerConstants {
     public static final String SHOW_OVERALL_SCHEDULE_BUTTON = "Show Overall Schedule";
     public static final String SHOW_TEAM_STATISTICS_BUTTON = "Show Team Statistics";
     public static final String LOAD_LAST_SCHEDULE_BUTTON = "Load Last Schedule";
+    public static final String REMOVE_GAME_BUTTON = "Remove Games (Enter <Day#>, <Game#>-<Game#>)";
     public static final String START_EVAL_MESSAGE ="Starting Evaluation...";
     public static final String TEAM_NAME_LABEL = "Teams To Map To Full Schedule";
     public static final String[] TEAM_NAME_MENU = {"Full Leagues", " Full American League", "  American League East", "  American League West", 
