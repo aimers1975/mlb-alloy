@@ -71,7 +71,7 @@ public class MLBUI extends JFrame {
     JLabel numRunsLabel = new JLabel(scheduler.SchedulerConstants.NUM_RUNS_LABEL);
     JComboBox numRuns;
     JLabel dayRangeStartLabel = new JLabel(scheduler.SchedulerConstants.DAY_RANGE_START_LABEL);
-    JComboBox dayRangeStart;
+    JComboBox dayRangeStart = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_DAY_START);
     JLabel dayRangeEndLabel = new JLabel(scheduler.SchedulerConstants.DAY_RANGE_END_LABEL);
     JComboBox dayRangeEnd;
     JLabel teamNumGamesMinLabel = new JLabel(scheduler.SchedulerConstants.TEAM_NUM_GAMES_MIN_LABEL);
@@ -139,7 +139,7 @@ public class MLBUI extends JFrame {
         createInputScroll ();
         createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
             showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolutionButton, previousScheduleSolutionButton,
-            showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField);
+            showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField, dayRangeStartLabel, dayRangeStart);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
@@ -178,7 +178,7 @@ public class MLBUI extends JFrame {
         currentParameters.append(String.valueOf(numTeamsPerGroup.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(numSeries.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(numFourGameSeries.getSelectedItem()) + "-");
-        currentParameters.append(String.valueOf(dayRangeStart.getSelectedItem()) + "-");
+       // currentParameters.append(String.valueOf(dayRangeStart.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(dayRangeEnd.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(teamNumGamesMin.getSelectedItem()) + "-");
         currentParameters.append(String.valueOf(teamNumGamesMax.getSelectedItem()) + "-");
@@ -218,10 +218,12 @@ public class MLBUI extends JFrame {
 
     private void saveSubScheduleToSchedule() {
         if(parser != null) {
-            parser.getStartDay();
-            parser.getEndDay();
+            // ToDo update for day range change.
+            int dayStart = Integer.parseInt(String.valueOf(dayRangeStart.getSelectedItem()));
+            int dayEnd = dayStart + parser.getEndDay();
+            debug("The start day is: " + dayStart + " The day range end is: " + dayEnd);
             outputPlaceholder.setText("Saving to full schedule.\n");
-            for(int i=parser.getStartDay(); i<=parser.getEndDay(); i++) {
+            for(int i=dayStart; i<=dayEnd; i++) {
                 if(daysSaved[i] == true) {
                     outputPlaceholder.append("WARNING: Games already saved on day: " + i + "\n");
                 } else {
@@ -230,12 +232,9 @@ public class MLBUI extends JFrame {
             }
             if(parser.getAllTeams().size()==5) {
                 debug("Calling create div schedule");
-                //testmapper.loadTeams();
-                //testmapper.createDivisionSchedule(parser);
-                debug("Got team name selection: " + (String.valueOf(teamNameComboBox.getSelectedItem()).trim()));
                 ArrayList<String> currentTeamList = getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem()).trim());
                 if(currentTeamList.size() == 5) {
-                    testmapper.createSingleDivisionSchedule(parser, currentTeamList);
+                    testmapper.createSingleDivisionSchedule(parser, currentTeamList, dayStart);
                 } else {
                     outputPlaceholder.setText("");
                     outputPlaceholder.setText("Not a valid team # and name combination.");  
@@ -244,10 +243,9 @@ public class MLBUI extends JFrame {
                 debug("Calling create interdivision div schedule");
                 //testmapper.loadTeams();
                 //testmapper.createInterDivisionSchedule(parser);
-                debug("Got team name selection: " + (String.valueOf(teamNameComboBox.getSelectedItem()).trim()));
                 ArrayList<String> currentTeamList = getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem()).trim());
                 if(currentTeamList.size() == 15) {
-                    testmapper.createSingleDivisionSchedule(parser, currentTeamList);
+                    testmapper.createSingleDivisionSchedule(parser, currentTeamList, dayStart);
                 } else {
                     outputPlaceholder.setText("");
                     outputPlaceholder.setText("Not a valid team # and name combination.");  
@@ -255,10 +253,9 @@ public class MLBUI extends JFrame {
             } else if (parser.getAllTeams().size() == 30) {
                 //testmapper.loadTeams();
                 //testmapper.createInterLeagueSchedule(parser);
-                debug("Got team name selection: " + (String.valueOf(teamNameComboBox.getSelectedItem()).trim()));
                 ArrayList<String> currentTeamList = getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem()).trim());
                 if(currentTeamList.size() == 30) {
-                    testmapper.createSingleDivisionSchedule(parser, currentTeamList);
+                    testmapper.createSingleDivisionSchedule(parser, currentTeamList, dayStart);
                 } else {
                     outputPlaceholder.setText("");
                     outputPlaceholder.setText("Not a valid team # and name combination.");  
@@ -273,7 +270,6 @@ public class MLBUI extends JFrame {
     public ArrayList<String> getTeamNamesSelected(String teamName) {
         // Get values from team name list dropdown
         ArrayList<String> thisTeamList = new ArrayList<String>();
-        debug("Switch on team name: " + teamName);
          switch (teamName) {
             case "Full Leagues":
                 thisTeamList = new ArrayList<String>(Arrays.asList(scheduler.SchedulerConstants.FULL_LEAGUE_LIST));
@@ -331,33 +327,33 @@ public class MLBUI extends JFrame {
             newModel.addPredSetFourGameSeries(Integer.parseInt(params[3]));
         }
         //params[4] and params[5] - day range start and end.
-        debug("Day range start: " + params[4]);
-        debug("Day range end: " + params[5]);
-        if(Integer.parseInt(params[4]) < Integer.parseInt(params[5])) {
-            newModel.setupPossibleDays(Integer.parseInt(params[4]),Integer.parseInt(params[5]));
+        //debug("Day range start: " + params[4]);
+        debug("Day range end: " + params[4]);
+        if(Integer.parseInt(params[4]) > 0) {
+            newModel.setupPossibleDays(1,Integer.parseInt(params[4]));
         }
-        //params[6] and params[7] - number of games against all teams min and max
-        debug("Team number games min: " + params[6]);
-        debug("Team number games max: " + params[7]);
-        if(!params[6].equals("No Value")) {
-            if(!params[7].equals("No Value")) {
-                if(Integer.parseInt(params[6]) <= Integer.parseInt(params[7])) {
-                    newModel.addPredTeamNumberGames(Integer.parseInt(params[6]),Integer.parseInt(params[7]));
+        //params[5] and params[6] - number of games against all teams min and max
+        debug("Team number games min: " + params[5]);
+        debug("Team number games max: " + params[6]);
+        if(!params[5].equals("No Value")) {
+            if(!params[6].equals("No Value")) {
+                if(Integer.parseInt(params[5]) <= Integer.parseInt(params[6])) {
+                    newModel.addPredTeamNumberGames(Integer.parseInt(params[5]),Integer.parseInt(params[6]));
                 } 
             } else {
-                newModel.addPredTeamNumberGames(Integer.parseInt(params[6]),0);              
+                newModel.addPredTeamNumberGames(Integer.parseInt(params[5]),0);              
             }
         } 
-        //params[8] and params[9] - number of games against all teams min and max
-        debug("Single team number games min: " + params[8]);
-        debug("Single team number games max: " + params[9]);
-        if(!params[8].equals("No Value")) {
-            if(!params[9].equals("No Value")) {
-                if(Integer.parseInt(params[8]) <= Integer.parseInt(params[8])) {
-                    newModel.addPredSingleTeamNumberGames(Integer.parseInt(params[8]),Integer.parseInt(params[9]));
+        //params[7] and params[8] - number of games against all teams min and max
+        debug("Single team number games min: " + params[7]);
+        debug("Single team number games max: " + params[8]);
+        if(!params[7].equals("No Value")) {
+            if(!params[8].equals("No Value")) {
+                if(Integer.parseInt(params[7]) <= Integer.parseInt(params[8])) {
+                    newModel.addPredSingleTeamNumberGames(Integer.parseInt(params[7]),Integer.parseInt(params[8]));
                 }
             } else {
-                newModel.addPredSingleTeamNumberGames(Integer.parseInt(params[8]),0);              
+                newModel.addPredSingleTeamNumberGames(Integer.parseInt(params[7]),0);              
             }
         } 
 
@@ -369,32 +365,32 @@ public class MLBUI extends JFrame {
             newModel.addCustomPred(customPredString);
             newModel.addCustomPredInShow(customPredInShowString);
         }
-        if(params[10].equals("T")) {
+        if(params[9].equals("T")) {
             debug("No four game away stands is selected.");
             newModel.addPredNoFourGameAwayStands();
         } 
-        if(params[11].equals("T")) {
+        if(params[10].equals("T")) {
             debug("Has half home games is selected.");
             newModel.addPredHasHalfHomeGames();
         }
-        if(params[12].equals("T")){
+        if(params[11].equals("T")){
             debug("No consecutive is selected");
             newModel.addPredNoConsecutiveSeries();
         }
-        debug("Number of runs specified: " + params[13]);
+        debug("Number of runs specified: " + params[12]);
         //Make sure number of runs is at least as many as number of series
         //specified, if number of series was specified otherwise no 
         //instance will be found
         //params[2] number of series
         if(!params[2].equals("No Value")) {
-            if(Integer.parseInt(params[13]) < Integer.parseInt(params[2])) {
+            if(Integer.parseInt(params[12]) < Integer.parseInt(params[2])) {
                 debug("NOTE: Not enough runs specified, \ncorrected to " + params[2] + " to match number of series!\n");
                 newModel.setupRuns(Integer.parseInt(params[2]));
             } else {
-                newModel.setupRuns(Integer.parseInt(params[13]));
+                newModel.setupRuns(Integer.parseInt(params[12]));
             }
         } else {
-            newModel.setupRuns(Integer.parseInt(params[13]));
+            newModel.setupRuns(Integer.parseInt(params[12]));
         }
         ArrayList<String> currentModel = newModel.getModel();
         inputALS.setText("");
@@ -445,9 +441,9 @@ public class MLBUI extends JFrame {
         scrollPanelInputs.add(numFourGameSeriesLabel);
         numFourGameSeries = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
         scrollPanelInputs.add(numFourGameSeries);
-        scrollPanelInputs.add(dayRangeStartLabel);
-        dayRangeStart = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_DAY_START);
-        scrollPanelInputs.add(dayRangeStart);
+        //scrollPanelInputs.add(dayRangeStartLabel);
+        //dayRangeStart = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_DAY_START);
+        //scrollPanelInputs.add(dayRangeStart);
         scrollPanelInputs.add(dayRangeEndLabel);
         dayRangeEnd = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_DAY_END);
         scrollPanelInputs.add(dayRangeEnd);
@@ -510,7 +506,6 @@ public class MLBUI extends JFrame {
         saveToOverallScheduleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                debug("Save to overall schedule clicked");
                 saveSubScheduleToSchedule();
             }
         });
@@ -538,8 +533,6 @@ public class MLBUI extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 if(!cachedOutput.isEmpty()) {
                     currentSolution++;
-                    debug("Current solution is now: " + currentSolution);
-                    debug("Cached output size is: " + cachedOutput.size());
                     if(currentSolution >= cachedOutput.size()) {
                         currentSolution = 0;
                         debug("Reached end of solutions, loop to beginning.");
@@ -557,7 +550,6 @@ public class MLBUI extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 if(!cachedOutput.isEmpty()) {
                     currentSolution--;
-                    debug("Current solution is now: " + currentSolution);
                     if(currentSolution <= 0) {
                         currentSolution = cachedOutput.size()-1;
                         debug("Reached end of solutions, loop to beginning.");
@@ -616,7 +608,6 @@ public class MLBUI extends JFrame {
             } else {
                 gameEnd = gameStart;
             }
-            debug("Day: " + day + " Gamestart: " + gameStart + " Gameend: " + gameEnd);
             if(gameStart <= gameEnd && day < 181) {
                 outputPlaceholder.setText("");
                 outputPlaceholder.setText("Remove game: " + day + ", " + gameStart + " - " + gameEnd);
@@ -738,7 +729,7 @@ public class MLBUI extends JFrame {
         gl.setAutoCreateGaps(true);
 //appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
 //            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolution, previousScheduleSolution,
-//            showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField
+//            showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField, dayRangeStartLabel, dayRangeStart
         gl.setHorizontalGroup(gl.createSequentialGroup()
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[0])
@@ -761,7 +752,9 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[10])
                 .addComponent(arg[11])
                 .addComponent(arg[12])
-                .addComponent(arg[13]))
+                .addComponent(arg[13])
+                .addComponent(arg[18])
+                .addComponent(arg[19]))
         );
 
         gl.setVerticalGroup(gl.createSequentialGroup()
@@ -788,7 +781,10 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[16])
                 .addComponent(arg[17]))
             .addGroup(gl.createParallelGroup()
-                .addComponent(arg[15]))
+                .addComponent(arg[15])
+                .addComponent(arg[18]))
+            .addGroup(gl.createParallelGroup()
+                .addComponent(arg[19]))
         );
     }
 

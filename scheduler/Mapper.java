@@ -52,9 +52,6 @@ public class Mapper {
             String divisionName = new String();
             ArrayList<String> divisionTeams = new ArrayList<String>();
             while ((line = br.readLine()) != null) {
-            	//debug("Teamlist: " + line);
-            	//if line contains "::" save to name string
-            	//loop through until ":: encountered", save name string, loop some more
             	if(line.contains("::")) {
             		if(divisionTeams.size() > 0) {
             			debug("Adding to map: " + divisionName + " and size of teamlist is: " + divisionTeams.size());
@@ -137,10 +134,12 @@ public class Mapper {
 		}
 	}
 
-    public void createSingleDivisionSchedule(ScheduleOutParser thisParser, ArrayList<String> teamList) {
+    public void createSingleDivisionSchedule(ScheduleOutParser thisParser, ArrayList<String> teamList, int dayRangeStart) {
         ArrayList<String> series = thisParser.parseSeries();
+        debug("The series size is: " + series.size());
         ArrayList<String> teams = thisParser.getAllTeams();
         HashMap<String,String> teamNameMap = new HashMap<String,String>();
+        int dayStart = dayRangeStart-1;
         for(int i=0;i<teams.size();i++) {
             if(i < teamList.size()) {
                 debug("Adding team: " + teams.get(i) + " and mapping to: " + teamList.get(i));
@@ -159,6 +158,7 @@ public class Mapper {
                     StringTokenizer dayNum = new StringTokenizer(game, "D");
                     dayNum = new StringTokenizer(dayNum.nextToken(), "$");
                     int day = Integer.parseInt(dayNum.nextToken());
+                    day = day + dayStart;
                     if(!home.equals("") && !home.equals(null) && !away.equals("") && !away.equals(null)) {
                         fullSchedule.addGameToSchedule(home,away,"12pm CST",home+" Field", day);
                     } else {

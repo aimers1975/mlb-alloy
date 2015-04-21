@@ -25,8 +25,8 @@ public class SchedulerConstants {
     public static final String NUM_SERIES_LABEL = "Specify limit on number of series: ";
     public static final String NUM_FOUR_GAME_SERIES_LABEL = "Specify the number of four game series: ";
     public static final String NUM_RUNS_LABEL = "Specify limit on number of runs: ";
-    public static final String DAY_RANGE_START_LABEL = "Specify start of this day range: ";
-    public static final String DAY_RANGE_END_LABEL = "Specify end of this day range: ";
+    public static final String DAY_RANGE_START_LABEL = "Start date to map: ";
+    public static final String DAY_RANGE_END_LABEL = "Specify days in range: ";
     public static final String CUSTOM_PRED_IN_SHOW_LABEL = "Custom predicate call for show function: ";
     public static final String CUSTOM_PRED_LABEL = "Custom predicate function: ";
     public static final String TEAM_NUM_GAMES_MIN_LABEL = "Specify the minimum number of series between each two team pair.";
