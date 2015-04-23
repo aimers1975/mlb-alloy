@@ -46,7 +46,7 @@ public class SchedulerConstants {
     public static final String SHOW_TEAM_STATISTICS_BUTTON = "Show Team Statistics";
     public static final String LOAD_LAST_SCHEDULE_BUTTON = "Load Last Schedule";
     public static final String REMOVE_GAME_BUTTON = "Remove Games: <Day#>, <Game#>-<Game#>";
-    public static final String ADD_GAME_BUTTON = "Add Game: <hm>,<aw>,<time>,<loc>,<day>";
+    public static final String ADD_GAME_BUTTON = "Add Game: <home>,<away>,<time>,<day>";
     public static final String START_EVAL_MESSAGE ="Starting Evaluation...";
     public static final String TEAM_NAME_LABEL = "Teams To Map To Full Schedule";
     public static final String[] TIMES = {"5:00 PM", "7:00 PM", "8:00 PM", "9:00 PM", "1:00 PM", "3:00 PM", "4:00 PM", "10:00 PM"};
