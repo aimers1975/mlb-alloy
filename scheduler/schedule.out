@@ -2,172 +2,27 @@ Day: 0
 Day: 1
 Day: 2
 Day: 3
+  Game: 0
+    Home: Seattle Mariners
+    Away: Boston Red Sox
+    Time: 1:00 PM
+    Location: Seattle Mariners Field
 Day: 4
 Day: 5
-  Game: 0
-    Home: Tampa Bay Rays
-    Away: Baltimore Orioles
-    Time: 12pm CST
-    Location: Tampa Bay Rays Field
-  Game: 1
-    Home: Boston Red Sox
-    Away: Toronto Blue Jays
-    Time: 12pm CST
-    Location: Boston Red Sox Field
 Day: 6
-  Game: 0
-    Home: Tampa Bay Rays
-    Away: Baltimore Orioles
-    Time: 12pm CST
-    Location: Tampa Bay Rays Field
-  Game: 1
-    Home: Boston Red Sox
-    Away: Toronto Blue Jays
-    Time: 12pm CST
-    Location: Boston Red Sox Field
 Day: 7
-  Game: 0
-    Home: Tampa Bay Rays
-    Away: Baltimore Orioles
-    Time: 12pm CST
-    Location: Tampa Bay Rays Field
-  Game: 1
-    Home: Boston Red Sox
-    Away: Toronto Blue Jays
-    Time: 12pm CST
-    Location: Boston Red Sox Field
 Day: 8
-  Game: 0
-    Home: Baltimore Orioles
-    Away: Boston Red Sox
-    Time: 12pm CST
-    Location: Baltimore Orioles Field
-  Game: 1
-    Home: Tampa Bay Rays
-    Away: New York Yankees
-    Time: 12pm CST
-    Location: Tampa Bay Rays Field
 Day: 9
-  Game: 0
-    Home: Baltimore Orioles
-    Away: Boston Red Sox
-    Time: 12pm CST
-    Location: Baltimore Orioles Field
-  Game: 1
-    Home: Tampa Bay Rays
-    Away: New York Yankees
-    Time: 12pm CST
-    Location: Tampa Bay Rays Field
 Day: 10
-  Game: 0
-    Home: Baltimore Orioles
-    Away: Boston Red Sox
-    Time: 12pm CST
-    Location: Baltimore Orioles Field
-  Game: 1
-    Home: Tampa Bay Rays
-    Away: New York Yankees
-    Time: 12pm CST
-    Location: Tampa Bay Rays Field
 Day: 11
-  Game: 0
-    Home: Boston Red Sox
-    Away: Tampa Bay Rays
-    Time: 12pm CST
-    Location: Boston Red Sox Field
-  Game: 1
-    Home: New York Yankees
-    Away: Toronto Blue Jays
-    Time: 12pm CST
-    Location: New York Yankees Field
 Day: 12
-  Game: 0
-    Home: Boston Red Sox
-    Away: Tampa Bay Rays
-    Time: 12pm CST
-    Location: Boston Red Sox Field
-  Game: 1
-    Home: New York Yankees
-    Away: Toronto Blue Jays
-    Time: 12pm CST
-    Location: New York Yankees Field
 Day: 13
-  Game: 0
-    Home: Boston Red Sox
-    Away: Tampa Bay Rays
-    Time: 12pm CST
-    Location: Boston Red Sox Field
-  Game: 1
-    Home: New York Yankees
-    Away: Toronto Blue Jays
-    Time: 12pm CST
-    Location: New York Yankees Field
 Day: 14
-  Game: 0
-    Home: Toronto Blue Jays
-    Away: Baltimore Orioles
-    Time: 12pm CST
-    Location: Toronto Blue Jays Field
-  Game: 1
-    Home: New York Yankees
-    Away: Boston Red Sox
-    Time: 12pm CST
-    Location: New York Yankees Field
 Day: 15
-  Game: 0
-    Home: Toronto Blue Jays
-    Away: Baltimore Orioles
-    Time: 12pm CST
-    Location: Toronto Blue Jays Field
-  Game: 1
-    Home: New York Yankees
-    Away: Boston Red Sox
-    Time: 12pm CST
-    Location: New York Yankees Field
 Day: 16
-  Game: 0
-    Home: Toronto Blue Jays
-    Away: Baltimore Orioles
-    Time: 12pm CST
-    Location: Toronto Blue Jays Field
-  Game: 1
-    Home: New York Yankees
-    Away: Boston Red Sox
-    Time: 12pm CST
-    Location: New York Yankees Field
 Day: 17
-  Game: 0
-    Home: Toronto Blue Jays
-    Away: Tampa Bay Rays
-    Time: 12pm CST
-    Location: Toronto Blue Jays Field
-  Game: 1
-    Home: Baltimore Orioles
-    Away: New York Yankees
-    Time: 12pm CST
-    Location: Baltimore Orioles Field
 Day: 18
-  Game: 0
-    Home: Toronto Blue Jays
-    Away: Tampa Bay Rays
-    Time: 12pm CST
-    Location: Toronto Blue Jays Field
-  Game: 1
-    Home: Baltimore Orioles
-    Away: New York Yankees
-    Time: 12pm CST
-    Location: Baltimore Orioles Field
 Day: 19
-  Game: 0
-    Home: Toronto Blue Jays
-    Away: Tampa Bay Rays
-    Time: 12pm CST
-    Location: Toronto Blue Jays Field
-  Game: 1
-    Home: Baltimore Orioles
-    Away: New York Yankees
-    Time: 12pm CST
-    Location: Baltimore Orioles Field
 Day: 20
 Day: 21
 Day: 22

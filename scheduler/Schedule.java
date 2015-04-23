@@ -219,11 +219,6 @@ public class Schedule {
 	            				debug("Time string not found.");
 	            				break;
 	            			}
-	            			debug("FOUND A GAME: \n" + currentGame);
-	            			debug("Home: " + homeTeam + "\n");
-	            			debug("Away: " + awayTeam + "\n");
-	            			debug("Time: " + time + "\n");
-	            			debug("Location" + location + "\n");
 	            			addGameToSchedule(homeTeam, awayTeam, time, location, currentDay);
 	            			line = br.readLine();
 	            			currentGame++;

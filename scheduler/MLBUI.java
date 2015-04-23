@@ -56,7 +56,9 @@ public class MLBUI extends JFrame {
     JButton showCurrentTeamStatisticsButton = new JButton(scheduler.SchedulerConstants.SHOW_TEAM_STATISTICS_BUTTON);
     JButton loadLastScheduleButton = new JButton(scheduler.SchedulerConstants.LOAD_LAST_SCHEDULE_BUTTON);
     JButton removeGameButton = new JButton(scheduler.SchedulerConstants.REMOVE_GAME_BUTTON);
+    JButton addGameButton = new JButton(scheduler.SchedulerConstants.ADD_GAME_BUTTON);
     JTextField removeGameTextField = new JTextField();
+    JTextField addGameTextField = new JTextField();
     JPanel scrollPanel = new JPanel();
     JTextArea inputALS = new JTextArea(200,200);
     JScrollPane scroll = new JScrollPane(inputALS);
@@ -139,7 +141,8 @@ public class MLBUI extends JFrame {
         createInputScroll ();
         createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
             showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolutionButton, previousScheduleSolutionButton,
-            showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField, dayRangeStartLabel, dayRangeStart);
+            showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField, dayRangeStartLabel, dayRangeStart, addGameButton,
+            addGameTextField);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
@@ -586,6 +589,15 @@ public class MLBUI extends JFrame {
 
             }
         });
+        addGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                debug("Adding game.");
+                String addGameInput = addGameTextField.getText();
+                addGame(addGameInput);
+
+            }
+        });
 
     }
 
@@ -627,6 +639,48 @@ public class MLBUI extends JFrame {
             outputPlaceholder.setText("Invalid remove day format, Ex. use: 5, 6-7 or 5,6");
             e.printStackTrace();
         }
+    }
+
+    private void addGame(String addGameInput) {
+        //Input game formate <home team>,<away team>,<time>,<day>
+        StringTokenizer st = new StringTokenizer(addGameInput, ",");
+        String home = "";
+        String away = "";
+        String time = "";
+        String day = "";
+        if(st.hasMoreTokens())
+            home = st.nextToken().trim();
+        if(st.hasMoreTokens())
+            away = st.nextToken().trim();
+        if(st.hasMoreTokens())
+            time = st.nextToken().trim();
+        if(st.hasMoreTokens())
+            day = st.nextToken().trim();
+        if(!Arrays.asList(scheduler.SchedulerConstants.FULL_LEAGUE_LIST).contains(home)) {
+            outputPlaceholder.setText("");
+            outputPlaceholder.setText("Invalid home team name.");
+            return;
+        }
+        if(!Arrays.asList(scheduler.SchedulerConstants.FULL_LEAGUE_LIST).contains(away)) {
+            outputPlaceholder.setText("");
+            outputPlaceholder.setText("Invalid away team name");
+            return;
+        }
+        if (!Arrays.asList(scheduler.SchedulerConstants.TIMES).contains(time)) {
+            outputPlaceholder.setText("");
+            outputPlaceholder.setText("Invalid time.  \nValid times are: \n5:00 PM, 7:00 PM, 8:00 PM,\n 9:00 PM, 1:00 PM, 3:00 PM,\n 4:00 PM, 10:00 PM");
+            return;
+        }
+        if(0 > Integer.parseInt(day) && Integer.parseInt(day) > 181) {
+            outputPlaceholder.setText("");
+            outputPlaceholder.setText("Day must be a value 1-180.");
+            return;
+        }
+        testmapper.addGame(home, away, time, (home + " Field"), Integer.parseInt(day));
+        outputPlaceholder.setText("");
+        outputPlaceholder.setText("Game added: \n  Home: " + home + "\n  Away: " + away + "\n  Time: " + time + "\n  Location: " + (home + " Field")
+                                 + "\n  Day: " + day);
+
     }
 
     private void saveAnalyzerOutput(ArrayList<String> saveOutput, String parametersUsed) {
@@ -730,6 +784,7 @@ public class MLBUI extends JFrame {
 //appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
 //            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolution, previousScheduleSolution,
 //            showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField, dayRangeStartLabel, dayRangeStart
+//            addGameButton, addGameTextField
         gl.setHorizontalGroup(gl.createSequentialGroup()
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[0])
@@ -746,7 +801,10 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[7])
                 .addGroup(gl.createSequentialGroup()
                     .addComponent(arg[16])
-                    .addComponent(arg[17])))
+                    .addComponent(arg[17]))
+                .addGroup(gl.createSequentialGroup()
+                    .addComponent(arg[20])
+                    .addComponent(arg[21])))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[4])
                 .addComponent(arg[10])
@@ -782,7 +840,9 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[17]))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[15])
-                .addComponent(arg[18]))
+                .addComponent(arg[18])
+                .addComponent(arg[20])
+                .addComponent(arg[21]))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[19]))
         );

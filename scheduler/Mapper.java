@@ -13,7 +13,6 @@ public class Mapper {
     ArrayList<String> leagueNameList;
 	Boolean debug = true;
 
-
 	public Mapper() {
 		fullSchedule = new Schedule();
 		teamListHashMap = new HashMap<String,ArrayList<String>>();
@@ -28,6 +27,11 @@ public class Mapper {
 
     public void removeGame(int gameNumber, int day){
         fullSchedule.removeGame(gameNumber, day);
+        saveScheduleOutput(fullSchedule.toString());
+    }
+
+    public void addGame(String homeTeam, String awayTeam, String time, String field, int day) {
+        fullSchedule.addGameToSchedule(homeTeam, awayTeam, time, field, day);
         saveScheduleOutput(fullSchedule.toString());
     }
 
@@ -140,6 +144,7 @@ public class Mapper {
         ArrayList<String> teams = thisParser.getAllTeams();
         HashMap<String,String> teamNameMap = new HashMap<String,String>();
         int dayStart = dayRangeStart-1;
+        int timeIndex = 0;
         for(int i=0;i<teams.size();i++) {
             if(i < teamList.size()) {
                 debug("Adding team: " + teams.get(i) + " and mapping to: " + teamList.get(i));
@@ -160,7 +165,12 @@ public class Mapper {
                     int day = Integer.parseInt(dayNum.nextToken());
                     day = day + dayStart;
                     if(!home.equals("") && !home.equals(null) && !away.equals("") && !away.equals(null)) {
-                        fullSchedule.addGameToSchedule(home,away,"12pm CST",home+" Field", day);
+                        fullSchedule.addGameToSchedule(home,away, scheduler.SchedulerConstants.TIMES[timeIndex],home+" Field", day);
+                        if(timeIndex == 7) { 
+                            timeIndex = 0;
+                        } else {
+                            timeIndex++;
+                        }
                     } else {
                         debug("No team map found for some series.");
                     }
