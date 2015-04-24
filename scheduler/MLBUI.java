@@ -189,16 +189,19 @@ public class MLBUI extends JFrame {
         currentParameters.append(String.valueOf(teamSingleNumGamesMax.getSelectedItem()) + "-");
         
         if(addNoFourGameAwayStands.isSelected()) {
+            debug("No four game away is sel.");
             currentParameters.append("T" + "-");
         } else {
             currentParameters.append("F" + "-");
         }
         if(addPredHasHalfHomeGames.isSelected()) {
+            debug("Half home is sel.");
             currentParameters.append("T" + "-");
         } else {
             currentParameters.append("F" + "-");
         }
         if(addPredNoConsecutiveSeries.isSelected()){
+            debug("No consec ser is sel.");
             currentParameters.append("T" + "-");
         } else {
             currentParameters.append("F" + "-");
@@ -463,8 +466,8 @@ public class MLBUI extends JFrame {
         teamSingleNumGamesMax = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_WITH_BLANK);
         scrollPanelInputs.add(teamSingleNumGamesMax);
         scrollPanelInputs.add(addNoFourGameAwayStands);
-        scrollPanelInputs.add(addPredNoConsecutiveSeries);
         scrollPanelInputs.add(addPredHasHalfHomeGames);
+        scrollPanelInputs.add(addPredNoConsecutiveSeries);
         numRuns = new JComboBox<String>(scheduler.SchedulerConstants.NUM_LIST_TEAMS);
         scrollPanelInputs.add(numRunsLabel);
         scrollPanelInputs.add(numRuns);
@@ -491,11 +494,14 @@ public class MLBUI extends JFrame {
                         evalThread = new AnalyzerThread("Testing");
                         evalThread.start();
                     } else {
-                        saveModelToFile();
-                        updateOutputUI();
-
+                        try {
+                            saveModelToFile();
+                            updateOutputUI();
+                        } catch (Exception e) {
+                            outputPlaceholder.setText(scheduler.SchedulerConstants.RUN_FAILURE);
+                            debug(scheduler.SchedulerConstants.RUN_FAILURE);
+                        }
                     }
-
             }
         });
         stopCurrentEvaluationButton.addActionListener(new ActionListener() {

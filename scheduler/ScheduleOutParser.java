@@ -36,10 +36,16 @@ public class ScheduleOutParser {
     }
 
     public void getStartAndEndDays() {
+    	debug(originalOutput);
     	int start = originalOutput.indexOf("this/day={D");
     	int end = originalOutput.indexOf("$0}",start);
     	boolean startSet = false;
-    	StringTokenizer parts = new StringTokenizer(originalOutput.substring(start,end), "{,");
+    	StringTokenizer parts = new StringTokenizer("");
+    	try {
+    		parts = new StringTokenizer(originalOutput.substring(start,end), "{,");
+    	} catch (Exception e){
+    		debug("Could not start processing start and end dates from original output");
+    	}
     	while(parts.hasMoreTokens()) {
     		StringTokenizer st = new StringTokenizer(parts.nextToken(),"D$");
     		String lastToken = new String();
@@ -71,7 +77,12 @@ public class ScheduleOutParser {
 		int end = originalOutput.indexOf("skolem $show_This={schedule", start);
 		//debug("The start of schedule is: " + start);
 		//debug("The end of schedule is: " + end);
-		StringTokenizer parts = new StringTokenizer(originalOutput.substring(start,end),"{");
+		StringTokenizer parts = new StringTokenizer("");
+    	try {
+    		parts = new StringTokenizer(originalOutput.substring(start,end), "{,");
+    	} catch (Exception e){
+    		debug("Could not start processing start and end dates from original output");
+    	}
 		if(parts.hasMoreTokens()) {
 			parts.nextToken();
 		}
