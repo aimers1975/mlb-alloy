@@ -1,4 +1,4 @@
-Solve time:: 47220 :: seconds
+Solve time:: 56621 :: seconds
 ---INSTANCE---
 integers={}
 univ={D1$0, D2$0, D3$0, D4$0, D5$0, D6$0, D7$0, D8$0, schedule$0, team1$0, team1$1, team1$2, team1$3, team1$4, team1$5, team1$6, team1$7, team1$8, team1$9, team1$10, team1$11, team1$12, team1$13, team1$14, team0$0, team0$1, team0$2, team0$3, team0$4, team0$5, team0$6, team0$7, team0$8, team0$9, team0$10, team0$11, team0$12, team0$13, team0$14, Ordering$0, series$0, series$1, series$2, series$3, series$4, series$5, series$6, series$7, series$8, series$9, series$10, series$11, series$12, series$13, series$14, series$15, series$16, series$17, series$18, series$19, series$20, series$21, series$22, series$23, series$24, series$25, series$26, series$27, series$28, series$29}
