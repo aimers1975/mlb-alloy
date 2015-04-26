@@ -166,10 +166,11 @@ public class MLBUI extends JFrame {
         for(String reportTeam : allTeams) {
             int numGames = testmapper.countGamesForTeam(reportTeam.trim());
             outputPlaceholder.append(reportTeam + "  " + numGames + "\n");
-            outputPlaceholder.append("  Division # of games: TBD\n");
-            outputPlaceholder.append("  Interdivision # of games: TB\n");
+            numGames = testmapper.countDivisionGamesForTeam(reportTeam.trim());
+            outputPlaceholder.append("  Division # of games: " + numGames + "\n");
+            outputPlaceholder.append("  Interdivision # of games: TBD\n");
             outputPlaceholder.append("  Interleague # of games: TBD\n");
-            numGames = testmapper.countHomeGamesForTeam(reportTeam);
+            numGames = testmapper.countHomeGamesForTeam(reportTeam.trim());
             outputPlaceholder.append("  Total home games: " + numGames + "\n");
         }
 
@@ -238,6 +239,7 @@ public class MLBUI extends JFrame {
             }
             if(parser.getAllTeams().size()==5) {
                 debug("Calling create div schedule");
+                testmapper.loadTeams();
                 ArrayList<String> currentTeamList = getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem()).trim());
                 if(currentTeamList.size() == 5) {
                     testmapper.createSingleDivisionSchedule(parser, currentTeamList, dayStart);
@@ -247,21 +249,21 @@ public class MLBUI extends JFrame {
                 }
             } else if (parser.getAllTeams().size() == 15) {
                 debug("Calling create interdivision div schedule");
-                //testmapper.loadTeams();
+                testmapper.loadTeams();
                 //testmapper.createInterDivisionSchedule(parser);
                 ArrayList<String> currentTeamList = getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem()).trim());
                 if(currentTeamList.size() == 15) {
-                    testmapper.createSingleDivisionSchedule(parser, currentTeamList, dayStart);
+                    testmapper.createMultiDivisionSchedule(parser, currentTeamList, dayStart);
                 } else {
                     outputPlaceholder.setText("");
                     outputPlaceholder.setText("Not a valid team # and name combination.");  
                 }
             } else if (parser.getAllTeams().size() == 30) {
-                //testmapper.loadTeams();
+                testmapper.loadTeams();
                 //testmapper.createInterLeagueSchedule(parser);
                 ArrayList<String> currentTeamList = getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem()).trim());
                 if(currentTeamList.size() == 30) {
-                    testmapper.createSingleDivisionSchedule(parser, currentTeamList, dayStart);
+                    testmapper.createMultiDivisionSchedule(parser, currentTeamList, dayStart);
                 } else {
                     outputPlaceholder.setText("");
                     outputPlaceholder.setText("Not a valid team # and name combination.");  
@@ -584,6 +586,19 @@ public class MLBUI extends JFrame {
 
                 testmapper.loadLastSchedule();
                 daysSaved = testmapper.showNoGameDays();
+                //loop through each team
+                //print days off
+                String[] fullLeagueList = scheduler.SchedulerConstants.FULL_LEAGUE_LIST;
+                for(String thisTeam : fullLeagueList) {
+                    Boolean[] result = testmapper.findTeamsDaysOff(thisTeam);
+                    int count = 0;
+                    for(int i=0; i<result.length; i++) {
+                        if(result[i] == true) {
+                            count++;
+                        }
+                    }
+                    debug(thisTeam + " has " + count + " days off.");
+                }
             }
         });
         removeGameButton.addActionListener(new ActionListener() {
