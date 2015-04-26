@@ -241,6 +241,7 @@ public class MLBUI extends JFrame {
             if(!timesRecorded.contains(currentParameters.toString())) {
                 timesRecorded.add(currentParameters.toString());
                 totalScheduleBuildTime = totalScheduleBuildTime + parser.getModelExecutionTime();
+                testmapper.setExecutionTime(totalScheduleBuildTime);
                 builtScheduleTime.setText(String.valueOf(totalScheduleBuildTime) + " seconds");
             }
             
@@ -611,7 +612,7 @@ public class MLBUI extends JFrame {
                 testmapper.loadLastSchedule();
                 builtScheduleTime.setText("");
                 totalScheduleBuildTime = testmapper.getExecutionTime();
-                builtScheduleTime.setText(String.valueOf(totalScheduleBuildTime));
+                builtScheduleTime.setText(String.valueOf(totalScheduleBuildTime) + " seconds");
                 daysSaved = testmapper.showNoGameDays();
                 //loop through each team
                 //print days off

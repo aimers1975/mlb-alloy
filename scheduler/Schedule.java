@@ -92,7 +92,7 @@ public class Schedule {
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Time::" + executionTime);
+		sb.append("Time::" + executionTime + "\n");
 		for(int i=0;i<seasonSchedule.length; i++) {
 			sb.append("Day: " + i + "\n");
 			if(seasonSchedule[i] != null) {
