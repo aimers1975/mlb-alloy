@@ -29,6 +29,14 @@ public class Mapper {
         return fullSchedule.findTeamsDaysOff(team);
     }
 
+    public void setExecutionTime(int time) {
+        fullSchedule.setExecutionTime(time);
+    }
+
+    public int getExecutionTime() {
+        return fullSchedule.getExecutionTime();
+    }
+
     public void removeGame(int gameNumber, int day){
         fullSchedule.removeGame(gameNumber, day);
         saveScheduleOutput(fullSchedule.toString());
@@ -54,6 +62,14 @@ public class Mapper {
         return fullSchedule.countDivisionGamesForTeam(team);
     }
 
+    public int countInterDivisionGamesForTeam(String team) {
+        return fullSchedule.countInterDivisionGamesForTeam(team);
+    }
+
+    public int countInterLeagueGamesForTeam(String team) {
+        return fullSchedule.countInterLeagueGamesForTeam(team);
+    }
+
     public void loadLastSchedule() {
         fullSchedule.loadScheduleFromFile();
     }
@@ -66,7 +82,7 @@ public class Mapper {
             while ((line = br.readLine()) != null) {
             	if(line.contains("::")) {
             		if(divisionTeams.size() > 0) {
-            			debug("Adding to map: " + divisionName + " and size of teamlist is: " + divisionTeams.size());
+            			//debug("Adding to map: " + divisionName + " and size of teamlist is: " + divisionTeams.size());
             			teamListHashMap.put(divisionName,divisionTeams);
             		}
             		divisionName = line.replace("::", "");
@@ -78,7 +94,7 @@ public class Mapper {
             	}
             }
             if(divisionTeams.size() > 0) {
-            	debug("Adding to map: " + divisionName + " and size of teamlist is: " + divisionTeams.size());
+            	//debug("Adding to map: " + divisionName + " and size of teamlist is: " + divisionTeams.size());
             	teamListHashMap.put(divisionName,divisionTeams);
             }
             Set<String> keys = teamListHashMap.keySet();
@@ -93,14 +109,14 @@ public class Mapper {
                 divisionName = st.nextToken();
                 if(divisionName.equals("NL")) {
                     divisionTeams.addAll(teamListHashMap.get(thisDivision));
-                    debug("Division teams league size is now: " + divisionTeams.size());
+                    //debug("Division teams league size is now: " + divisionTeams.size());
                 } else if (divisionName.equals("AL")) {
                     divisionTeamsAL.addAll(teamListHashMap.get(thisDivision));
-                    debug("Division teams AL league size is now: " + divisionTeamsAL.size());
+                    //debug("Division teams AL league size is now: " + divisionTeamsAL.size());
                 }
             }
             if(divisionTeams.size() >0 && divisionTeamsAL.size() > 0) {
-                debug("Adding AL and NL to map");
+                //debug("Adding AL and NL to map");
                 teamDivListHashMap.put("AL",divisionTeams);
                 teamDivListHashMap.put("NL",divisionTeamsAL);
                 leagueNameList.addAll(divisionTeams);
@@ -123,7 +139,7 @@ public class Mapper {
 			String thisDivision = divisions.next();
 			ArrayList<String> divNames = teamListHashMap.get(thisDivision);
 			for(int i=0;i<teams.size();i++) {
-				debug("Adding team: " + teams.get(i) + " and mapping to: " + divNames.get(i));
+				//debug("Adding team: " + teams.get(i) + " and mapping to: " + divNames.get(i));
 			    teamNameMap.put(teams.get(i),divNames.get(i));
 		    }
 		    for(String thisSeries : series) {
@@ -148,14 +164,13 @@ public class Mapper {
 
     public void createSingleDivisionSchedule(ScheduleOutParser thisParser, ArrayList<String> teamList, int dayRangeStart) {
         ArrayList<String> series = thisParser.parseSeries();
-        debug("The series size is: " + series.size());
         ArrayList<String> teams = thisParser.getAllTeams();
         HashMap<String,String> teamNameMap = new HashMap<String,String>();
         int dayStart = dayRangeStart-1;
         int timeIndex = 0;
         for(int i=0;i<teams.size();i++) {
             if(i < teamList.size()) {
-                debug("Adding team: " + teams.get(i) + " and mapping to: " + teamList.get(i));
+                //debug("Adding team: " + teams.get(i) + " and mapping to: " + teamList.get(i));
                 teamNameMap.put(teams.get(i),teamList.get(i));
             } else {
                 debug("There were not enought teams in namelist for teams in this subschedule.");
@@ -192,35 +207,28 @@ public class Mapper {
 
     public void createMultiDivisionSchedule(ScheduleOutParser thisParser, ArrayList<String> teamList, int dayRangeStart) {
         ArrayList<String> series = thisParser.parseSeries();
-        debug("The series size is: " + series.size());
         ArrayList<String> teams = thisParser.getAllTeams();
-        for(int i=0; i<teams.size(); i++) {
-            debug("Check teams: " + teams.get(i));
-        }
-        for(int i=0; i<teamList.size(); i++) {
-            debug("Check teams 2: " + teamList.get(i));
-        }
         HashMap<String,String> teamNameMap = new HashMap<String,String>();
         int dayStart = dayRangeStart-1;
         int timeIndex = 0;
         Collections.sort(teams);
         for(int i=0;i<teams.size();i++) {
             if(i < teamList.size()) {
-                debug("Adding team: " + teams.get(i) + " and mapping to: " + teamList.get(i));
+                //debug("Adding team: " + teams.get(i) + " and mapping to: " + teamList.get(i));
 
                 teamNameMap.put(teams.get(i),teamList.get(i));
             } else {
                 debug("There were not enought teams in namelist for teams in this subschedule.");
             }
         }
-        Set<String> keySet = teamNameMap.keySet();
-        String[] curkeys = new String[keySet.size()];
-        curkeys = keySet.toArray(curkeys);
-        for(int i=0;i<curkeys.length;i++) {
-            debug("Key is: " + curkeys[i]);
-            debug("Value is: " + teamNameMap.get(curkeys[i]));
+        //Set<String> keySet = teamNameMap.keySet();
+        //String[] curkeys = new String[keySet.size()];
+        //curkeys = keySet.toArray(curkeys);
+        //for(int i=0;i<curkeys.length;i++) {
+            //debug("Key is: " + curkeys[i]);
+          //  debug("Value is: " + teamNameMap.get(curkeys[i]));
 
-        }
+        //}
         for(String thisSeries : series) {
             ArrayList<String> thisSeriesTeams = thisParser.getTeamsForSeries(thisSeries);
             ArrayList<String> thisSeriesGames = thisParser.getGamesForSeries(thisSeries);
@@ -249,12 +257,14 @@ public class Mapper {
         saveScheduleOutput(fullSchedule.toString());
     }
 
-    public void createInterLeagueTeamMap(ScheduleOutParser thisParser, ArrayList<String> teamList) {
+    public ArrayList<String> createInterLeagueTeamMap(ScheduleOutParser thisParser, ArrayList<String> teamList) {
+        ArrayList<String> missingGameResults = new ArrayList<String>();
         ArrayList<String> series = thisParser.parseSeries();
         debug("The series size is: " + series.size());
         ArrayList<String> teams = thisParser.getAllTeams();
         HashMap<String,String> teamNameMap = new HashMap<String,String>();
         int timeIndex = 0;
+        Collections.sort(teams);
         for(int i=0;i<teams.size();i++) {
             if(i < teamList.size()) {
                 debug("Adding team: " + teams.get(i) + " and mapping to: " + teamList.get(i));
@@ -268,7 +278,6 @@ public class Mapper {
             ArrayList<String> thisSeriesGames = thisParser.getGamesForSeries(thisSeries);
             Boolean[] homeDaysOff = findTeamsDaysOff(teamNameMap.get(thisSeriesTeams.get(1)));
             Boolean[] awayDaysOff = findTeamsDaysOff(teamNameMap.get(thisSeriesTeams.get(0)));
-            debug("This series number of games is: " + thisSeriesGames.size());
             // if this series has three games, need a three game window
             int consecDays = 0;
             int consecDayStart = 0;
@@ -300,28 +309,34 @@ public class Mapper {
                 }
             }
             debug(thisSeriesTeams.get(1) + " and " + thisSeriesTeams.get(0) + " days off " + consecDays + " days starting " + consecDayStart);
-            /*for(String game : thisSeriesGames) {
+            for(String game : thisSeriesGames) {
                 if(thisSeriesTeams.size() == 2 && thisSeriesGames.size() > 0) {
                     String home = teamNameMap.get(thisSeriesTeams.get(1));
                     String away = teamNameMap.get(thisSeriesTeams.get(0));
                     if(!home.equals("") && !home.equals(null) && !away.equals("") && !away.equals(null)) {
                         //save these inputs and add at the end if we have enough.
-                        fullSchedule.addGameToSchedule(home,away, scheduler.SchedulerConstants.TIMES[timeIndex],home+" Field", consecDayStart);
-                        debug("Adding game to schedule: home: " + home + " away: " + away + " Day: " + consecDayStart);
-                        consecDayStart++;
-                        if(timeIndex == 7) { 
-                            timeIndex = 0;
+                        if((thisSeriesGames.size() == 3 && consecDayStart <179) || (thisSeriesGames.size() == 4 && consecDayStart < 178)) {
+                            fullSchedule.addGameToSchedule(home,away, scheduler.SchedulerConstants.TIMES[timeIndex],home+" Field", consecDayStart);
+                            //debug("Adding game to schedule: home: " + home + " away: " + away + " Day: " + consecDayStart);
+                            consecDayStart++;
+                            if(timeIndex == 7) { 
+                                timeIndex = 0;
+                            } else {
+                                timeIndex++;
+                            }
                         } else {
-                            timeIndex++;
+                            //debug("Need game for: " + home + " as home team and: " + away + " as awayteam.");
+                            missingGameResults.add("Need game for: " + home + " as home team and: " + away + " as awayteam.\n");
                         }
                     } else {
                         debug("No team map found for some series.");
                     }
                 }
-            }*/
+            }
         }
         //fullSchedule.repOk();
         //saveScheduleOutput(fullSchedule.toString());
+        return missingGameResults;
     }
 
     public String toString() {

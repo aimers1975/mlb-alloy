@@ -14,6 +14,7 @@ public class Schedule {
 	Day[] seasonSchedule;
 	HashSet<String> allTeams; 
 	Boolean debug = true;
+	int executionTime = 0;
 
 	public Schedule() {
 		seasonSchedule = new Day[181];
@@ -23,16 +24,30 @@ public class Schedule {
 		}
 	}
 
+	public void setExecutionTime(int time) { 
+		executionTime = time;
+	}
+
+	public int getExecutionTime() {
+		return executionTime;
+	}
+
 	public Boolean[] findTeamsDaysOff(String team) {
-		Boolean[] daysOff = new Boolean[181];
+		Boolean[] daysOff = new Boolean[182];
 		for(int i=0; i< daysOff.length; i++) {
 			daysOff[i] = true;
 		}
 		int i = 1;
 		for(Day thisDay : seasonSchedule) {
 			for(Game thisGame: thisDay.games) {
-				if((thisGame.hometeam).contains(team) || (thisGame.awayteam).contains(team)) {
-					daysOff[i] = false; 
+				if(thisGame.hometeam == null) {
+					debug("hometeam for this game was null.");
+				} else if (thisGame.awayteam == null) {
+					debug("awayteam for this game was null.");
+				} else {
+					if((thisGame.hometeam).contains(team) || (thisGame.awayteam).contains(team)) {
+						daysOff[i] = false; 
+					}
 				}
 			}
 			i++;
@@ -77,6 +92,7 @@ public class Schedule {
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		sb.append("Time::" + executionTime);
 		for(int i=0;i<seasonSchedule.length; i++) {
 			sb.append("Day: " + i + "\n");
 			if(seasonSchedule[i] != null) {
@@ -161,6 +177,88 @@ public class Schedule {
         return count;		
 	}
 
+	public int countInterDivisionGamesForTeam(String team) {
+		int count = 0;
+		String[] listToCheck = new String[10];
+		if(Arrays.asList(scheduler.SchedulerConstants.AL_EAST_LIST).contains(team)) {
+			for(int i=0; i<5; i++) {
+				listToCheck[i] = scheduler.SchedulerConstants.AL_WEST_LIST[i];
+				listToCheck[i+5] = scheduler.SchedulerConstants.AL_CENTRAL_LIST[i];
+			}
+		} else if (Arrays.asList(scheduler.SchedulerConstants.AL_WEST_LIST).contains(team)) {
+			for(int i=0; i<5; i++) {
+				listToCheck[i] = scheduler.SchedulerConstants.AL_EAST_LIST[i];
+				listToCheck[i+5] = scheduler.SchedulerConstants.AL_CENTRAL_LIST[i];
+			}
+		} else if (Arrays.asList(scheduler.SchedulerConstants.AL_CENTRAL_LIST).contains(team)) {
+			for(int i=0; i<5; i++) {
+				listToCheck[i] = scheduler.SchedulerConstants.AL_WEST_LIST[i];
+				listToCheck[i+5] = scheduler.SchedulerConstants.AL_EAST_LIST[i];
+			}
+		} else if (Arrays.asList(scheduler.SchedulerConstants.NL_EAST_LIST).contains(team)) {
+			for(int i=0; i<5; i++) {
+				listToCheck[i] = scheduler.SchedulerConstants.NL_WEST_LIST[i];
+				listToCheck[i+5] = scheduler.SchedulerConstants.NL_CENTRAL_LIST[i];
+			}
+		} else if (Arrays.asList(scheduler.SchedulerConstants.NL_CENTRAL_LIST).contains(team)) {
+			for(int i=0; i<5; i++) {
+				listToCheck[i] = scheduler.SchedulerConstants.NL_WEST_LIST[i];
+				listToCheck[i+5] = scheduler.SchedulerConstants.NL_EAST_LIST[i];
+			}
+		} else if (Arrays.asList(scheduler.SchedulerConstants.NL_WEST_LIST).contains(team)) {
+			for(int i=0; i<5; i++) {
+				listToCheck[i] = scheduler.SchedulerConstants.NL_EAST_LIST[i];
+				listToCheck[i+5] = scheduler.SchedulerConstants.NL_CENTRAL_LIST[i];
+			}
+		}
+        for(Day thisDay : seasonSchedule) {
+            for(Game thisGame : thisDay.games) {
+            	String ht = (thisGame.hometeam).trim();
+            	String at = (thisGame.awayteam).trim();
+                if(ht.equals(team)){
+                	if(Arrays.asList(listToCheck).contains(at)) {
+                		count++;	
+                	}
+                } else if (at.equals(team)) {
+                	if(Arrays.asList(listToCheck).contains(ht)) {
+                		count++;
+                	}
+                }
+            }
+        }
+        //debug("The " + team + " count is: " + count);
+        return count;		
+	}
+
+	public int countInterLeagueGamesForTeam(String team) {
+		int count = 0;
+		String[] listToCheck = new String[15];
+		if(Arrays.asList(scheduler.SchedulerConstants.AMERICAN_LEAGUE_LIST).contains(team)) {
+			listToCheck = scheduler.SchedulerConstants.NATIONAL_LEAGUE_LIST;
+		} else if (Arrays.asList(scheduler.SchedulerConstants.NATIONAL_LEAGUE_LIST).contains(team)) {
+			listToCheck = scheduler.SchedulerConstants.AMERICAN_LEAGUE_LIST;
+		} 
+ 		//Get division for this team
+		//Check opponents to figure if in division
+        for(Day thisDay : seasonSchedule) {
+            for(Game thisGame : thisDay.games) {
+            	String ht = (thisGame.hometeam).trim();
+            	String at = (thisGame.awayteam).trim();
+                if(ht.equals(team)){
+                	if(Arrays.asList(listToCheck).contains(at)) {
+                		count++;	
+                	}
+                } else if (at.equals(team)) {
+                	if(Arrays.asList(listToCheck).contains(ht)) {
+                		count++;
+                	}
+                }
+            }
+        }
+        //debug("The " + team + " count is: " + count);
+        return count;		
+	}
+
 	public boolean eachTeamHasHalfHomeGames(String[] teams) {
 		boolean result = true;
 		for(String thisTeam : teams) {
@@ -212,6 +310,14 @@ public class Schedule {
             line = br.readLine();
             while (line != null) {
             	//debug(line);
+            	if(line.contains("Time::")) {
+            		StringTokenizer timest = new StringTokenizer(line, "::");
+            		while(timest.hasMoreTokens()) {
+            			timest.nextToken();
+            			executionTime = Integer.parseInt(timest.nextToken());
+            		}
+            		line = br.readLine();
+            	}
             	if(line.contains("Day")) {
             		line = br.readLine();
             		currentGame=0;
@@ -276,7 +382,6 @@ public class Schedule {
 	            			addGameToSchedule(homeTeam, awayTeam, time, location, currentDay);
 	            			line = br.readLine();
 	            			currentGame++;
-	            			debug("Getting next line: " + line);
 	            		} else {
 	            			debug("Incorrect Schedule.out format. Expecting next game.");
 	            			continue;

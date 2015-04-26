@@ -59,6 +59,10 @@ public class MLBUI extends JFrame {
     JButton addGameButton = new JButton(scheduler.SchedulerConstants.ADD_GAME_BUTTON);
     JTextField removeGameTextField = new JTextField();
     JTextField addGameTextField = new JTextField();
+    JLabel executeTimeLabel = new JLabel(scheduler.SchedulerConstants.EXECUTE_TIME_LABEL);
+    JTextField executeTimeTextField = new JTextField();
+    JLabel builtScheduleTimeLabel = new JLabel(scheduler.SchedulerConstants.BUILT_SCHEDULE_TIME_LABEL);
+    JTextField builtScheduleTime = new JTextField();
     JPanel scrollPanel = new JPanel();
     JTextArea inputALS = new JTextArea(200,200);
     JScrollPane scroll = new JScrollPane(inputALS);
@@ -111,6 +115,8 @@ public class MLBUI extends JFrame {
     Boolean[] daysSaved;
     ArrayList<String> cachedOutput;
     int currentSolution = 0;
+    HashSet<String> timesRecorded = new HashSet<String>();
+    int totalScheduleBuildTime = 0;
 
 	public MLBUI() {
 		initUI();
@@ -142,7 +148,7 @@ public class MLBUI extends JFrame {
         createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
             showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolutionButton, previousScheduleSolutionButton,
             showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField, dayRangeStartLabel, dayRangeStart, addGameButton,
-            addGameTextField);
+            addGameTextField, executeTimeLabel, executeTimeTextField, builtScheduleTimeLabel, builtScheduleTime);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
@@ -168,8 +174,10 @@ public class MLBUI extends JFrame {
             outputPlaceholder.append(reportTeam + "  " + numGames + "\n");
             numGames = testmapper.countDivisionGamesForTeam(reportTeam.trim());
             outputPlaceholder.append("  Division # of games: " + numGames + "\n");
-            outputPlaceholder.append("  Interdivision # of games: TBD\n");
-            outputPlaceholder.append("  Interleague # of games: TBD\n");
+            numGames = testmapper.countInterDivisionGamesForTeam(reportTeam.trim());
+            outputPlaceholder.append("  Interdivision # of games: " + numGames + "\n");
+            numGames = testmapper.countInterLeagueGamesForTeam(reportTeam.trim());
+            outputPlaceholder.append("  Interleague # of games: " + numGames + "\n");
             numGames = testmapper.countHomeGamesForTeam(reportTeam.trim());
             outputPlaceholder.append("  Total home games: " + numGames + "\n");
         }
@@ -212,6 +220,9 @@ public class MLBUI extends JFrame {
 
     private void resetSchedule() {
         testmapper = new Mapper();
+        timesRecorded = new HashSet<String>();
+        totalScheduleBuildTime = 0;
+        builtScheduleTime.setText("");
         for(int i=0; i<daysSaved.length; i++) {
             daysSaved[i] = false;
         }
@@ -226,6 +237,14 @@ public class MLBUI extends JFrame {
     private void saveSubScheduleToSchedule() {
         if(parser != null) {
             // ToDo update for day range change.
+
+            if(!timesRecorded.contains(currentParameters.toString())) {
+                timesRecorded.add(currentParameters.toString());
+                totalScheduleBuildTime = totalScheduleBuildTime + parser.getModelExecutionTime();
+                builtScheduleTime.setText(String.valueOf(totalScheduleBuildTime) + " seconds");
+            }
+            
+
             int dayStart = Integer.parseInt(String.valueOf(dayRangeStart.getSelectedItem()));
             int dayEnd = dayStart + parser.getEndDay();
             debug("The start day is: " + dayStart + " The day range end is: " + dayEnd);
@@ -263,7 +282,12 @@ public class MLBUI extends JFrame {
                 //testmapper.createInterLeagueSchedule(parser);
                 ArrayList<String> currentTeamList = getTeamNamesSelected(String.valueOf(teamNameComboBox.getSelectedItem()).trim());
                 if(currentTeamList.size() == 30) {
-                    testmapper.createMultiDivisionSchedule(parser, currentTeamList, dayStart);
+                    //testmapper.createMultiDivisionSchedule(parser, currentTeamList, dayStart);
+                    ArrayList<String> missingGameResults = testmapper.createInterLeagueTeamMap(parser,currentTeamList);
+                    outputPlaceholder.setText("");
+                    for(String result: missingGameResults) {
+                        outputPlaceholder.append(result);
+                    }
                 } else {
                     outputPlaceholder.setText("");
                     outputPlaceholder.setText("Not a valid team # and name combination.");  
@@ -585,6 +609,9 @@ public class MLBUI extends JFrame {
                 debug("Loading last schedule saved.");
 
                 testmapper.loadLastSchedule();
+                builtScheduleTime.setText("");
+                totalScheduleBuildTime = testmapper.getExecutionTime();
+                builtScheduleTime.setText(String.valueOf(totalScheduleBuildTime));
                 daysSaved = testmapper.showNoGameDays();
                 //loop through each team
                 //print days off
@@ -792,6 +819,8 @@ public class MLBUI extends JFrame {
                     outputPlaceholder.append("  " + teamSchedule.get(j) + "\n");
                 } 
             }
+            executeTimeTextField.setText("");
+            executeTimeTextField.setText(String.valueOf(parser.getModelExecutionTime()) + " seconds");
         }
     }
 
@@ -805,7 +834,7 @@ public class MLBUI extends JFrame {
 //appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
 //            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolution, previousScheduleSolution,
 //            showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField, dayRangeStartLabel, dayRangeStart
-//            addGameButton, addGameTextField
+//            addGameButton, addGameTextField, executeTimeLabel, executeTimeTextField, builtScheduleTimeLabel, builtScheduleTime
         gl.setHorizontalGroup(gl.createSequentialGroup()
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[0])
@@ -814,7 +843,10 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[9])
                 .addComponent(arg[6])
                 .addComponent(arg[14])
-                .addComponent(arg[15]))
+                .addComponent(arg[15])
+                .addGroup(gl.createSequentialGroup()
+                    .addComponent(arg[22])
+                    .addComponent(arg[23])))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[1])
                 .addComponent(arg[2])
@@ -825,7 +857,10 @@ public class MLBUI extends JFrame {
                     .addComponent(arg[17]))
                 .addGroup(gl.createSequentialGroup()
                     .addComponent(arg[20])
-                    .addComponent(arg[21])))
+                    .addComponent(arg[21]))
+                .addGroup(gl.createSequentialGroup()
+                    .addComponent(arg[24])
+                    .addComponent(arg[25])))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[4])
                 .addComponent(arg[10])
@@ -865,7 +900,11 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[20])
                 .addComponent(arg[21]))
             .addGroup(gl.createParallelGroup()
-                .addComponent(arg[19]))
+                .addComponent(arg[19])
+                .addComponent(arg[22])
+                .addComponent(arg[23])
+                .addComponent(arg[24])
+                .addComponent(arg[25]))
         );
     }
 

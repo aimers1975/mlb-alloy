@@ -33,6 +33,8 @@ public class SchedulerConstants {
     public static final String TEAM_NUM_GAMES_MAX_LABEL = "Specify the maximum number of series between each two team pair.";
     public static final String TEAM_SINGLE_NUM_GAMES_MIN_LABEL = "Specify the minimum number of series for each team.";
     public static final String TEAM_SINGLE_NUM_GAMES_MAX_LABEL = "Specify the maximum number of series for each team.";
+    public static final String BUILT_SCHEDULE_TIME_LABEL = "Schedule Model Execution Time";
+    public static final String EXECUTE_TIME_LABEL = "Model Instance Execution Time";
     public static final String INPUT_PLACEHOLDER = "Placeholder for input selections";
     public static final String OUTPUT_PLACEHOLDER = "Placeholder for outputs";
     public static final String STOP_EVAL_BUTTON = "Stop Current Evaluation";
