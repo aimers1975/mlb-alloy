@@ -61,6 +61,8 @@ public class MLBUI extends JFrame {
     JTextField addGameTextField = new JTextField();
     JLabel executeTimeLabel = new JLabel(scheduler.SchedulerConstants.EXECUTE_TIME_LABEL);
     JTextField executeTimeTextField = new JTextField();
+    JLabel executeModelTimeLabel = new JLabel(scheduler.SchedulerConstants.EXECUTE_MODEL_TIME_LABEL);
+    JTextField executeModelTimeTextField = new JTextField();
     JLabel builtScheduleTimeLabel = new JLabel(scheduler.SchedulerConstants.BUILT_SCHEDULE_TIME_LABEL);
     JTextField builtScheduleTime = new JTextField();
     JPanel scrollPanel = new JPanel();
@@ -140,7 +142,7 @@ public class MLBUI extends JFrame {
 
 	private void initUI() {
 		setTitle(scheduler.SchedulerConstants.APP_TITLE);
-        setSize(1200, 600);
+        setSize(1200, 800);
         setLocationRelativeTo(null);
         createMenuBar();  
         createMainAppBody();
@@ -148,7 +150,7 @@ public class MLBUI extends JFrame {
         createLayout(appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
             showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolutionButton, previousScheduleSolutionButton,
             showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField, dayRangeStartLabel, dayRangeStart, addGameButton,
-            addGameTextField, executeTimeLabel, executeTimeTextField, builtScheduleTimeLabel, builtScheduleTime);
+            addGameTextField, executeModelTimeLabel, executeModelTimeTextField, builtScheduleTimeLabel, builtScheduleTime, executeTimeLabel, executeTimeTextField);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
@@ -523,7 +525,21 @@ public class MLBUI extends JFrame {
                     } else {
                         try {
                             saveModelToFile();
+                            long millisStart = Calendar.getInstance().getTimeInMillis();
                             updateOutputUI();
+                            long millisEnd = Calendar.getInstance().getTimeInMillis();
+                            long resultTime = millisEnd - millisStart;
+                            debug("The time to solve was: " + resultTime + " seconds.");
+                            String modelTime = executeModelTimeTextField.getText();
+                            StringTokenizer st = new StringTokenizer(modelTime, " ");
+                            long cachedModelTime = 0;
+                            if(st.hasMoreTokens()) {
+                                cachedModelTime = Long.parseLong(st.nextToken().trim());
+                                cachedModelTime = cachedModelTime;
+                            }
+                            debug("The UI VALUE WE GOT: " + cachedModelTime);
+                            long totalModelTime = cachedModelTime + resultTime;
+                            executeTimeTextField.setText(String.valueOf(totalModelTime) + " seconds");
                         } catch (Exception e) {
                             outputPlaceholder.setText(scheduler.SchedulerConstants.RUN_FAILURE);
                             debug(scheduler.SchedulerConstants.RUN_FAILURE);
@@ -820,8 +836,8 @@ public class MLBUI extends JFrame {
                     outputPlaceholder.append("  " + teamSchedule.get(j) + "\n");
                 } 
             }
-            executeTimeTextField.setText("");
-            executeTimeTextField.setText(String.valueOf(parser.getModelExecutionTime()) + " seconds");
+            executeModelTimeTextField.setText("");
+            executeModelTimeTextField.setText(String.valueOf(parser.getModelExecutionTime()) + " seconds");
         }
     }
 
@@ -835,7 +851,7 @@ public class MLBUI extends JFrame {
 //appInfo, scroll, evaluateButton, inputScroll, outputScroll, stopCurrentEvaluationButton, saveToOverallScheduleButton, resetScheduleButton,
 //            showFreeDaysButton, showOverallScheduleButton, teamNameLabel, teamNameComboBox, nextScheduleSolution, previousScheduleSolution,
 //            showCurrentTeamStatisticsButton, loadLastScheduleButton, removeGameButton, removeGameTextField, dayRangeStartLabel, dayRangeStart
-//            addGameButton, addGameTextField, executeTimeLabel, executeTimeTextField, builtScheduleTimeLabel, builtScheduleTime
+//            addGameButton, addGameTextField, executeModelTimeLabel, executeModelTimeTextField, executeTimeLabel, executeTimeTextField, builtScheduleTimeLabel, builtScheduleTime
         gl.setHorizontalGroup(gl.createSequentialGroup()
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[0])
@@ -847,7 +863,10 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[15])
                 .addGroup(gl.createSequentialGroup()
                     .addComponent(arg[22])
-                    .addComponent(arg[23])))
+                    .addComponent(arg[23]))
+                .addGroup(gl.createSequentialGroup()
+                    .addComponent(arg[26])
+                    .addComponent(arg[27])))
             .addGroup(gl.createParallelGroup()
                 .addComponent(arg[1])
                 .addComponent(arg[2])
@@ -906,6 +925,9 @@ public class MLBUI extends JFrame {
                 .addComponent(arg[23])
                 .addComponent(arg[24])
                 .addComponent(arg[25]))
+            .addGroup(gl.createParallelGroup()
+                .addComponent(arg[26])
+                .addComponent(arg[27]))
         );
     }
 
@@ -930,6 +952,7 @@ public class MLBUI extends JFrame {
     public void run() {
         try {
             outputPlaceholder.setText(scheduler.SchedulerConstants.START_EVAL_MESSAGE);
+            long millisStart = Calendar.getInstance().getTimeInMillis();
             cachedOutput = analyzer.runAnalysis(getAnalyzerInput());
             currentSolution = 0;
             if(!isInterrupted()) {
@@ -937,6 +960,11 @@ public class MLBUI extends JFrame {
                 saveAnalyzerOutput(cachedOutput,currentParameters.toString());
                 //debug(analyzerOutputStringArrayList);
                 updateOutputUI();
+                long millisEnd = Calendar.getInstance().getTimeInMillis();
+                long resultTime = millisEnd - millisStart;
+                resultTime = resultTime/1000;
+                debug("The time to solve was: " + resultTime + " milliseconds.");
+                executeTimeTextField.setText(resultTime + " seconds");
             }
         } catch(Exception e) {
             outputPlaceholder.setText(scheduler.SchedulerConstants.RUN_FAILURE);
