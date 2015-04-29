@@ -56,12 +56,12 @@ public class MlbAppControl {
                 long resultTime = millisEnd - millisStart;
                 debug("The time to solve was: " + resultTime + " milliseconds.");
                 A4Solution ans2 = ans;
-                returnAns.add("Solve time:: " + resultTime + " :: seconds\n" + ans2.toString());
+                returnAns.add("Solve time:: " + resultTime + " :: milliseconds\n" + ans2.toString());
                 int countAnswers = 0;
                 while(ans2.next() != null && countAnswers < 20) {
                     countAnswers++;
                     ans2 = ans2.next();
-                    returnAns.add("Solve time:: " + resultTime + " :: seconds\n" + ans2.toString());
+                    returnAns.add("Solve time:: " + resultTime + " :: milliseconds\n" + ans2.toString());
                 }
                 debug("The answer count was: " + countAnswers);
                 //A4Solution ans = ans.next();

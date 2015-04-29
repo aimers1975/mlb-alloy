@@ -1,0 +1,32 @@
+Solve time:: 951 :: seconds
+---INSTANCE---
+integers={}
+univ={D1$0, D2$0, D3$0, D4$0, D5$0, D6$0, D7$0, D8$0, D9$0, D10$0, schedule$0, team$0, team$1, team$2, team$3, team$4, Ordering$0, series$0, series$1, series$2, series$3, series$4}
+Int={}
+seq/Int={}
+String={}
+none={}
+this/D1={D1$0}
+this/D2={D2$0}
+this/D3={D3$0}
+this/D4={D4$0}
+this/D5={D5$0}
+this/D6={D6$0}
+this/D7={D7$0}
+this/D8={D8$0}
+this/D9={D9$0}
+this/D10={D10$0}
+this/day={D1$0, D2$0, D3$0, D4$0, D5$0, D6$0, D7$0, D8$0, D9$0, D10$0}
+this/schedule={schedule$0}
+this/schedule<:allSeries={schedule$0->series$0, schedule$0->series$1, schedule$0->series$2, schedule$0->series$3, schedule$0->series$4}
+this/team={team$0, team$1, team$2, team$3, team$4}
+this/Ordering={Ordering$0}
+this/Ordering<:order={Ordering$0->D1$0->D2$0, Ordering$0->D2$0->D3$0, Ordering$0->D3$0->D4$0, Ordering$0->D4$0->D5$0, Ordering$0->D5$0->D6$0, Ordering$0->D6$0->D7$0, Ordering$0->D7$0->D8$0, Ordering$0->D8$0->D9$0, Ordering$0->D9$0->D10$0}
+this/series={series$0, series$1, series$2, series$3, series$4}
+this/series<:ateam={series$0->team$4, series$1->team$4, series$2->team$3, series$3->team$3, series$4->team$2}
+this/series<:hteam={series$0->team$0, series$1->team$1, series$2->team$0, series$3->team$2, series$4->team$1}
+this/series<:g1={series$0->D2$0, series$1->D5$0, series$2->D7$0, series$3->D4$0, series$4->D1$0}
+this/series<:g2={series$0->D3$0, series$1->D6$0, series$2->D8$0, series$3->D5$0, series$4->D2$0}
+this/series<:g3={series$0->D4$0, series$1->D7$0, series$2->D9$0, series$3->D6$0, series$4->D3$0}
+this/series<:g4={}
+skolem $show_This={schedule$0}

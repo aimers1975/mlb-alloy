@@ -12,6 +12,7 @@ public class ScheduleOutParser {
 	Boolean debug = true;
 	int startDay;
 	int endDay;
+	int executionTime = 0;
 
 	public ScheduleOutParser(String outputToParse) {
 		originalOutput = outputToParse;
@@ -71,7 +72,29 @@ public class ScheduleOutParser {
     	debug("The start day is: " + start + " The end day is: " + end);
     }
 
+    public int getModelExecutionTime() {
+    	return executionTime;
+    }
+
 	public ArrayList<String> parseSeries() {
+		int extimestart = originalOutput.indexOf("Solve time::");
+		int extimeend = originalOutput.indexOf("seconds");
+		debug("execution time start: " + extimestart);
+		debug("execution time end: " + extimeend);
+		StringTokenizer extimest = new StringTokenizer(originalOutput.substring(extimestart,extimeend), "::");
+		while(extimest.hasMoreTokens()) {
+			int millitime = 0;
+			extimest.nextToken();
+			String tmpTime = (extimest.nextToken()).trim();
+			debug("Trying to parse number: " + tmpTime);
+			try {
+				millitime = Integer.parseInt(tmpTime);
+				executionTime = millitime/1000;
+			} catch (Exception e) {
+				debug("Couldn't parse the int.");
+			}
+			extimest.nextToken();
+		}
 		getStartAndEndDays();
 		series = new ArrayList<String>();
 		int start = originalOutput.indexOf("this/schedule<:allSeries={");
